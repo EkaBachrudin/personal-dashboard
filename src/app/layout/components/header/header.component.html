@@ -49,9 +49,7 @@
 
     <!-- Language Selector -->
     <div class="language-selector" (click)="onLanguageClick()">
-      <div class="language-flag">
-        <span>GB</span>
-      </div>
+      <img src="/assets/flags/en.svg" alt="enflag">
       <span class="language-text">{{selectedLanguage}}</span>
       <svg class="language-dropdown" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
@@ -60,22 +58,24 @@
 
     <!-- User Profile -->
     <div class="user-profile">
+      <div class="user-avatar">
+        <img [src]="userAvatar" [alt]="'User Avatar'">
+      </div>
+
       <div class="user-info">
         <p class="user-name">{{userName}}</p>
         <p class="user-role">{{userRole}}</p>
       </div>
-      <div class="user-avatar">
-        <img [src]="userAvatar" [alt]="'User Avatar'">
-      </div>
+      
       <!-- More options menu -->
       <button
         class="more-options-button"
         (click)="onMoreOptionsClick()"
         aria-label="More options"
       >
-        <svg fill="currentColor" viewBox="0 0 24 24">
-          <path d="M12 16a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2a2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2a2 2 0 0 1 2-2m0-6a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2a2 2 0 0 1 2-2Z"/>
-        </svg>
+
+        <img src="/assets/icons/chevron-cirlce-down.svg" alt="down">
+
       </button>
     </div>
   </div>
