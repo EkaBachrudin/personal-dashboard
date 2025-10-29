@@ -2,7 +2,7 @@
 .option-menu-container {
   @apply absolute right-0 top-[40px];
   min-width: 200px;
-  opacity: 1;
+  opacity: 0;
   transform: scale(0.95) translateY(-5px);
   transition: all 0.15s ease-out;
   pointer-events: none;
@@ -22,6 +22,15 @@
   overflow: hidden;
 }
 
+.menu-title {
+  @apply px-4 py-3;
+}
+
+.menu-title-text {
+  @apply text-neutral-700 font-normal text-sm;
+  font-family: 'Nunito Sans', sans-serif;
+}
+
 .menu-items {
   @apply py-2;
 }
@@ -37,6 +46,14 @@
   &:active {
     @apply bg-gray-100;
   }
+}
+
+.menu-checkmark {
+  @apply flex items-center justify-center w-4 h-4 mr-3 flex-shrink-0;
+}
+
+.menu-spacer {
+  @apply w-4 h-4 mr-3 flex-shrink-0;
 }
 
 .menu-icon {
@@ -78,10 +95,55 @@
   }
 }
 
+.menu-flag {
+  @apply flex items-center justify-center w-8 h-6 mr-3 flex-shrink-0 rounded;
+
+  .flag-image {
+    @apply w-full h-full object-cover rounded;
+  }
+}
+
+.menu-notification-icon {
+  @apply flex items-center justify-center w-8 h-8 mr-3 flex-shrink-0 rounded-full;
+
+  .notification-icon-text {
+    @apply text-white text-sm font-medium;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  // Icon styles using Unicode symbols
+  .settings-icon::before {
+    content: "⚙️";
+  }
+
+  .event-icon::before {
+    content: "📅";
+  }
+
+  .profile-icon::before {
+    content: "👤";
+  }
+
+  .error-icon::before {
+    content: "⚠️";
+  }
+}
+
+.menu-content {
+  @apply flex-1 flex flex-col;
+}
+
 .menu-label {
   @apply text-neutral-700 font-semibold text-sm;
   font-family: 'Nunito Sans', sans-serif;
-  flex: 1;
+}
+
+.menu-description {
+  @apply text-gray-500 text-xs mt-1;
+  font-family: 'Nunito Sans', sans-serif;
 }
 
 .menu-divider {
@@ -110,7 +172,24 @@
   }
 }
 
-Animation for menu appearance
+.menu-footer {
+  @apply py-2;
+}
+
+.see-all-link {
+  @apply flex items-center justify-center px-4 py-2 cursor-pointer transition-all duration-200;
+
+  &:hover {
+    @apply bg-gray-50;
+  }
+}
+
+.see-all-text {
+  @apply text-gray-400 text-xs;
+  font-family: 'Circular Std', sans-serif;
+}
+
+// Animation for menu appearance
 .option-menu-container {
   animation: menuFadeIn 0.2s ease-out;
 }
@@ -122,23 +201,6 @@ Animation for menu appearance
   }
   to {
     opacity: 1;
-    transform: translateY(-100%) translateY(-10px) scale(1);
+    transform: translateY(0) translateY(0) scale(1);
   }
-}
-
-// Icon specific gradients based on Figma design
-.menu-item:nth-child(1) .menu-icon {
-  background: linear-gradient(to bottom, #4e96ff, #80c9fc);
-}
-
-.menu-item:nth-child(2) .menu-icon {
-  background: linear-gradient(to bottom, #f97fd9, #ffc1e6);
-}
-
-.menu-item:nth-child(3) .menu-icon {
-  background: linear-gradient(to bottom, #9e8fff, #ebcbff);
-}
-
-.menu-item:nth-child(4) .menu-icon {
-  background: linear-gradient(to bottom, #ff8f8f, #ffc1c1);
 }

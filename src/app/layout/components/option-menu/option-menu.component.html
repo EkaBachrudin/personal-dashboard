@@ -3,26 +3,71 @@
 
   <!-- Menu Background with Shadow -->
   <div class="menu-background">
+    <!-- Menu Title (optional) -->
+    @if (menuTitle) {
+    <div class="menu-title">
+      <span class="menu-title-text">{{ menuTitle }}</span>
+    </div>
+    <div class="menu-divider"></div>
+    }
+
     <!-- Menu Items -->
     <div class="menu-items">
       @for (item of menuItems; track item.id; let isLast = $last) {
       <div class="menu-item" (click)="onMenuItemClick(item)">
 
-        <!-- Icon with Gradient -->
-        @if (item.iconGradient) {
-        <div class="menu-icon"
-          [style.background]="`linear-gradient(to bottom, ${item.iconGradient.from}, ${item.iconGradient.to})`">
-          <span [class]="item.iconClass" class="icon-text"></span>
+        <!-- Checkmark for selected items -->
+        @if (item.isSelected) {
+        <div class="menu-checkmark">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M13.5 4.5L6 12L2.5 8.5" stroke="#4CAF50" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
         </div>
         } @else {
-        <!-- Regular Icon (fallback) -->
-        <div class="menu-icon regular-icon">
-          <span [class]="item.iconClass" class="icon-text"></span>
+        <div class="menu-spacer"></div>
+        }
+
+        <!-- Icon Type -->
+        @if (item.type === 'icon') {
+          <!-- Icon with Gradient -->
+          @if (item.iconGradient) {
+          <div class="menu-icon"
+            [style.background]="`linear-gradient(to bottom, ${item.iconGradient.from}, ${item.iconGradient.to})`">
+            <span [class]="item.iconClass" class="icon-text"></span>
+          </div>
+          } @else {
+          <!-- Regular Icon (fallback) -->
+          <div class="menu-icon regular-icon">
+            <span [class]="item.iconClass" class="icon-text"></span>
+          </div>
+          }
+        }
+
+        <!-- Flag Type -->
+        @if (item.type === 'flag') {
+        <div class="menu-flag">
+          <img [src]="item.flagUrl" [alt]="item.label + ' flag'" class="flag-image">
         </div>
         }
 
-        <!-- Item Label -->
-        <span class="menu-label">{{ item.label }}</span>
+        <!-- Notification Type -->
+        @if (item.type === 'notification') {
+        <div class="menu-notification-icon"
+             [style.background-color]="item.iconColor || '#6B7280'">
+          <span [class]="item.iconClass" class="notification-icon-text"></span>
+        </div>
+        }
+
+        <!-- Item Content -->
+        <div class="menu-content">
+          <!-- Item Label -->
+          <span class="menu-label">{{ item.label }}</span>
+
+          <!-- Description for notification items -->
+          @if (item.type === 'notification' && item.description) {
+          <span class="menu-description">{{ item.description }}</span>
+          }
+        </div>
 
         <!-- Divider (except for last item) -->
         @if (!isLast) {
@@ -31,6 +76,16 @@
       </div>
       }
     </div>
+
+    <!-- Footer for "See all" link (notification menus) -->
+    @if (showSeeAllLink) {
+    <div class="menu-footer">
+      <div class="menu-divider"></div>
+      <div class="see-all-link" (click)="onSeeAllClick()">
+        <span class="see-all-text">See all notification</span>
+      </div>
+    </div>
+    }
   </div>
 
   <!-- Close Button (optional - for accessibility) -->
