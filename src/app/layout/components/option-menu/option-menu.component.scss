@@ -1,7 +1,8 @@
 // Option Menu Component Styles
 .option-menu-container {
   @apply absolute right-0 top-[40px];
-  min-width: 200px;
+  min-width: 280px;
+  width: 320px;
   opacity: 0;
   transform: scale(0.95) translateY(-5px);
   transition: all 0.15s ease-out;
@@ -23,7 +24,7 @@
 }
 
 .menu-title {
-  @apply px-4 py-3;
+  @apply px-6 py-4;
 }
 
 .menu-title-text {
@@ -36,8 +37,8 @@
 }
 
 .menu-item {
-  @apply relative flex items-center px-4 py-3 cursor-pointer transition-all duration-200;
-  min-height: 48px;
+  @apply relative flex items-center px-6 py-4 cursor-pointer transition-all duration-200;
+  min-height: 56px;
 
   &:hover {
     @apply bg-gray-50;
@@ -49,15 +50,15 @@
 }
 
 .menu-checkmark {
-  @apply flex items-center justify-center w-4 h-4 mr-3 flex-shrink-0;
+  @apply flex items-center justify-center w-4 h-4 mr-4 flex-shrink-0;
 }
 
 .menu-spacer {
-  @apply w-4 h-4 mr-3 flex-shrink-0;
+  @apply w-4 h-4 mr-4 flex-shrink-0;
 }
 
 .menu-icon {
-  @apply flex items-center justify-center w-6 h-6 rounded-full mr-3 flex-shrink-0;
+  @apply flex items-center justify-center w-6 h-6 rounded-full mr-4 flex-shrink-0;
 
   // Make the icon text white to show the gradient background
   .icon-text {
@@ -96,7 +97,7 @@
 }
 
 .menu-flag {
-  @apply flex items-center justify-center w-8 h-6 mr-3 flex-shrink-0 rounded;
+  @apply flex items-center justify-center w-8 h-6 mr-4 flex-shrink-0 rounded;
 
   .flag-image {
     @apply w-full h-full object-cover rounded;
@@ -104,7 +105,7 @@
 }
 
 .menu-notification-icon {
-  @apply flex items-center justify-center w-8 h-8 mr-3 flex-shrink-0 rounded-full;
+  @apply flex items-center justify-center w-8 h-8 mr-4 flex-shrink-0 rounded-full;
 
   .notification-icon-text {
     @apply text-white text-sm font-medium;
@@ -177,7 +178,7 @@
 }
 
 .see-all-link {
-  @apply flex items-center justify-center px-4 py-2 cursor-pointer transition-all duration-200;
+  @apply flex items-center justify-center px-6 py-3 cursor-pointer transition-all duration-200;
 
   &:hover {
     @apply bg-gray-50;
