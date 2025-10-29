@@ -1,0 +1,144 @@
+// Option Menu Component Styles
+.option-menu-container {
+  @apply absolute right-0 top-[40px];
+  min-width: 200px;
+  opacity: 1;
+  transform: scale(0.95) translateY(-5px);
+  transition: all 0.15s ease-out;
+  pointer-events: none;
+
+  // Show state - will be applied when menu is visible
+  &.menu-visible {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    pointer-events: auto;
+  }
+}
+
+.menu-background {
+  @apply bg-white rounded-xl;
+  box-shadow: 0px 9px 40px 0px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.menu-items {
+  @apply py-2;
+}
+
+.menu-item {
+  @apply relative flex items-center px-4 py-3 cursor-pointer transition-all duration-200;
+  min-height: 48px;
+
+  &:hover {
+    @apply bg-gray-50;
+  }
+
+  &:active {
+    @apply bg-gray-100;
+  }
+}
+
+.menu-icon {
+  @apply flex items-center justify-center w-6 h-6 rounded-full mr-3 flex-shrink-0;
+
+  // Make the icon text white to show the gradient background
+  .icon-text {
+    @apply text-white text-sm font-medium;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  // Icon styles using Unicode symbols
+  .user-icon::before {
+    content: "👤";
+  }
+
+  .lock-icon::before {
+    content: "🔒";
+  }
+
+  .activity-icon::before {
+    content: "🔄";
+  }
+
+  .logout-icon::before {
+    content: "🚪";
+  }
+
+  // Regular icon fallback (no gradient)
+  &.regular-icon {
+    @apply bg-gray-200;
+
+    .icon-text {
+      @apply text-gray-600;
+    }
+  }
+}
+
+.menu-label {
+  @apply text-neutral-700 font-semibold text-sm;
+  font-family: 'Nunito Sans', sans-serif;
+  flex: 1;
+}
+
+.menu-divider {
+  @apply absolute bottom-0 left-0 right-0;
+  height: 1px;
+  background: linear-gradient(to right,
+    rgba(0, 0, 0, 0.05) 0%,
+    rgba(0, 0, 0, 0.08) 50%,
+    rgba(0, 0, 0, 0.05) 100%
+  );
+  margin: 0 16px;
+}
+
+// Accessibility close button (hidden by default, shown for screen readers)
+.close-button {
+  @apply absolute top-2 right-2 w-6 h-6 flex items-center justify-center text-gray-400 hover:text-gray-600 opacity-0;
+
+  // Only visible on focus or for screen readers
+  &:focus {
+    @apply opacity-100;
+  }
+
+  // Screen reader only
+  &:not(:focus) {
+    @apply sr-only;
+  }
+}
+
+Animation for menu appearance
+.option-menu-container {
+  animation: menuFadeIn 0.2s ease-out;
+}
+
+@keyframes menuFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-100%) translateY(-5px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(-100%) translateY(-10px) scale(1);
+  }
+}
+
+// Icon specific gradients based on Figma design
+.menu-item:nth-child(1) .menu-icon {
+  background: linear-gradient(to bottom, #4e96ff, #80c9fc);
+}
+
+.menu-item:nth-child(2) .menu-icon {
+  background: linear-gradient(to bottom, #f97fd9, #ffc1e6);
+}
+
+.menu-item:nth-child(3) .menu-icon {
+  background: linear-gradient(to bottom, #9e8fff, #ebcbff);
+}
+
+.menu-item:nth-child(4) .menu-icon {
+  background: linear-gradient(to bottom, #ff8f8f, #ffc1c1);
+}

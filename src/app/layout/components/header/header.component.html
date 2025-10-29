@@ -20,7 +20,7 @@
           type="text"
           placeholder="Search"
           [(ngModel)]="searchQuery"
-          (input)="onSearchChange($event)"
+          (input)="onSearchChange()"
         >
         <div class="search-icon">
           <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -69,14 +69,21 @@
       
       <!-- More options menu -->
       <button
+        #moreOptionsButton
         class="more-options-button"
         (click)="onMoreOptionsClick()"
         aria-label="More options"
       >
-
         <img src="/assets/icons/chevron-cirlce-down.svg" alt="down">
 
       </button>
+
+      <!-- Option Menu Container -->
+      <app-option-menu
+        [isVisible]="isOptionMenuVisible"
+        [menuItems]="menuItems"
+        (closeMenu)="closeOptionMenu()">
+      </app-option-menu>
     </div>
   </div>
 </header>

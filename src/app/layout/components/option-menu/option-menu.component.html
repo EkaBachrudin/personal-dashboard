@@ -1,0 +1,41 @@
+@if(isVisible) {
+<div class="option-menu-container menu-visible">
+
+  <!-- Menu Background with Shadow -->
+  <div class="menu-background">
+    <!-- Menu Items -->
+    <div class="menu-items">
+      @for (item of menuItems; track item.id; let isLast = $last) {
+      <div class="menu-item" (click)="onMenuItemClick(item)">
+
+        <!-- Icon with Gradient -->
+        @if (item.iconGradient) {
+        <div class="menu-icon"
+          [style.background]="`linear-gradient(to bottom, ${item.iconGradient.from}, ${item.iconGradient.to})`">
+          <span [class]="item.iconClass" class="icon-text"></span>
+        </div>
+        } @else {
+        <!-- Regular Icon (fallback) -->
+        <div class="menu-icon regular-icon">
+          <span [class]="item.iconClass" class="icon-text"></span>
+        </div>
+        }
+
+        <!-- Item Label -->
+        <span class="menu-label">{{ item.label }}</span>
+
+        <!-- Divider (except for last item) -->
+        @if (!isLast) {
+        <div class="menu-divider"></div>
+        }
+      </div>
+      }
+    </div>
+  </div>
+
+  <!-- Close Button (optional - for accessibility) -->
+  <button class="close-button" (click)="onClose()" aria-label="Close menu">
+    ×
+  </button>
+</div>
+}
