@@ -1,0 +1,47 @@
+.sidebar-component {
+  background: white;
+  border-right: 1px solid #e5e7eb;
+  transition: all 0.3s ease-in-out;
+}
+
+.nav-item {
+  transition: all 0.2s ease-in-out;
+  border-radius: 0.5rem;
+
+  &:hover {
+    background-color: #f9fafb;
+  }
+
+  &.active {
+    background-color: #eff6ff;
+    color: #2563eb;
+    border-right: 2px solid #2563eb;
+  }
+
+  svg {
+    transition: color 0.2s ease-in-out;
+  }
+
+  &:hover svg {
+    color: #3b82f6;
+  }
+}
+
+.sidebar-logo {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+}
+
+@media (max-width: 768px) {
+  .sidebar-component {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 50;
+    transform: translateX(-100%);
+
+    &.open {
+      transform: translateX(0);
+    }
+  }
+}
