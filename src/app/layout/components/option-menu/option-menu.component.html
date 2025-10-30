@@ -23,8 +23,6 @@
             <path d="M13.5 4.5L6 12L2.5 8.5" stroke="#4CAF50" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </div>
-        } @else {
-        <div class="menu-spacer"></div>
         }
 
         <!-- Icon Type -->
@@ -69,10 +67,6 @@
           }
         </div>
 
-        <!-- Divider (except for last item) -->
-        @if (!isLast) {
-        <div class="menu-divider"></div>
-        }
       </div>
       }
     </div>
@@ -80,7 +74,6 @@
     <!-- Footer for "See all" link (notification menus) -->
     @if (showSeeAllLink) {
     <div class="menu-footer">
-      <div class="menu-divider"></div>
       <div class="see-all-link" (click)="onSeeAllClick()">
         <span class="see-all-text">See all notification</span>
       </div>

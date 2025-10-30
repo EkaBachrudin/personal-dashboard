@@ -24,11 +24,11 @@
 }
 
 .menu-title {
-  @apply px-6 py-4;
+  @apply px-5 py-3 border-b border-gray-100;
 }
 
 .menu-title-text {
-  @apply text-neutral-700 font-normal text-sm;
+  @apply text-neutral-700 font-medium text-[15px];
   font-family: 'Nunito Sans', sans-serif;
 }
 
@@ -37,7 +37,7 @@
 }
 
 .menu-item {
-  @apply relative flex items-center px-6 py-4 cursor-pointer transition-all duration-200;
+  @apply relative flex items-center px-5 py-4 cursor-pointer transition-all duration-200;
   min-height: 56px;
 
   &:hover {
@@ -51,10 +51,6 @@
 
 .menu-checkmark {
   @apply flex items-center justify-center w-4 h-4 mr-4 flex-shrink-0;
-}
-
-.menu-spacer {
-  @apply w-4 h-4 mr-4 flex-shrink-0;
 }
 
 .menu-icon {
@@ -147,17 +143,6 @@
   font-family: 'Nunito Sans', sans-serif;
 }
 
-.menu-divider {
-  @apply absolute bottom-0 left-0 right-0;
-  height: 1px;
-  background: linear-gradient(to right,
-    rgba(0, 0, 0, 0.05) 0%,
-    rgba(0, 0, 0, 0.08) 50%,
-    rgba(0, 0, 0, 0.05) 100%
-  );
-  margin: 0 16px;
-}
-
 // Accessibility close button (hidden by default, shown for screen readers)
 .close-button {
   @apply absolute top-2 right-2 w-6 h-6 flex items-center justify-center text-gray-400 hover:text-gray-600 opacity-0;
@@ -178,7 +163,7 @@
 }
 
 .see-all-link {
-  @apply flex items-center justify-center px-6 py-3 cursor-pointer transition-all duration-200;
+  @apply flex items-center justify-center px-6 py-3 cursor-pointer transition-all duration-200 border-t border-gray-100;
 
   &:hover {
     @apply bg-gray-50;
