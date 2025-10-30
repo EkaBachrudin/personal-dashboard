@@ -15,14 +15,14 @@
 
 // Logo Section
 .logo-section {
-  padding: 40px 20px 20px;
-  border-bottom: 1px solid #f0f0f0;
+  @apply px-10 pt-10 pb-12;
 }
 
 .logo-text {
+  @apply text-center;
   font-family: 'Nunito Sans', sans-serif;
   font-weight: 800;
-  font-size: 20px;
+  font-size: 27px;
   line-height: 27px;
   margin: 0;
 
@@ -109,19 +109,10 @@
 // Divider
 .divider {
   height: 1px;
-  background: #e0e0e0;
-  margin: 20px 0;
+  background: linear-gradient(to right, transparent 0%, #d1d5db 20%, #d1d5db 80%, transparent 100%);
+  margin: 25px 0;
+  opacity: 1;
   position: relative;
-
-  &::before {
-    content: '';
-    position: absolute;
-    left: 20%;
-    right: 0.08%;
-    top: 20%;
-    bottom: 20%;
-    background: #e0e0e0;
-  }
 }
 
 // Pages Section
