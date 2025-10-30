@@ -1,0 +1,61 @@
+:host {
+  display: block;
+  width: 100%;
+  background: white;
+  border-radius: 8px;
+  padding: 16px;
+  border: 1px solid #e5e7eb;
+}
+
+.chart-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+svg {
+  display: block;
+  margin: 0 auto;
+
+  .grid line {
+    stroke: #e5e7eb;
+    stroke-dasharray: 3,3;
+  }
+
+  .grid path {
+    stroke-width: 0;
+  }
+
+  .axis {
+    path {
+      stroke: #9ca3af;
+    }
+    line {
+      stroke: #9ca3af;
+    }
+    text {
+      fill: #6b7280;
+      font-size: 12px;
+    }
+  }
+
+  .dot {
+    cursor: pointer;
+    transition: r 0.2s ease;
+
+    &:hover {
+      r: 6;
+    }
+  }
+
+  .legend {
+    font-size: 12px;
+
+    .legend-item {
+      cursor: pointer;
+
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+  }
+}
