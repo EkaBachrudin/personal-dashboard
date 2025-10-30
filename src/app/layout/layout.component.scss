@@ -5,19 +5,86 @@
 }
 
 .sidebar {
-  transition: transform 0.3s ease-in-out;
+  width: 280px;
+  flex-shrink: 0;
+  background: white;
+  border-right: 1px solid #e5e7eb;
+  overflow-y: auto;
+  transition: transform 0.3s ease, margin 0.3s ease;
+
+  &.hidden {
+    transform: translateX(-100%);
+    margin-left: -280px;
+  }
 }
 
-.sidebar-closed {
-  transform: translateX(-100%);
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: margin-left 0.3s ease;
+
+  &.expanded {
+    margin-left: 0;
+  }
 }
 
+.page-content {
+  flex: 1;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background: #f9fafb;
+  padding: 24px;
+}
+
+// Responsive Design
 @media (max-width: 768px) {
+  .layout-container {
+    flex-direction: column;
+  }
+
   .sidebar {
+    width: 100%;
+    height: auto;
     position: fixed;
     top: 0;
     left: 0;
-    height: 100vh;
-    z-index: 50;
+    z-index: 1000;
+    order: 2;
+
+    &.hidden {
+      transform: translateX(-100%);
+      margin-left: 0;
+    }
   }
+
+  .main-content {
+    order: 1;
+    margin-left: 0 !important;
+
+    &.expanded {
+      margin-left: 0;
+    }
+  }
+
+  .page-content {
+    padding: 16px;
+  }
+}
+
+// Animation
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.5s ease-out;
 }

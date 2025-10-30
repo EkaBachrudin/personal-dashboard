@@ -1,47 +1,177 @@
-.sidebar-component {
+// Import Line Awesome fonts - using Font Awesome as replacement
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800&display=swap');
+
+.sidebar-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
   background: white;
-  border-right: 1px solid #e5e7eb;
-  transition: all 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Nunito Sans', sans-serif;
+  overflow-y: auto;
 }
 
-.nav-item {
-  transition: all 0.2s ease-in-out;
-  border-radius: 0.5rem;
+// Logo Section
+.logo-section {
+  padding: 40px 20px 20px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.logo-text {
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 800;
+  font-size: 20px;
+  line-height: 27px;
+  margin: 0;
+
+  color: #4880ff;
+
+  .logo-stack {
+    color: #202224;
+  }
+}
+
+// Menu Items
+.main-menu,
+.pages-menu,
+.bottom-menu {
+  padding: 0 20px;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 18px 0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
 
   &:hover {
-    background-color: #f9fafb;
+    .menu-label {
+      color: #4880ff;
+    }
   }
 
   &.active {
-    background-color: #eff6ff;
-    color: #2563eb;
-    border-right: 2px solid #2563eb;
-  }
-
-  svg {
-    transition: color 0.2s ease-in-out;
-  }
-
-  &:hover svg {
-    color: #3b82f6;
-  }
-}
-
-.sidebar-logo {
-  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
-}
-
-@media (max-width: 768px) {
-  .sidebar-component {
-    position: fixed;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    z-index: 50;
-    transform: translateX(-100%);
-
-    &.open {
-      transform: translateX(0);
+    .menu-label {
+      color: white;
     }
+
+    .menu-icon {
+      color: white;
+    }
+
+    .accent{
+      @apply w-[10px] h-[58px] absolute left-[-25px] bg-[#4880ff] rounded-lg;
+    }
+
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      background: #4880ff;
+      border-radius: 12px;
+      z-index: 0;
+    }
+  }
+}
+
+.menu-icon {
+  font-family: 'Line Awesome Free', sans-serif;
+  font-weight: 400;
+  font-size: 22px;
+  color: #202224;
+  width: 40px;
+  text-align: center;
+  line-height: 1;
+  transition: color 0.2s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.menu-label {
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  color: #202224;
+  letter-spacing: 0.3px;
+  margin-left: 12px;
+  transition: color 0.2s ease;
+  position: relative;
+  z-index: 1;
+}
+
+// Divider
+.divider {
+  height: 1px;
+  background: #e0e0e0;
+  margin: 20px 0;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 20%;
+    right: 0.08%;
+    top: 20%;
+    bottom: 20%;
+    background: #e0e0e0;
+  }
+}
+
+// Pages Section
+.pages-section {
+  flex: 1;
+}
+
+.section-label {
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  color: #202224;
+  opacity: 0.6;
+  letter-spacing: 0.2571px;
+  text-transform: uppercase;
+  margin: 20px 0 10px 0;
+  padding: 0 20px;
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+  .sidebar-container {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 280px;
+    z-index: 1000;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+
+  .sidebar-container.open {
+    transform: translateX(0);
+  }
+
+  .menu-item.active::before {
+    left: 0;
+    right: 0;
+    border-radius: 12px;
+  }
+}
+
+// Animations
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

@@ -1,23 +1,22 @@
-<div class="flex h-screen bg-gray-50">
+<div class="layout-container">
   <!-- Sidebar -->
-  <app-sidebar
-    [isOpen]="isSidebarOpen"
-    (toggleSidebar)="toggleSidebar()"
-  ></app-sidebar>
+  <aside class="sidebar" [class.hidden]="!isSidebarOpen">
+    <app-sidebar [isOpen]="isSidebarOpen"></app-sidebar>
+  </aside>
 
   <!-- Main Content -->
-  <div class="flex-1 flex flex-col overflow-hidden">
+  <main class="main-content" [class.expanded]="!isSidebarOpen">
     <!-- Header -->
     <app-header (toggleSidebar)="toggleSidebar()"></app-header>
 
     <!-- Page Content -->
-    <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-50 p-6">
+    <section class="page-content">
       <div class="animate-fade-in">
         <router-outlet></router-outlet>
       </div>
-    </main>
+    </section>
 
     <!-- Footer -->
     <app-footer></app-footer>
-  </div>
+  </main>
 </div>
