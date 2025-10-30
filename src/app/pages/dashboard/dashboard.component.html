@@ -5,6 +5,17 @@
     <p class="text-gray-600">Manage your projects, skills, experience, and contact information all in one place.</p>
   </div>
 
+  <!-- Line Chart -->
+  <div class="bg-white rounded-xl shadow-sm border border-gray-200">
+    <div class="p-6 border-b border-gray-100">
+      <h2 class="text-lg font-semibold text-gray-900">Financial Overview</h2>
+      <p class="text-sm text-gray-500 mt-1">Revenue, profit, and expenses over the past 12 months</p>
+    </div>
+    <div class="p-6">
+      <app-line-chart [data]="chartData" [width]="800" [height]="400"></app-line-chart>
+    </div>
+  </div>
+
   <!-- Stats Grid -->
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
     <div class="bg-white rounded-xl shadow-sm p-6 border border-gray-200">
