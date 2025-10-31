@@ -159,12 +159,12 @@ export class LineChartComponent implements AfterViewInit, OnDestroy {
     const minPercentage = 20; // Fixed minimum percentage (20%)
     const maxPercentage = 100; // Fixed maximum percentage (100%)
 
-    const xScale = (percentage: number) => {
-      return padding + ((percentage - minPercentage) / (maxPercentage - minPercentage)) * (width - 2 * padding);
+    const xScale = (value: number) => {
+      return padding + ((value - minValue) / (maxValue - minValue)) * (width - 2 * padding);
     };
 
-    const yScale = (value: number) => {
-      return height - padding - ((value - minValue) / (maxValue - minValue)) * (height - 2 * padding);
+    const yScale = (percentage: number) => {
+      return height - padding - ((percentage - minPercentage) / (maxPercentage - minPercentage)) * (height - 2 * padding);
     };
 
     // Draw grid lines
@@ -213,20 +213,20 @@ export class LineChartComponent implements AfterViewInit, OnDestroy {
     ctx.font = '12px sans-serif';
     ctx.textAlign = 'center';
 
-    // X-axis labels (percentages)
-    for (let i = 0; i <= 4; i++) {
-      const percentage = minPercentage + (i * (maxPercentage - minPercentage)) / 4;
-      const x = xScale(percentage);
-      ctx.fillText(`${percentage}%`, x, height - padding + 20);
-    }
-
-    // Y-axis labels
-    ctx.textAlign = 'right';
+    // X-axis labels (revenue values)
     for (let i = 0; i <= 5; i++) {
       const value = minValue + (i * (maxValue - minValue)) / 5;
-      const y = height - padding - (i * (height - 2 * padding)) / 5;
+      const x = xScale(value);
       const label = value >= 1000 ? `${value/1000}k` : value.toString();
-      ctx.fillText(label, padding - 10, y + 5);
+      ctx.fillText(label, x, height - padding + 20);
+    }
+
+    // Y-axis labels (percentages)
+    ctx.textAlign = 'right';
+    for (let i = 0; i <= 4; i++) {
+      const percentage = minPercentage + (i * (maxPercentage - minPercentage)) / 4;
+      const y = height - padding - (i * (height - 2 * padding)) / 4;
+      ctx.fillText(`${percentage}%`, padding - 10, y + 5);
     }
 
     // Draw data lines
@@ -236,8 +236,8 @@ export class LineChartComponent implements AfterViewInit, OnDestroy {
       ctx.beginPath();
 
       series.data.forEach((point, index) => {
-        const x = xScale(point.percentage);
-        const y = yScale(point.value);
+        const x = xScale(point.value);
+        const y = yScale(point.percentage);
 
         if (index === 0) {
           ctx.moveTo(x, y);
@@ -253,8 +253,8 @@ export class LineChartComponent implements AfterViewInit, OnDestroy {
     this.data.forEach(series => {
       ctx.fillStyle = series.color;
       series.data.forEach(point => {
-        const x = xScale(point.percentage);
-        const y = yScale(point.value);
+        const x = xScale(point.value);
+        const y = yScale(point.percentage);
 
         // Store data point for hover detection
         this.dataPoints.push({ x, y, series, point });
@@ -311,20 +311,5 @@ export class LineChartComponent implements AfterViewInit, OnDestroy {
     ctx.font = 'bold 16px sans-serif';
     ctx.textAlign = 'center';
     ctx.fillText('Percentage vs Revenue Analysis', width / 2, 20);
-
-    // Draw axis titles
-    ctx.fillStyle = '#6b7280';
-    ctx.font = '14px sans-serif';
-
-    // X-axis title
-    ctx.textAlign = 'center';
-    ctx.fillText('Percentage (%)', width / 2, height - 10);
-
-    // Y-axis title
-    ctx.save();
-    ctx.translate(15, height / 2);
-    ctx.rotate(-Math.PI / 2);
-    ctx.fillText('Revenue ($)', 0, 0);
-    ctx.restore();
   }
 }
