@@ -25,9 +25,20 @@ export class LineChartComponent implements AfterViewInit, OnDestroy {
 
   ngAfterViewInit(): void {
     if (this.data.length > 0) {
-      this.ctx = this.chartCanvas.nativeElement.getContext('2d');
-      this.chartCanvas.nativeElement.width = this.width;
-      this.chartCanvas.nativeElement.height = this.height;
+      const canvas = this.chartCanvas.nativeElement;
+      this.ctx = canvas.getContext('2d');
+
+      // Handle high DPI displays
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = this.width * dpr;
+      canvas.height = this.height * dpr;
+      canvas.style.width = `${this.width}px`;
+      canvas.style.height = `${this.height}px`;
+
+      // Scale the context to account for device pixel ratio
+      if (this.ctx) {
+        this.ctx.scale(dpr, dpr);
+      }
 
       // Create tooltip element
       this.createTooltip();
@@ -79,12 +90,17 @@ export class LineChartComponent implements AfterViewInit, OnDestroy {
   private handleMouseMove(event: MouseEvent): void {
     const canvas = this.chartCanvas.nativeElement;
     const rect = canvas.getBoundingClientRect();
-    const x = event.clientX - rect.left;
-    const y = event.clientY - rect.top;
+
+    // Calculate actual mouse position accounting for canvas scaling
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
+
+    const x = (event.clientX - rect.left) * scaleX;
+    const y = (event.clientY - rect.top) * scaleY;
 
     // Check if hovering over any data point
     let hoveredPoint = null;
-    const hoverRadius = 8; // Increased hover area for better UX
+    const hoverRadius = 10; // Slightly larger hover area for better UX
 
     for (const dataPoint of this.dataPoints) {
       const distance = Math.sqrt(
@@ -213,13 +229,13 @@ export class LineChartComponent implements AfterViewInit, OnDestroy {
     ctx.font = '12px sans-serif';
     ctx.textAlign = 'center';
 
-    // X-axis labels (revenue values)
-    for (let i = 0; i <= 5; i++) {
-      const value = minValue + (i * (maxValue - minValue)) / 5;
+    // X-axis labels (exact revenue values)
+    const exactValues = [5000, 10000, 15000, 20000, 25000, 30000, 35000, 40000, 45000, 50000, 55000, 60000];
+    exactValues.forEach(value => {
       const x = xScale(value);
       const label = value >= 1000 ? `${value/1000}k` : value.toString();
       ctx.fillText(label, x, height - padding + 20);
-    }
+    });
 
     // Y-axis labels (percentages)
     ctx.textAlign = 'right';

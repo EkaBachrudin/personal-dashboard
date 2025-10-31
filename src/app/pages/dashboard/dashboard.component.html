@@ -79,8 +79,8 @@
       <h2 class="text-lg font-semibold text-gray-900">Financial Overview</h2>
       <p class="text-sm text-gray-500 mt-1">Revenue, profit, and expenses over the past 12 months</p>
     </div>
-    <div class="p-6">
-      <app-line-chart [data]="chartData" [width]="800" [height]="400"></app-line-chart>
+    <div class="p-6 chart-container">
+      <app-line-chart [data]="chartData" [width]="chartWidth" [height]="400"></app-line-chart>
     </div>
   </div>
 

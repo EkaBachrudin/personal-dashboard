@@ -9,7 +9,12 @@
 
 .chart-container {
   width: 100%;
-  overflow-x: auto;
+  overflow: visible;
+}
+
+canvas {
+  display: block;
+  max-width: 100%;
 }
 
 svg {
