@@ -169,6 +169,7 @@ export class LineChartComponent implements AfterViewInit, OnDestroy {
     // Clear data points array
     this.dataPoints = [];
 
+    
     // Fixed ranges as specified in the requirements
     const minValue = 5000; // Fixed minimum value (5k)
     const maxValue = 60000; // Fixed maximum value (60k)
@@ -244,6 +245,43 @@ export class LineChartComponent implements AfterViewInit, OnDestroy {
       const y = height - padding - (i * (height - 2 * padding)) / 4;
       ctx.fillText(`${percentage}%`, padding - 10, y + 5);
     }
+
+    // Draw gradient areas under the lines (area chart effect)
+    this.data.forEach(series => {
+      const areaGradient = ctx.createLinearGradient(0, padding, 0, height - padding);
+      const color = series.color;
+
+      // Parse hex color to create rgba gradient
+      const r = parseInt(color.slice(1, 3), 16);
+      const g = parseInt(color.slice(3, 5), 16);
+      const b = parseInt(color.slice(5, 7), 16);
+
+      areaGradient.addColorStop(0, `rgba(${r}, ${g}, ${b}, 0.3)`); // Start with visible color
+      areaGradient.addColorStop(0.4, `rgba(${r}, ${g}, ${b}, 0.15)`); // Fade to medium opacity
+      areaGradient.addColorStop(0.8, `rgba(${r}, ${g}, ${b}, 0.05)`); // Fade to very light
+      areaGradient.addColorStop(1, `rgba(${r}, ${g}, ${b}, 0)`); // Fade to transparent
+
+      ctx.fillStyle = areaGradient;
+      ctx.beginPath();
+
+      // Draw the line first
+      series.data.forEach((point, index) => {
+        const x = xScale(point.value);
+        const y = yScale(point.percentage);
+
+        if (index === 0) {
+          ctx.moveTo(x, y);
+        } else {
+          ctx.lineTo(x, y);
+        }
+      });
+
+      // Complete the area by drawing lines to the bottom and back to start
+      ctx.lineTo(xScale(series.data[series.data.length - 1].value), height - padding);
+      ctx.lineTo(xScale(series.data[0].value), height - padding);
+      ctx.closePath();
+      ctx.fill();
+    });
 
     // Draw data lines
     this.data.forEach(series => {
