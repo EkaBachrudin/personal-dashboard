@@ -31,10 +31,10 @@
 }
 
 .page-content {
+  @apply bg-[#F5F6FA];
   flex: 1;
   overflow-x: hidden;
   overflow-y: auto;
-  background: #f9fafb;
   padding: 24px;
 }
 
