@@ -225,7 +225,7 @@ export class LineChartComponent implements AfterViewInit, OnDestroy {
     ctx.lineTo(padding, height - padding);
     ctx.stroke();
 
-    // Draw axis labels
+  // Draw axis labels
     ctx.fillStyle = '#6b7280';
     ctx.font = '12px sans-serif';
     ctx.textAlign = 'center';
@@ -346,18 +346,5 @@ export class LineChartComponent implements AfterViewInit, OnDestroy {
       });
     });
 
-    // Draw legend
-    let legendY = 20;
-    this.data.forEach(series => {
-      ctx.fillStyle = series.color;
-      ctx.fillRect(width - 150, legendY, 12, 12);
-
-      ctx.fillStyle = '#374151';
-      ctx.font = '12px sans-serif';
-      ctx.textAlign = 'left';
-      ctx.fillText(series.name, width - 150 + 18, legendY + 9);
-
-      legendY += 25;
-    });
-  }
+    }
 }
