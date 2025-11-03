@@ -359,11 +359,5 @@ export class LineChartComponent implements AfterViewInit, OnDestroy {
 
       legendY += 25;
     });
-
-    // Draw title
-    ctx.fillStyle = '#111827';
-    ctx.font = 'bold 16px sans-serif';
-    ctx.textAlign = 'center';
-    ctx.fillText('Percentage vs Revenue Analysis', width / 2, 20);
   }
 }
