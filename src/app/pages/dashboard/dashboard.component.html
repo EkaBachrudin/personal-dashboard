@@ -127,12 +127,12 @@
                 <div class="w-9 h-9 bg-[#d8d8d8] rounded-[18px] flex items-center justify-center">
                   <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2'%3E%3Crect x='4' y='4' width='16' height='16' rx='2'/%3E%3Cline x1='9' y1='9' x2='15' y2='9'/%3E%3Cline x1='9' y1='12' x2='15' y2='12'/%3E%3C/svg%3E" alt="product" class="w-5 h-5">
                 </div>
-                <span class="text-[14px] font-semibold text-[#202224] opacity-80">{{ deal.productName }}</span>
+                <span class="text-[14px] font-medium text-[#202224] opacity-80">{{ deal.productName }}</span>
               </div>
-              <div class="text-[14px] font-semibold text-[#202224] opacity-80">{{ deal.location }}</div>
-              <div class="text-[14px] font-semibold text-[#202224] opacity-80">{{ deal.date }} - {{ deal.time }}</div>
-              <div class="text-[14px] font-semibold text-[#202224] opacity-80">{{ deal.pieces }}</div>
-              <div class="text-[14px] font-semibold text-[#202224] opacity-80">{{ formatAmount(deal.amount) }}</div>
+              <div class="text-[14px] font-medium text-[#202224] opacity-80">{{ deal.location }}</div>
+              <div class="text-[14px] font-medium text-[#202224] opacity-80">{{ deal.date }} - {{ deal.time }}</div>
+              <div class="text-[14px] font-medium text-[#202224] opacity-80">{{ deal.pieces }}</div>
+              <div class="text-[14px] font-medium text-[#202224] opacity-80">{{ formatAmount(deal.amount) }}</div>
               <div>
                 <span class="inline-flex items-center px-3 py-1 rounded-full text-[14px] font-bold text-white"
                       [style.background-color]="getStatusColor(deal.status)">
