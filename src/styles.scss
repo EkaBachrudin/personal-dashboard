@@ -13,10 +13,12 @@
 
 html {
   height: 100%;
+  overflow: hidden;
 }
 
 body {
   height: 100%;
+  overflow: hidden;
   font-family: 'Inter', system-ui, sans-serif;
   background-color: #f9fafb;
   color: #111827;
@@ -25,4 +27,5 @@ body {
 app-root {
   display: block;
   height: 100%;
+  overflow: hidden;
 }
