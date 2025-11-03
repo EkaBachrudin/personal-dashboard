@@ -6,3 +6,16 @@ export interface User {
   role: string;
   avatar?: string;
 }
+
+export interface DealDetail {
+  id: string;
+  productName: string;
+  location: string;
+  date: string;
+  time: string;
+  pieces: number;
+  amount: number;
+  status: 'delivered' | 'pending' | 'rejected';
+}
+
+export type DealStatus = DealDetail['status'];

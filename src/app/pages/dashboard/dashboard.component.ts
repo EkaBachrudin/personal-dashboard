@@ -1,24 +1,29 @@
 import { Component, OnInit, AfterViewInit, ElementRef, ViewChild, OnDestroy } from '@angular/core';
 import { ChartService } from '../../services/chart.service';
 import { ChartSeries } from '../../types/chart.types';
+import { DealDetail } from '../../types';
 import { LineChartComponent } from '../../components/line-chart/line-chart.component';
+import { NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [LineChartComponent],
+  imports: [LineChartComponent, NgFor],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
 export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
   chartData: ChartSeries[] = [];
   chartWidth = 800; // Default width
+  dealsData: DealDetail[] = [];
+  selectedMonth: string = 'October';
   private resizeObserver: ResizeObserver | null = null;
 
   constructor(private chartService: ChartService) {}
 
   ngOnInit(): void {
     this.chartData = this.chartService.generateSampleData();
+    this.dealsData = this.generateDealsData();
     this.updateChartWidth();
   }
 
@@ -67,5 +72,73 @@ export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
         this.chartWidth = windowWidth - 50;
       }
     }
+  }
+
+  private generateDealsData(): DealDetail[] {
+    return [
+      {
+        id: '1',
+        productName: 'Apple Watch',
+        location: '6096 Marjolaine Landing',
+        date: '12.09.2019',
+        time: '12.53 PM',
+        pieces: 423,
+        amount: 34295,
+        status: 'delivered'
+      },
+      {
+        id: '2',
+        productName: 'Apple Watch',
+        location: '6096 Marjolaine Landing',
+        date: '12.09.2019',
+        time: '12.53 PM',
+        pieces: 423,
+        amount: 34295,
+        status: 'pending'
+      },
+      {
+        id: '3',
+        productName: 'Apple Watch',
+        location: '6096 Marjolaine Landing',
+        date: '12.09.2019',
+        time: '12.53 PM',
+        pieces: 423,
+        amount: 34295,
+        status: 'rejected'
+      }
+    ];
+  }
+
+  getStatusColor(status: DealDetail['status']): string {
+    switch (status) {
+      case 'delivered':
+        return '#00b69b';
+      case 'pending':
+        return '#fcbe2d';
+      case 'rejected':
+        return '#fd5454';
+      default:
+        return '#6b7280';
+    }
+  }
+
+  getStatusText(status: DealDetail['status']): string {
+    switch (status) {
+      case 'delivered':
+        return 'Delivered';
+      case 'pending':
+        return 'Pending';
+      case 'rejected':
+        return 'Rejected';
+      default:
+        return 'Unknown';
+    }
+  }
+
+  formatAmount(amount: number): string {
+    return new Intl.NumberFormat('en-US', {
+      style: 'currency',
+      currency: 'USD'
+    }).format(amount);
   }
 }
