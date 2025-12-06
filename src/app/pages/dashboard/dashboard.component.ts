@@ -6,11 +6,12 @@ import * as htl from "htl";
 import { sales, salesA, salesB } from './dashboard.data';
 import { PlotFigure } from '../../shared/lib/plot-figure/plot-figure';
 import { NgFor } from '@angular/common';
+import { CardComponent } from '../../shared/lib/card';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [PlotFigure, NgFor],
+  imports: [PlotFigure, NgFor, CardComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
@@ -66,8 +67,7 @@ export class DashboardComponent implements OnInit {
     width: 2000,
     height: 278,
     y: {grid: true, label: "Sales (Units)"},
-    x: {label: "Month"},
-    title: "Revenue"
+    x: {label: "Month"}
   };
 
   constructor() {}
