@@ -1,77 +1,79 @@
 import { Component, OnInit, AfterViewInit, ElementRef, ViewChild, OnDestroy } from '@angular/core';
-import { ChartService } from '../../services/chart.service';
 import { ChartSeries } from '../../types/chart.types';
 import { DealDetail } from '../../types';
-import { LineChartComponent } from '../../components/line-chart/line-chart.component';
+import * as Plot from "@observablehq/plot";
+import * as htl from "htl";
+import { sales, salesA, salesB } from './dashboard.data';
+import { PlotFigure } from '../../shared/lib/plot-figure/plot-figure';
 import { NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [LineChartComponent, NgFor],
+  imports: [PlotFigure, NgFor],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
-export class DashboardComponent implements OnInit, AfterViewInit, OnDestroy {
+export class DashboardComponent implements OnInit {
   chartData: ChartSeries[] = [];
   chartWidth = 800; // Default width
   dealsData: DealDetail[] = [];
   selectedMonth: string = 'October';
-  private resizeObserver: ResizeObserver | null = null;
 
-  constructor(private chartService: ChartService) {}
+  salesOption= {
+    marks: [
+      () => htl.svg`<defs>
+        <linearGradient id="salesGradient" gradientTransform="rotate(90)">
+          <stop offset="20%" stop-color="#007AFF" stop-opacity="0.3" />
+          <stop offset="100%" stop-color="#007AFF" stop-opacity="0.1" />
+        </linearGradient>
+      </defs>`,
+      Plot.areaY(sales, {x: "Amount", y: "Percent", fill: "url(#salesGradient)", curve: "linear"}),
+      Plot.lineY(sales, {x: "Amount", y: "Percent", stroke: "#007AFF", strokeWidth: 2.5, curve: "linear"}),
+      Plot.dot(sales.filter((_, i) => i % 1 === 0), {x: "Amount", y: "Percent", fill: "#007AFF", r: 4}),
+      Plot.ruleY([0])
+    ],
+    width: 1700,
+    height: 278,
+    y: {grid: true, label: "Percent"},
+    x: {label: "Amount"}
+  };
+
+  dualLineChartOptions = {
+    marks: [
+      () => htl.svg`<defs>
+        <linearGradient id="gradientA" gradientTransform="rotate(90)">
+          <stop offset="20%" stop-color="#DBA5FF" stop-opacity="0.9" />
+          <stop offset="100%" stop-color="#DBA5FF" stop-opacity="0.4" />
+        </linearGradient>
+        <linearGradient id="gradientB" gradientTransform="rotate(90)">
+          <stop offset="20%" stop-color="#ff8f6dff" stop-opacity="0.9" />
+          <stop offset="100%" stop-color="#ff8f6dff" stop-opacity="0.4" />
+        </linearGradient>
+      </defs>`,
+      // Product A line with coral red color
+      Plot.areaY(salesA, {x: "Amount", y: "Percent", fill: "url(#gradientA)", curve: "catmull-rom"}),
+      // Plot.lineY(salesA, {x: "Amount", y: "Percent", stroke: "#c062ffff", strokeWidth: 3, curve: "catmull-rom"}),
+      // Plot.dot(salesA, {x: "Amount", y: "Percent", fill: "#c062ffff", r: 5}),
+
+      // Product B line with turquoise color
+      Plot.areaY(salesB, {x: "Amount", y: "Percent", fill: "url(#gradientB)", curve: "catmull-rom"}),
+      // Plot.lineY(salesB, {x: "Amount", y: "Percent", stroke: "#ff6e41ff", strokeWidth: 3, curve: "catmull-rom"}),
+      // Plot.dot(salesB, {x: "Amount", y: "Percent", fill: "#ff6a3cff", r: 5}),
+
+      Plot.ruleY([0])
+    ],
+    width: 2000,
+    height: 278,
+    y: {grid: true, label: "Sales (Units)"},
+    x: {label: "Month"},
+    title: "Revenue"
+  };
+
+  constructor() {}
 
   ngOnInit(): void {
-    this.chartData = this.chartService.generateSampleData();
     this.dealsData = this.generateDealsData();
-    this.updateChartWidth();
-  }
-
-  ngAfterViewInit(): void {
-    this.setupResizeObserver();
-    // Initial width calculation
-    setTimeout(() => this.updateChartWidth(), 0);
-  }
-
-  ngOnDestroy(): void {
-    if (this.resizeObserver) {
-      this.resizeObserver.disconnect();
-    }
-  }
-
-  private setupResizeObserver(): void {
-    if (typeof ResizeObserver !== 'undefined') {
-      // Observe the window for resize events
-      this.resizeObserver = new ResizeObserver(() => {
-        this.updateChartWidth();
-      });
-
-      // Observe the document body or a specific container
-      this.resizeObserver.observe(document.body);
-    } else {
-      // Fallback to window resize event
-      window.addEventListener('resize', this.updateChartWidth.bind(this));
-    }
-  }
-
-  private updateChartWidth(): void {
-    // Get the width of the parent container minus padding
-    const container = document.querySelector('.chart-container');
-    if (container) {
-      const containerWidth = container.clientWidth;
-      // Account for padding (16px on each side) and some margin
-      this.chartWidth = Math.max(containerWidth - 32, 300); // Minimum width of 300px
-    } else {
-      // Fallback: use window width minus container padding and margins
-      const windowWidth = window.innerWidth;
-      if (windowWidth >= 1024) { // lg screens
-        this.chartWidth = windowWidth - 400; // Account for sidebar and padding
-      } else if (windowWidth >= 768) { // md screens
-        this.chartWidth = windowWidth - 100;
-      } else {
-        this.chartWidth = windowWidth - 50;
-      }
-    }
   }
 
   private generateDealsData(): DealDetail[] {

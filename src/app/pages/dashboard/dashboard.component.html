@@ -84,8 +84,8 @@
           </svg>
       </div>
     </div>
-    <div>
-      <app-line-chart [data]="chartData" [width]="chartWidth" [height]="400"></app-line-chart>
+    <div class="p-8">
+      <app-plot-figure [options]="salesOption"></app-plot-figure>
     </div>
   </div>
 
@@ -225,6 +225,22 @@
           </div>
         </div>
       </div>
+    </div>
+  </div>
+
+  <!-- Line Chart -->
+  <div class="bg-white rounded-xl shadow-sm border border-gray-200">
+    <div class="px-[37px] pt-9 flex justify-between items-center">
+      <h2 class="text-[24px] font-medium">Revenue</h2>
+      <div class="bg-[#fcfdfd] border border-[#d5d5d5] rounded-[4px] px-3 py-2 flex items-center gap-2 w-fit">
+          <span class="text-[12px] text-[rgba(43,48,52,0.4)]">{{ selectedMonth }}</span>
+          <svg class="w-4 h-4 text-[rgba(43,48,52,0.4)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+      </div>
+    </div>
+    <div class="p-8">
+      <app-plot-figure [options]="dualLineChartOptions"></app-plot-figure>
     </div>
   </div>
 
