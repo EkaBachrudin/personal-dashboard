@@ -25,3 +25,7 @@
     background-color: #eff6ff;
   }
 }
+
+.info-section{
+  @apply flex justify-between;
+}
