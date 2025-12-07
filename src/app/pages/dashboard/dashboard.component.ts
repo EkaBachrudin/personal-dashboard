@@ -7,11 +7,13 @@ import { sales, salesA, salesB } from './dashboard.data';
 import { PlotFigure } from '../../shared/lib/plot-figure/plot-figure';
 import { NgFor } from '@angular/common';
 import { CardComponent } from '../../shared/lib/card';
+import { Slide } from '../../types/slider.type';
+import { ImageSlider } from '../../shared/lib/image-slider/image-slider';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [PlotFigure, NgFor, CardComponent],
+  imports: [PlotFigure, NgFor, CardComponent, ImageSlider],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
@@ -69,6 +71,13 @@ export class DashboardComponent implements OnInit {
     y: {grid: true, label: "Sales (Units)"},
     x: {label: "Month"}
   };
+
+  slides: Slide[] = [
+    {url: 'https://xelltechnology.com/wp-content/uploads/2022/04/dummy6.jpg', title: 'watch1'},
+    {url: 'https://demo2.wpthemego.com/themes/sw_himarket/wp-content/uploads/2016/04/1.jpg', title: 'watch2'},
+    {url: 'https://xelltechnology.com/wp-content/uploads/2022/04/dummy6.jpg', title: 'watch3'},
+    {url: 'https://demo2.wpthemego.com/themes/sw_himarket/wp-content/uploads/2016/04/1.jpg', title: 'watch4'}
+  ]
 
   constructor() {}
 
