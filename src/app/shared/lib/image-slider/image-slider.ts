@@ -1,4 +1,4 @@
-import { Component, computed, effect, input, signal, untracked } from '@angular/core';
+import { Component, computed, effect, input, output, signal, untracked } from '@angular/core';
 import { Slide } from '../../../types/slider.type';
 import { CommonModule } from '@angular/common';
 
@@ -13,6 +13,8 @@ export class ImageSlider {
   parentWidth = input.required<number>();
   dots = input<boolean>(true);
   autoScroll = input<boolean>(false);
+
+  currentSlideOutput = output<number>();
 
   currentIndex = signal(0);
 
@@ -30,12 +32,14 @@ export class ImageSlider {
     const isFirst = this.currentIndex() === 0;
     const newIndex = isFirst ? this.slides().length - 1 : this.currentIndex() - 1;
     this.currentIndex.set(newIndex);
+    this.currentSlideOutput.emit(newIndex);
   }
 
   goToNext(): void {
     const islast = this.currentIndex() === this.slides().length - 1;
     const newIndex = islast ? 0 : this.currentIndex() + 1;
     this.currentIndex.set(newIndex);
+    this.currentSlideOutput.emit(newIndex);
   }
 
   goToSlide(index: number): void {

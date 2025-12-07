@@ -22,6 +22,7 @@ export class DashboardComponent implements OnInit {
   chartWidth = 800; // Default width
   dealsData: DealDetail[] = [];
   selectedMonth: string = 'October';
+  currentSlide: number = 0;
 
   salesOption= {
     marks: [
@@ -151,5 +152,9 @@ export class DashboardComponent implements OnInit {
       style: 'currency',
       currency: 'USD'
     }).format(amount);
+  }
+
+  getCurrentSlide(index: number): void {
+    this.currentSlide = index;
   }
 }

@@ -250,11 +250,17 @@
     </app-card> -->
     <app-card classes="p-[24px] w-full">
       <p class="text-[22px] font-bold"> Featured Product </p>
-      <div class="mt-4" style="width: 400px; height: 400px;">
+      <div class="mt-4" style="width: 300px; height: 200px;">
         <app-image-slider 
-          [parentWidth]="400" 
+          [parentWidth]="300" 
           [slides]="slides" 
-          [dots]="false" />
+          [dots]="false" 
+          (currentSlideOutput)="getCurrentSlide($event)"/>
+      </div>
+
+      <div class="mt-6">
+        <div class="text-[18px] font-bold text-center">Beats Headphone 2019</div>
+        <div class="text-[16px] font-bold text-[#4880FF] text-center">$89.00</div>
       </div>
     </app-card>
     <!-- <app-card classes="p-[24px] w-full">
