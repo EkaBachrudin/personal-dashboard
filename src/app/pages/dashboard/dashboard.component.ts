@@ -75,8 +75,8 @@ export class DashboardComponent implements OnInit {
   slides: Slide[] = [
     {url: 'https://xelltechnology.com/wp-content/uploads/2022/04/dummy6.jpg', title: 'watch1'},
     {url: 'https://demo2.wpthemego.com/themes/sw_himarket/wp-content/uploads/2016/04/1.jpg', title: 'watch2'},
-    {url: 'https://xelltechnology.com/wp-content/uploads/2022/04/dummy6.jpg', title: 'watch3'},
-    {url: 'https://demo2.wpthemego.com/themes/sw_himarket/wp-content/uploads/2016/04/1.jpg', title: 'watch4'}
+    {url: '/assets/products/watch-image.png', title: 'watch3'},
+    {url: '/assets/products/watch-image2.png', title: 'watch4'}
   ]
 
   constructor() {}
