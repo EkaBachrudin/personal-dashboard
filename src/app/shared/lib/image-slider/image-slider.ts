@@ -11,6 +11,8 @@ import { CommonModule } from '@angular/common';
 export class ImageSlider {
   slides = input.required<Slide[]>();
   parentWidth = input.required<number>();
+  dots = input<boolean>(true);
+  autoScroll = input<boolean>(false);
 
   currentIndex = signal(0);
 
@@ -18,20 +20,6 @@ export class ImageSlider {
     width: `${this.parentWidth() * this.slides().length}px`,
     transform: `translateX(-${this.currentIndex() * this.parentWidth()}px)`
   }))
-
-  timeOutId = signal<number|undefined>(undefined);
-
-  timeOutEffect = effect(() => {
-    console.log('timeOutEffect')
-    const index = this.currentIndex();
-    const previd = untracked(() => this.timeOutId());
-    window.clearTimeout(previd);
-    const id = window.setTimeout(() => {
-      this.goToNext();
-    }, 2000)
-
-    untracked(() => this.timeOutId.set(id))
-  })
 
   getSlideStyle = (slide: Slide) => ({
     backgroundImage: `url(${slide.url})`,
@@ -53,4 +41,19 @@ export class ImageSlider {
   goToSlide(index: number): void {
     this.currentIndex.set(index);
   }
+
+  timeOutId = signal<number|undefined>(undefined);
+
+  timeOutEffect = effect(() => {
+    if(this.autoScroll()) {
+      const index = this.currentIndex();
+      const previd = untracked(() => this.timeOutId());
+      window.clearTimeout(previd);
+      const id = window.setTimeout(() => {
+        this.goToNext();
+      }, 2000)
+
+      untracked(() => this.timeOutId.set(id))
+    }
+  })
 }
