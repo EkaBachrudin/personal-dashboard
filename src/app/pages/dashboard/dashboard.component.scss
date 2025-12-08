@@ -27,5 +27,5 @@
 }
 
 .info-section{
-  @apply flex justify-between mt-6;
+  @apply flex justify-between mt-6 max-h-[480px] gap-[30px];
 }

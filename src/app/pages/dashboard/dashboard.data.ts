@@ -1,5 +1,5 @@
 export const sales = [
-    { Amount: 1200, Percent: 15 },
+    { Amount: 1200, Percent: 0 },
     { Amount: 3400, Percent: 28 },
     { Amount: 5600, Percent: 42 },
     { Amount: 7800, Percent: 35 },
@@ -26,7 +26,7 @@ export const sales = [
     { Amount: 54300, Percent: 80 },
     { Amount: 56600, Percent: 30 },
     { Amount: 58800, Percent: 50 },
-    { Amount: 60000, Percent: 20 }
+    { Amount: 60000, Percent: 0 }
 ]
 
 // Dataset for first line - Product A performance over months
@@ -91,4 +91,22 @@ export const salesB = [
     { Amount: 56600, Percent: 30 },
     { Amount: 58800, Percent: 50 },
     { Amount: 60000, Percent: 20 }
+]
+
+export const analytics1 = [
+    { Year: 2015, Percent: 0 },
+    { Year: 2016, Percent: 25 },
+    { Year: 2017, Percent: 50 },
+    { Year: 2018, Percent: 75 },
+    { Year: 2019, Percent: 100 },
+    { Year: 2020, Percent: 0 }
+]
+
+export const analytics2 = [
+    { Year: 2015, Percent: 25 },
+    { Year: 2016, Percent: 40 },
+    { Year: 2017, Percent: 55 },
+    { Year: 2018, Percent: 40 },
+    { Year: 2019, Percent: 25 },
+    { Year: 2020, Percent: 25 }
 ]

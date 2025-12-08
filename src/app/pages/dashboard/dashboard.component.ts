@@ -3,7 +3,7 @@ import { ChartSeries } from '../../types/chart.types';
 import { DealDetail } from '../../types';
 import * as Plot from "@observablehq/plot";
 import * as htl from "htl";
-import { sales, salesA, salesB } from './dashboard.data';
+import { analytics1, analytics2, sales, salesA, salesB } from './dashboard.data';
 import { PlotFigure } from '../../shared/lib/plot-figure/plot-figure';
 import { NgFor } from '@angular/common';
 import { CardComponent } from '../../shared/lib/card';
@@ -18,6 +18,8 @@ import { ImageSlider } from '../../shared/lib/image-slider/image-slider';
   styleUrl: './dashboard.component.scss'
 })
 export class DashboardComponent implements OnInit {
+  @ViewChild('salesChart') salesChartRef!: ElementRef;
+
   chartData: ChartSeries[] = [];
   chartWidth = 800; // Default width
   dealsData: DealDetail[] = [];
@@ -33,12 +35,12 @@ export class DashboardComponent implements OnInit {
         </linearGradient>
       </defs>`,
       Plot.areaY(sales, {x: "Amount", y: "Percent", fill: "url(#salesGradient)", curve: "linear"}),
-      Plot.lineY(sales, {x: "Amount", y: "Percent", stroke: "#007AFF", strokeWidth: 2.5, curve: "linear"}),
-      Plot.dot(sales.filter((_, i) => i % 1 === 0), {x: "Amount", y: "Percent", fill: "#007AFF", r: 4}),
+      Plot.lineY(sales, {x: "Amount", y: "Percent", stroke: "#007AFF", strokeWidth: 1, curve: "linear"}),
+      Plot.dot(sales.filter((_, i) => i % 1 === 0), {x: "Amount", y: "Percent", fill: "#007AFF", r: 3}),
       Plot.ruleY([0])
     ],
-    width: 1700,
-    height: 278,
+    style: { width: "100%", fontSize: '7px' },
+    height: 200,
     y: {grid: true, label: "Percent"},
     x: {label: "Amount"}
   };
@@ -67,23 +69,46 @@ export class DashboardComponent implements OnInit {
 
       Plot.ruleY([0])
     ],
-    width: 2000,
-    height: 278,
+    style: { width: "100%", fontSize: '7px' },
+    height: 200,
     y: {grid: true, label: "Sales (Units)"},
     x: {label: "Month"}
   };
 
+  analyticsOption = {
+    marks: [
+      // Product A line with coral red color
+      // Plot.areaY(this.analytics1, {x: "Year", y: "Percent", fill: "url(#analytics1Gra)", curve: "catmull-rom"}),
+      Plot.lineY(analytics1, {x: "Year", y: "Percent", stroke: "#00B69B", strokeWidth: 3, curve: "catmull-rom"}),
+      Plot.dot(analytics1, {x: "Year", y: "Percent", fill: "#00B69B", r: 5}),
+
+      // Product B line with turquoise color
+      // Plot.areaY(analytics2, {x: "Year", y: "Percent", fill: "url(#analytics2Gra)", curve: "catmull-rom"}),
+      Plot.lineY(analytics2, {x: "Year", y: "Percent", stroke: "#4880FF", strokeWidth: 3, curve: "catmull-rom"}),
+      Plot.dot(analytics2, {x: "Year", y: "Percent", fill: "#4880FF", r: 5}),
+
+      Plot.ruleY([0])
+    ],
+    style: { width: "100%", fontSize: '12px' },
+    height: 300,
+    y: {grid: true, label: "Sales (Units)"},
+    x: {label: "Month"},
+    title: "Revenue"
+  };
+
   slides: Slide[] = [
-    {url: 'https://xelltechnology.com/wp-content/uploads/2022/04/dummy6.jpg', title: 'watch1'},
-    {url: 'https://demo2.wpthemego.com/themes/sw_himarket/wp-content/uploads/2016/04/1.jpg', title: 'watch2'},
-    {url: '/assets/products/watch-image.png', title: 'watch3'},
-    {url: '/assets/products/watch-image2.png', title: 'watch4'}
+    {url: '/assets/products/watch-image2.png', title: 'watch4'},
+    {url: '/assets/products/watch-image.png', title: 'watch3'}
   ]
 
   constructor() {}
 
   ngOnInit(): void {
     this.dealsData = this.generateDealsData();
+  }
+
+  ngAfterViewInit() {
+    console.log(this.salesChartRef.nativeElement.clientWidth)
   }
 
   private generateDealsData(): DealDetail[] {
