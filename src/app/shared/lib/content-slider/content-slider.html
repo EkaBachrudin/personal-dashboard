@@ -1,0 +1,23 @@
+<div class="slider">
+    <div class="arrow left" (click)="goToPreviouse()"> <img src="/assets/icons/arrow-left.svg" alt="arrowleft"> </div>
+    <div class="arrow right" (click)="goToNext()"> <img src="/assets/icons/arrow-right.svg" alt="arrowright"> </div>
+    <div class="slides-overflow">
+        <div class="slides-container" [ngStyle]="slidesContainerStyle()">
+            <ng-content></ng-content>
+        </div>
+    </div>
+
+    @if(dots()) {
+        <div class="dots-container">
+            @for (dotIndex of getDotIndices(); track $index) {
+                <div
+                    class="dot"
+                    [class.active]="$index === currentIndex()"
+                    (click)="goToSlide($index)">
+                    .
+                </div>
+            }
+        </div>
+    }
+
+</div>
