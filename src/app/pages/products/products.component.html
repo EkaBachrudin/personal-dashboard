@@ -4,22 +4,39 @@
     <h1>Products</h1>
   </div>
 
-  <!-- Blank Content Area -->
-  <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-8">
-    <div class="text-center text-gray-500">
-      <p class="text-lg">Products page content will go here</p>
-      <p class="text-sm mt-2">This is a blank page ready for development</p>
-    </div>
-  </div>
-
   <div class="mt-6">
-    <div class="w-[500px]">
-      <app-content-slider [parentWidth]="500" [dots]="true">
-        <div #slideItem class="slide h-[400px] bg-slate-400">TEST1</div>
-        <div #slideItem class="slide h-[400px] bg-slate-400">TEST2</div>
-        <div #slideItem class="slide h-[400px] bg-slate-400">TEST3</div>
-        <div #slideItem class="slide h-[400px] bg-slate-400">TEST4</div>
+
+    <section class="product-hero" #parentElement>
+      <app-content-slider [parentWidth]="parentElement.clientWidth">
+        <div #slideItem 
+        class="h-[346px] bg-[#4880FF] w-full rounded-[14px] shadow py-[50px] px-[130px]" 
+        style="background-image: url('/assets/images/Pattern.png');">
+
+         <div>
+            <div class="text-[16px] text-white font-semibold">September 12-22</div>
+            <div class="text-[37px] font-black text-white mt-2">Enjoy free home <br> delivery in this summer</div>
+            <div class="text-[16px] font-semibold text-white mt-2">Designer Dresses - Pick from trendy Designer Dress.</div>
+
+            <button class="bg-[#FF8743] rounded-[11px] px-9 py-2 text-white text-[14px] font-bold mt-[30px]">Get Started</button>
+         </div>
+
+        </div>
+
+        <div #slideItem 
+        class="h-[346px] bg-[#448064] w-full rounded-[14px] shadow py-[50px] px-[130px]" 
+        style="background-image: url('/assets/images/Pattern.png');">
+
+         <div>
+            <div class="text-[16px] text-white font-semibold">September 12-22</div>
+            <div class="text-[37px] font-black text-white mt-2">Enjoy free home <br> delivery in this summer</div>
+            <div class="text-[16px] font-semibold text-white mt-2">Designer Dresses - Pick from trendy Designer Dress.</div>
+
+            <button class="bg-[#FF8743] rounded-[11px] px-9 py-2 text-white text-[14px] font-bold mt-[30px]">Get Started</button>
+         </div>
+
+        </div>
       </app-content-slider>
-    </div>
+    </section>
+
   </div>  
 </div>

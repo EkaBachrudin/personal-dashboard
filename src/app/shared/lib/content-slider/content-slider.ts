@@ -11,7 +11,7 @@ export class ContentSlider implements AfterContentInit {
   @ContentChildren('slideItem') slidesElements!: QueryList<ElementRef>;
 
   parentWidth = input.required<number>();
-  dots = input<boolean>(true);
+  dots = input<boolean>(false);
   autoScroll = input<boolean>(false);
 
   currentSlideOutput = output<number>();

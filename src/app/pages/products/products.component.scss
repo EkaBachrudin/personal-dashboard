@@ -2,3 +2,12 @@
 .title h1 {
   color: #202224;
 }
+
+.product-hero {
+  @apply w-full;
+  ::ng-deep {
+    .slides-overflow {
+      @apply rounded-[14px];
+    }
+  }
+}
