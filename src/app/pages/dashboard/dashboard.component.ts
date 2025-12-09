@@ -9,11 +9,12 @@ import { NgFor } from '@angular/common';
 import { CardComponent } from '../../shared/lib/card';
 import { Slide } from '../../types/slider.type';
 import { ImageSlider } from '../../shared/lib/image-slider/image-slider';
+import { PieChartComponent } from '../../shared/lib/pie-chart/pie-chart';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [PlotFigure, NgFor, CardComponent, ImageSlider],
+  imports: [PlotFigure, NgFor, CardComponent, ImageSlider, PieChartComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
@@ -99,7 +100,12 @@ export class DashboardComponent implements OnInit {
   slides: Slide[] = [
     {url: '/assets/products/watch-image2.png', title: 'watch4'},
     {url: '/assets/products/watch-image.png', title: 'watch3'}
-  ]
+  ];
+
+  parentComponentData = { 
+    'New Customers': 120, 
+    'Repeated': 85
+  };
 
   constructor() {}
 
