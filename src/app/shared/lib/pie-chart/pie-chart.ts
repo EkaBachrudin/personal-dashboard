@@ -16,8 +16,8 @@ export class PieChartComponent implements AfterViewInit {
   // Use ViewChild to get a reference to the chart container div
   @ViewChild('my_dataviz', { static: true }) private chartContainer!: ElementRef;
 
-  private width = 350;
-  private height = 350;
+  private width = 300;
+  private height = 300;
 
   constructor() { }
 

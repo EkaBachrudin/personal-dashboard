@@ -248,6 +248,16 @@
     <app-card classes="p-4 w-full h-full">
       <p class="text-[22px] font-bold"> Customers </p>
       <app-pie-chart [data]="parentComponentData"></app-pie-chart>
+      <div class="flex justify-around mt-4">
+        <div>
+          <div class="text-[28px] font-bold w-full text-center">34,249</div>
+          <div class="w-full text-center">New Customers</div>
+        </div>
+        <div>
+          <div class="text-[28px] font-bold w-full text-center">1420</div>
+          <div class="w-full text-center">Repeated</div>
+        </div>
+      </div>
     </app-card>
     
      <app-card classes="p-[24px] w-full h-full">
@@ -272,9 +282,5 @@
     </app-card>
   </section>
 
-
-  <div style="width: 500px; height: 200px; margin: 0 auto;">
-    <!-- <app-image-slider [parentWidth]="500" [slides]="slides" /> -->
-  </div>
 
   </div>
