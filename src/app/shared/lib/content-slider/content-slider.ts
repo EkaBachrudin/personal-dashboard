@@ -37,7 +37,7 @@ export class ContentSlider implements AfterContentInit {
   }
 
   ngAfterContentInit() {
-    console.log(this.slidesElements)
+   
   }
 
   goToPreviouse(): void {

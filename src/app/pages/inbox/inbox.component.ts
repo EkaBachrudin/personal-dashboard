@@ -37,13 +37,13 @@ export class InboxComponent implements OnInit {
 
   // Email folders data
   folders: EmailFolder[] = [
-    { name: 'Inbox', count: 1253, icon: 'inbox', isActive: true },
-    { name: 'Starred', count: 245, icon: 'star', isActive: false },
-    { name: 'Sent', count: 24532, icon: 'send', isActive: false },
-    { name: 'Draft', count: 9, icon: 'draft', isActive: false },
-    { name: 'Spam', count: 14, icon: 'spam', isActive: false },
-    { name: 'Important', count: 18, icon: 'important', isActive: false },
-    { name: 'Bin', count: 9, icon: 'bin', isActive: false }
+    { name: 'Inbox', count: 1253, icon: '/assets/icons/mail.svg', isActive: false },
+    { name: 'Starred', count: 245, icon: '/assets/icons/rating-star.svg', isActive: false },
+    { name: 'Sent', count: 24532, icon: '/assets/icons/send-email-1.svg', isActive: false },
+    { name: 'Draft', count: 9, icon: '/assets/icons/pencil.svg', isActive: false },
+    { name: 'Spam', count: 14, icon: '/assets/icons/warning.svg', isActive: false },
+    { name: 'Important', count: 18, icon: '/assets/icons/messages-bubble-settings.svg', isActive: false },
+    { name: 'Bin', count: 9, icon: '/assets/icons/bin.svg', isActive: false }
   ];
 
   // Email labels data

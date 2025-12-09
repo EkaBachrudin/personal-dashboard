@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { CardComponent } from '../../shared/lib/card';
 import { CommonModule } from '@angular/common';
 import { ProductCardComponent } from '../products/product-card/product-card.component';
 import { productList } from '../products/products.data';
@@ -7,7 +6,7 @@ import { productList } from '../products/products.data';
 @Component({
   selector: 'app-favorites',
   standalone: true,
-  imports: [CardComponent, CommonModule, ProductCardComponent],
+  imports: [CommonModule, ProductCardComponent],
   templateUrl: './favorites.component.html',
   styleUrl: './favorites.component.scss'
 })

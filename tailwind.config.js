@@ -34,7 +34,7 @@ module.exports = {
         }
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
+        sans: ['Nunito Sans', 'system-ui', 'sans-serif'],
       },
       spacing: {
         '18': '4.5rem',
