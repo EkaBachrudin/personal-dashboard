@@ -6,10 +6,11 @@
 
   <div class="mt-6">
 
+    <!-- Hero Slider Section -->
     <section class="product-hero" #parentElement>
       <app-content-slider [parentWidth]="parentElement.clientWidth">
-        <div #slideItem 
-        class="h-[346px] bg-[#4880FF] w-full rounded-[14px] shadow py-[50px] px-[130px]" 
+        <div #slideItem
+        class="h-[346px] bg-[#4880FF] w-full rounded-[14px] shadow py-[50px] px-[130px]"
         style="background-image: url('/assets/images/Pattern.png');">
 
          <div>
@@ -22,8 +23,8 @@
 
         </div>
 
-        <div #slideItem 
-        class="h-[346px] bg-[#448064] w-full rounded-[14px] shadow py-[50px] px-[130px]" 
+        <div #slideItem
+        class="h-[346px] bg-[#448064] w-full rounded-[14px] shadow py-[50px] px-[130px]"
         style="background-image: url('/assets/images/Pattern.png');">
 
          <div>
@@ -38,5 +39,17 @@
       </app-content-slider>
     </section>
 
-  </div>  
+    <!-- Products Grid Section -->
+    <section class="products-section mt-12">
+      <div class="products-grid">
+        @for (product of products; track $index) {
+          <app-product-card
+            [product]="product">
+          </app-product-card>
+        }
+        
+      </div>
+    </section>
+
+  </div>
 </div>

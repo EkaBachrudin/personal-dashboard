@@ -1,0 +1,165 @@
+.product-card {
+  position: relative;
+  width: 100%;
+  max-width: 361px;
+  margin: 0 auto;
+
+  &__box {
+    position: relative;
+    background: white;
+    border-radius: 14px;
+    box-shadow: 6px 6px 54px 0px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+  }
+
+
+
+  &__details {
+    padding: 20px 16px;
+    padding-bottom: 30px;
+  }
+
+  &__name {
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 20px;
+    color: #202224;
+    margin: 0 0 8px 0;
+    font-variation-settings: 'YTLC' 500, 'wdth' 100;
+  }
+
+  &__price {
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 20px;
+    color: #4880ff;
+    margin: 0 0 8px 0;
+    font-variation-settings: 'YTLC' 500, 'wdth' 100;
+  }
+
+  &__rating {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  &__stars {
+    display: flex;
+    align-items: center;
+    margin-right: 8px;
+  }
+
+  &__star {
+    width: 14px;
+    height: 14px;
+    margin-right: 2px;
+    color: #e2eaf8;
+
+    &--filled {
+      color: #ffc107;
+    }
+
+    &--half {
+      position: relative;
+      color: #e2eaf8;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 50%;
+        height: 100%;
+        background: #ffc107;
+        mask: url("data:image/svg+xml,%3Csvg width='14' height='14' viewBox='0 0 14 14' fill='currentColor'%3E%3Cpath d='M7 1L8.85 5.05L13 5.73L10 8.67L10.73 12.85L7 10.85L3.27 12.85L4 8.67L1 5.73L5.15 5.05L7 1Z'/%3E%3C/svg%3E") no-repeat center;
+        mask-size: contain;
+      }
+    }
+
+    svg {
+      width: 100%;
+      height: 100%;
+      fill: currentColor;
+    }
+  }
+
+  &__rating-count {
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: black;
+    opacity: 0.4;
+    letter-spacing: -0.1667px;
+    font-variation-settings: 'YTLC' 500, 'wdth' 100;
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  &__edit-btn {
+    background: #e2eaf8;
+    opacity: 0.7;
+    border: none;
+    border-radius: 12px;
+    padding: 8px 16px;
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: #202224;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    line-height: 28px;
+    font-variation-settings: 'YTLC' 500, 'wdth' 100;
+
+    &:hover {
+      opacity: 1;
+      background: #d4e0f5;
+    }
+  }
+
+  &__favorite-btn {
+    background: none;
+    border: none;
+    padding: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+
+    svg {
+      width: 44px;
+      height: 44px;
+
+      path {
+        transition: fill 0.3s ease;
+      }
+
+      &:hover path {
+        fill: #4880ff;
+      }
+    }
+  }
+
+  ::ng-deep {
+    .arrow{
+      .left {
+        right: 0;
+      }
+
+      right {
+        left: 0;
+      }
+    }
+  }
+}
