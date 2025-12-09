@@ -3,6 +3,7 @@ import { LayoutComponent } from './layout/layout.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { ProductsComponent } from './pages/products/products.component';
 import { FavoritesComponent } from './pages/favorites/favorites.component';
+import { InboxComponent } from './pages/inbox/inbox.component';
 
 export const routes: Routes = [
   {
@@ -25,6 +26,10 @@ export const routes: Routes = [
       {
         path: 'favorites',
         component: FavoritesComponent
+      },
+      {
+        path: 'inbox',
+        component: InboxComponent
       }
     ]
   }

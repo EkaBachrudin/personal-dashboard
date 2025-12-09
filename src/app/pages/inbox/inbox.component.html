@@ -1,0 +1,130 @@
+<div class="flex h-full gap-4 p-4">
+  <!-- Left Sidebar -->
+  <div class="w-80 bg-white border-[0.1px] border-[#b9b9b95b] rounded-[14px] p-6 max-w-[286px]">
+    <!-- Compose Button -->
+    <button class="w-full bg-[#4880FF] bg-opacity-90 text-[14px] text-white font-bold py-3 px-4 rounded-lg mb-6 hover:bg-opacity-100 transition-all" (click)="onCompose()">
+      + Compose
+    </button>
+
+    <!-- My Email Section -->
+    <div class="mb-6">
+      <h3 class="font-bold text-[16px] text-gray-800 mb-4">My Email</h3>
+
+      <!-- Email Folders -->
+      <div class="space-y-1">
+        <div *ngFor="let folder of folders"
+             class="flex items-center justify-between py-2 px-3 rounded-lg cursor-pointer"
+             [ngClass]="folder.isActive ? 'bg-blue-500 bg-opacity-13' : 'hover:bg-gray-50'">
+          <div class="flex items-center gap-3">
+            <svg class="w-5 h-5"
+                 [ngClass]="folder.isActive ? 'text-blue-500' : 'text-gray-600'"
+                 fill="currentColor" viewBox="0 0 24 24">
+              <!-- Inbox Icon -->
+              <path *ngIf="folder.icon === 'inbox'" d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+              <path *ngIf="folder.icon === 'inbox'" d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+              <!-- Star Icon -->
+              <path *ngIf="folder.icon === 'star'" fill="none" stroke="currentColor" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path>
+              <!-- Send Icon -->
+              <path *ngIf="folder.icon === 'send'" fill="none" stroke="currentColor" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+              <!-- Draft Icon -->
+              <path *ngIf="folder.icon === 'draft'" fill="none" stroke="currentColor" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
+              <!-- Spam Icon -->
+              <path *ngIf="folder.icon === 'spam'" fill="none" stroke="currentColor" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+              <!-- Important Icon -->
+              <path *ngIf="folder.icon === 'important'" fill="none" stroke="currentColor" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              <!-- Bin Icon -->
+              <path *ngIf="folder.icon === 'bin'" fill="none" stroke="currentColor" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+            </svg>
+            <span class="font-semibold text-sm"
+                  [ngClass]="folder.isActive ? 'text-blue-500 font-bold' : 'text-gray-800'">{{ folder.name }}</span>
+          </div>
+          <span class="font-semibold text-sm opacity-60"
+                [ngClass]="folder.isActive ? 'text-blue-500 opacity-80 font-bold' : 'text-gray-800'">{{ folder.count | number }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Labels Section -->
+    <div class="mb-6">
+      <h3 class="font-bold text-base text-gray-800 mb-4">Label</h3>
+
+      <div class="space-y-1">
+        <div *ngFor="let label of labels"
+             class="flex items-center gap-3 py-2 px-3 hover:bg-gray-50 rounded-lg cursor-pointer">
+          <div class="w-3 h-3 border-2 rounded-full"
+               [ngClass]="getLabelBorderColorClasses(label.name)"></div>
+          <span class="font-semibold text-sm text-gray-800">{{ label.name }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Create New Label -->
+    <div class="flex items-center gap-3 py-2 px-3 hover:bg-gray-50 rounded-lg cursor-pointer opacity-50">
+      <span class="text-lg text-gray-800">+</span>
+      <span class="font-semibold text-sm text-gray-800">Create New Label</span>
+    </div>
+  </div>
+
+  <!-- Right Message List -->
+  <div class="flex-1 bg-white border border-gray-300 rounded-xl p-4">
+    <!-- Search Bar and Actions -->
+    <div class="flex items-center justify-between mb-6">
+      <!-- Search Bar -->
+      <div class="flex-1 relative">
+        <div class="bg-gray-50 border border-gray-300 rounded-full px-4 py-2 pl-10">
+          <svg class="absolute left-3 top-2.5 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+          </svg>
+          <input type="text"
+                 placeholder="Search mail"
+                 [(ngModel)]="searchTerm"
+                 (input)="onSearch($event)"
+                 class="bg-transparent border-none outline-none text-sm text-gray-800 opacity-60 placeholder-gray-500 w-full">
+        </div>
+      </div>
+
+      <!-- Other Actions -->
+      <button class="ml-4 p-2 hover:bg-gray-50 rounded-lg">
+        <svg class="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Message List -->
+    <div class="space-y-1">
+      <div *ngFor="let message of messages"
+           class="border-b border-gray-100 pb-3 mb-3">
+        <div class="flex items-center gap-3">
+          <input type="checkbox"
+                 class="w-4 h-4 border border-gray-300 rounded"
+                 [(ngModel)]="message.isChecked"
+                 (change)="toggleMessageSelection(message.id)">
+
+          <svg class="w-5 h-5 cursor-pointer"
+               [ngClass]="message.isStarred ? 'text-yellow-400 fill-current' : 'text-gray-400'"
+               fill="currentColor"
+               viewBox="0 0 24 24"
+               (click)="toggleStar(message.id)">
+            <path d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z"></path>
+          </svg>
+
+          <div class="flex-1 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+              <span class="font-bold text-sm text-gray-800">{{ message.sender }}</span>
+
+              <span *ngIf="message.label"
+                    class="px-2 py-1 text-xs font-semibold rounded"
+                    [ngClass]="getLabelColorClasses(message.label)">
+                {{ message.label }}
+              </span>
+
+              <span class="font-semibold text-sm text-gray-800 opacity-90">{{ message.subject }}</span>
+            </div>
+            <span class="font-semibold text-sm text-gray-800 opacity-70">{{ message.time }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
