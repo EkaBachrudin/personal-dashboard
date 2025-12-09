@@ -1,0 +1,17 @@
+<div class="space-y-6">
+  <!-- Page Title -->
+  <div class="title text-[32px] font-semibold">
+    <h1>Favorites</h1>
+  </div>
+
+   <section class="products-section mt-12">
+      <div class="products-grid">
+        @for (product of products; track $index) {
+          <app-product-card
+            [product]="product">
+          </app-product-card>
+        }
+        
+      </div>
+    </section>
+</div>
