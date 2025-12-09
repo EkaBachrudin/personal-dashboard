@@ -245,41 +245,51 @@
   </app-card>
   
   <section class="info-section">
-    <app-card classes="p-4 w-full h-full">
-      <p class="text-[22px] font-bold"> Customers </p>
-      <app-pie-chart [data]="parentComponentData"></app-pie-chart>
-      <div class="flex justify-around mt-4">
-        <div>
-          <div class="text-[28px] font-bold w-full text-center">34,249</div>
-          <div class="w-full text-center">New Customers</div>
+    <div class="" style="flex: 0.5 1 0%">
+      <app-card classes="p-4 w-full h-full mx-auto">
+        <p class="text-[22px] font-bold"> Customers </p>
+        <div class="flex justify-center">
+          <app-pie-chart [data]="parentComponentData"></app-pie-chart>
         </div>
-        <div>
-          <div class="text-[28px] font-bold w-full text-center">1420</div>
-          <div class="w-full text-center">Repeated</div>
+        <div class="flex justify-around mt-4">
+          <div>
+            <div class="text-[28px] font-bold w-full text-center">34,249</div>
+            <div class="w-full text-center">New Customers</div>
+          </div>
+          <div>
+            <div class="text-[28px] font-bold w-full text-center">1420</div>
+            <div class="w-full text-center">Repeated</div>
+          </div>
         </div>
-      </div>
-    </app-card>
-    
-     <app-card classes="p-[24px] w-full h-full">
-      <p class="text-[22px] font-bold"> Featured Product </p>
-      <div class="mt-4" style="width: 400px; height: 300px;">
-        <app-image-slider 
-          [parentWidth]="400" 
-          [slides]="slides" 
-          [dots]="false" 
-          (currentSlideOutput)="getCurrentSlide($event)"/>
-      </div>
+      </app-card>
+    </div>
 
-      <div class="mt-6">
-        <div class="text-[18px] font-bold text-center">Beats Headphone 2019</div>
-        <div class="text-[16px] font-bold text-[#4880FF] text-center">$89.00</div>
-      </div>
-    </app-card>
-   
-    <app-card classes="p-[24px] w-full h-full">
+    <div class="">
+      <app-card classes="p-[24px] w-full h-full mx-auto">
+        <p class="text-[22px] font-bold"> Featured Product </p>
+        <div class="mt-4 mx-auto" style="width: 350px; height: 250px;" >
+          <app-image-slider 
+            [parentWidth]="350" 
+            [slides]="slides" 
+            [dots]="false" 
+            (currentSlideOutput)="getCurrentSlide($event)"/>
+        </div>
+
+        <div class="mt-6">
+          <div class="text-[18px] font-bold text-center">Beats Headphone 2019</div>
+          <div class="text-[16px] font-bold text-[#4880FF] text-center">$89.00</div>
+        </div>
+      </app-card>
+    </div>
+    
+    
+   <div class="flex-1 flex-grow">
+     <app-card classes="p-[24px] w-full h-full mx-auto">
       <p class="text-[22px] font-bold mb-4"> Sales Analytics </p>
       <app-plot-figure [options]="analyticsOption"></app-plot-figure>
     </app-card>
+   </div>
+   
   </section>
 
 
