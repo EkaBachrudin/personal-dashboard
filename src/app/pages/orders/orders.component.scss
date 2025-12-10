@@ -1,0 +1,19 @@
+.order-container {
+    @apply space-y-6;
+
+    .title-page{
+        @apply text-[32px] font-semibold;
+    }
+
+    .section-filter{
+        @apply flex bg-white w-fit border border-[#97979734] rounded-[10px] shadow-sm;
+
+        .item-filter{
+            @apply p-6 border-r border-[#97979734] text-[14px] font-bold flex justify-center items-center cursor-pointer;
+        }
+    }
+
+    .section-table{
+        
+    }
+}
