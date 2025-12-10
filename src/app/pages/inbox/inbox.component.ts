@@ -24,6 +24,7 @@ export interface EmailFolder {
 export interface EmailLabel {
   name: string;
   color: string;
+  isChecked: boolean;
 }
 
 @Component({
@@ -48,10 +49,10 @@ export class InboxComponent implements OnInit {
 
   // Email labels data
   labels: EmailLabel[] = [
-    { name: 'Primary', color: 'green' },
-    { name: 'Social', color: 'blue' },
-    { name: 'Work', color: 'orange' },
-    { name: 'Friends', color: 'purple' }
+    { name: 'Primary', color: 'green', isChecked: false },
+    { name: 'Social', color: 'blue', isChecked: false },
+    { name: 'Work', color: 'orange', isChecked: false },
+    { name: 'Friends', color: 'purple', isChecked: false }
   ];
 
   // Email messages data
@@ -176,5 +177,16 @@ export class InboxComponent implements OnInit {
       'Friends': 'border-purple-500'
     };
     return labelMap[label] || '';
+  }
+
+  // Get label color value for inline styles
+  getLabelColorValue(label: string): string {
+    const labelMap: { [key: string]: string } = {
+      'Primary': '#10b981', // green-500
+      'Social': '#3b82f6',  // blue-500
+      'Work': '#f97316',    // orange-500
+      'Friends': '#a855f7'  // purple-500
+    };
+    return labelMap[label] || '#6b7280'; // gray-500 as default
   }
 }

@@ -114,3 +114,33 @@
     transform: scale(1.2);
   }
 }
+
+/* Hide default checkbox */
+input[type="checkbox"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  position: relative;
+  cursor: pointer;
+}
+
+/* Style when checked */
+input[type="checkbox"]:checked {
+  border-color: #4285f4;
+  background-color: #4285f4;
+}
+
+/* Add custom checkmark */
+input[type="checkbox"]:checked::after {
+  content: '';
+  position: absolute;
+  left: 6px;
+  top: 2px;
+  width: 6px;
+  height: 12px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
