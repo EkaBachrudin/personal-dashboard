@@ -19,3 +19,41 @@ export interface DealDetail {
 }
 
 export type DealStatus = DealDetail['status'];
+
+export interface Order {
+  id: string;
+  orderNumber: string;
+  customerName: string;
+  customerEmail: string;
+  customerPhone: string;
+  items: OrderItem[];
+  subtotal: number;
+  tax: number;
+  shipping: number;
+  total: number;
+  status: 'pending' | 'processing' | 'shipped' | 'delivered' | 'cancelled';
+  orderDate: Date;
+  deliveryDate?: Date;
+  shippingAddress: Address;
+  billingAddress: Address;
+  notes?: string;
+}
+
+export interface OrderItem {
+  id: string;
+  productName: string;
+  sku: string;
+  quantity: number;
+  price: number;
+  total: number;
+}
+
+export interface Address {
+  street: string;
+  city: string;
+  state: string;
+  zipCode: string;
+  country: string;
+}
+
+export type OrderStatus = Order['status'];

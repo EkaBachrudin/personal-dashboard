@@ -4,6 +4,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { ProductsComponent } from './pages/products/products.component';
 import { FavoritesComponent } from './pages/favorites/favorites.component';
 import { InboxComponent } from './pages/inbox/inbox.component';
+import { OrdersComponent } from './pages/orders/orders.component';
 
 export const routes: Routes = [
   {
@@ -30,6 +31,10 @@ export const routes: Routes = [
       {
         path: 'inbox',
         component: InboxComponent
+      },
+      {
+        path: 'orders',
+        component: OrdersComponent
       }
     ]
   }
