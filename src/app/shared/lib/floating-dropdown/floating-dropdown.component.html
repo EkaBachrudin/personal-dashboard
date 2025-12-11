@@ -1,5 +1,6 @@
 <div #dropdown
      class="floating-dropdown"
+     [ngClass]="customClasses"
      (click)="$event.stopPropagation()">
   <!-- Content passed via ng-content -->
   <ng-content></ng-content>

@@ -4,26 +4,6 @@
     <h1>Order Lists</h1>
   </div>
 
-   <!-- Date Picker Demo -->
-  <!-- <div class="flex justify-center mt-8">
-    <app-date-picker
-      [initialDate]="initialDate"
-      [multiSelect]="true"
-      (dateSelected)="onDateSelected($event)"
-      (applyClicked)="onApplyDates($event)">
-    </app-date-picker>
-  </div> -->
-
-  <!-- Applied Dates Display -->
-  <!-- <div class="flex justify-center mt-4" *ngIf="formattedAppliedDates">
-    <app-card classes="px-6 py-4 bg-blue-50 border border-blue-200">
-      <div class="text-center">
-        <h3 class="text-lg font-semibold text-blue-800 mb-2">Selected Dates</h3>
-        <p class="text-blue-600 font-medium">{{ formattedAppliedDates }}</p>
-      </div>
-    </app-card>
-  </div> -->
-
   <section class="section-filter">
     <div class="item-filter">
         <img src="/assets/icons/filter.svg" alt="filter" class="w-[24px]">
@@ -45,6 +25,29 @@
         <img src="/assets/icons/replay-red.svg" alt="replay" class="w-[20px] mr-2">
         <div class="text-[#EA0234]"> Reset Filter </div>
     </div>
+  </section>
+
+  <section class="section-filter-content">
+     @if (showDateFilterDropdown) {
+        
+          <app-floating-dropdown [customClasses]="'left-[100px]'" [triggerElement]="dateFilterElement"
+            (close)="onDateFilterClose()">
+            <div class="flex justify-center ">
+              <app-date-picker [initialDate]="initialDate" [multiSelect]="true" (dateSelected)="onDateSelected($event)"
+                (applyClicked)="onApplyDates($event)">
+              </app-date-picker>
+            </div>
+            <div class="flex justify-center mt-4" *ngIf="formattedAppliedDates">
+              <app-card classes="px-6 py-4 bg-blue-50 border border-blue-200">
+                <div class="text-center">
+                  <h3 class="text-lg font-semibold text-blue-800 mb-2">Selected Dates</h3>
+                  <p class="text-blue-600 font-medium">{{ formattedAppliedDates }}</p>
+                </div>
+              </app-card>
+            </div>
+          </app-floating-dropdown>
+        
+        }
   </section>
 
   <section class="section-table">
@@ -114,45 +117,5 @@
       </div>
     </div>
   </section>
-
-  <!-- Floating Date Filter Dropdown -->
-  @if (showDateFilterDropdown) {
-  <app-floating-dropdown class="top-20px" [triggerElement]="dateFilterElement" (close)="onDateFilterClose()">
-    <div class="date-filter-content">
-      <h3 class="filter-title">Filter by Date</h3>
-      <div class="filter-options">
-        <div class="filter-option">
-          <input type="radio" id="today" name="dateFilter" value="today">
-          <label for="today">Today</label>
-        </div>
-        <div class="filter-option">
-          <input type="radio" id="yesterday" name="dateFilter" value="yesterday">
-          <label for="yesterday">Yesterday</label>
-        </div>
-        <div class="filter-option">
-          <input type="radio" id="thisWeek" name="dateFilter" value="thisWeek">
-          <label for="thisWeek">This Week</label>
-        </div>
-        <div class="filter-option">
-          <input type="radio" id="last7Days" name="dateFilter" value="last7Days">
-          <label for="last7Days">Last 7 Days</label>
-        </div>
-        <div class="filter-option">
-          <input type="radio" id="thisMonth" name="dateFilter" value="thisMonth">
-          <label for="thisMonth">This Month</label>
-        </div>
-        <div class="filter-option">
-          <input type="radio" id="custom" name="dateFilter" value="custom">
-          <label for="custom">Custom Range</label>
-        </div>
-      </div>
-
-      <div class="filter-actions">
-        <button class="btn-secondary" (click)="onDateFilterClose()">Cancel</button>
-        <button class="btn-primary">Apply Filter</button>
-      </div>
-    </div>
-  </app-floating-dropdown>
-  }
 
 </div>

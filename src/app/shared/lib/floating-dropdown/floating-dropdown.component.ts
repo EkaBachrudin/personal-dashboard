@@ -10,6 +10,7 @@ import { CommonModule } from '@angular/common';
 })
 export class FloatingDropdownComponent implements AfterContentInit {
   @Input() triggerElement?: HTMLElement;
+  @Input() customClasses: string = '';
   @Output() close = new EventEmitter<void>();
   @ViewChild('dropdown') dropdown!: ElementRef;
 

@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 import { ORDER_DATA, TABLE_HEADERS } from './order.data';
 import { OrderDataTable } from '../../types';
 import { FloatingDropdownComponent } from '../../shared/lib/floating-dropdown';
+import { DatePickerComponent } from "../../shared/lib/date-picker";
+import { CardComponent } from "../../shared/lib/card";
 
 @Component({
   selector: 'app-orders',
   standalone: true,
-  imports: [CommonModule, FloatingDropdownComponent],
+  imports: [CommonModule, FloatingDropdownComponent, DatePickerComponent, CardComponent],
   templateUrl: './orders.component.html',
   styleUrls: ['./orders.component.scss']
 })
