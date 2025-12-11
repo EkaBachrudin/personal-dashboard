@@ -61,7 +61,7 @@
 
       <app-floating-dropdown [customClasses]="'left-[400px] rounded-[16px] min-w-[320px] p-0'" [triggerElement]="orderStatusFilterElement"
         (close)="onOrderStatusFilterClose()">
-        <div class="order-status-filter">
+        <div class="order-status-filter max-w-[521px]">
           <!-- Header -->
           <div class="filter-header">
             <h3 class="filter-title">Select Order Status</h3>
@@ -79,19 +79,20 @@
             }
           </div>
 
-          <!-- Note -->
-          <div class="filter-note">
-            *You can choose multiple order status
-          </div>
 
           <!-- Apply Button -->
           <div class="filter-actions">
-            <button
+            <div class="filter-note">
+              *You can choose multiple order status
+            </div>
+           <div class="flex justify-center w-full">
+             <button
               class="apply-button"
               [disabled]="selectedOrderStatuses.length === 0"
               (click)="applyOrderStatusFilter()">
               Apply Now
             </button>
+           </div>
           </div>
         </div>
       </app-floating-dropdown>
