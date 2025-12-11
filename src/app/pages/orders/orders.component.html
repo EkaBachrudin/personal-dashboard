@@ -19,11 +19,11 @@
         <div class="mr-5"> Order Type </div>
         <img src="/assets/icons/chevronDown.svg" alt="down" class="w-[24px]">
     </div>
-    <div class="item-filter">
+    <div #orderStatusTrigger class="item-filter cursor-pointer" (click)="onOrderStatusFilterClick()">
         <div class="mr-5"> Order Status </div>
         <img src="/assets/icons/chevronDown.svg" alt="down" class="w-[24px]">
     </div>
-    <div class="item-filter">
+    <div class="item-filter cursor-pointer" (click)="resetFilters()">
         <img src="/assets/icons/replay-red.svg" alt="replay" class="w-[20px] mr-2">
         <div class="text-[#EA0234]"> Reset Filter </div>
     </div>
@@ -45,9 +45,55 @@
 
      @if (showOrderTypeFilterDropdown) {
 
-      <app-floating-dropdown [customClasses]="'left-[250px] rounded-[16px] min-w-[200px]'" [triggerElement]="orderTypeFilterElement"
+      <app-floating-dropdown [customClasses]="'left-[250px] rounded-[16px] min-w-[320px] p-0'" [triggerElement]="orderTypeFilterElement"
         (close)="onOrderTypeFilterClose()">
-        
+        <div class="order-type-filter">
+          <!-- Order Type Filter Content (can be implemented later) -->
+          <div class="filter-header">
+            <h3 class="filter-title">Select Order Type</h3>
+          </div>
+        </div>
+      </app-floating-dropdown>
+
+      }
+
+     @if (showOrderStatusFilterDropdown) {
+
+      <app-floating-dropdown [customClasses]="'left-[400px] rounded-[16px] min-w-[320px] p-0'" [triggerElement]="orderStatusFilterElement"
+        (close)="onOrderStatusFilterClose()">
+        <div class="order-status-filter">
+          <!-- Header -->
+          <div class="filter-header">
+            <h3 class="filter-title">Select Order Status</h3>
+          </div>
+
+          <!-- Status Chips -->
+          <div class="status-chips-container">
+            @for (status of availableOrderStatuses; track status) {
+              <div
+                class="status-chip"
+                [ngClass]="{ 'selected': selectedOrderStatuses.includes(status) }"
+                (click)="toggleOrderStatus(status)">
+                {{ status }}
+              </div>
+            }
+          </div>
+
+          <!-- Note -->
+          <div class="filter-note">
+            *You can choose multiple order status
+          </div>
+
+          <!-- Apply Button -->
+          <div class="filter-actions">
+            <button
+              class="apply-button"
+              [disabled]="selectedOrderStatuses.length === 0"
+              (click)="applyOrderStatusFilter()">
+              Apply Now
+            </button>
+          </div>
+        </div>
       </app-floating-dropdown>
 
       }
@@ -69,7 +115,8 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let order of orderData">
+            @for (order of orderData; track order.id) {
+            <tr>
               <td>{{ order.id }}</td>
               <td>{{ order.name }}</td>
               <td>{{ order.address }}</td>
@@ -83,6 +130,7 @@
                 </span>
               </td>
             </tr>
+            }
           </tbody>
         </table>
       </div>
@@ -90,7 +138,8 @@
 
     <!-- Mobile Card View -->
     <div class="mobile-cards">
-      <div class="order-card" *ngFor="let order of orderData">
+      @for (order of orderData; track order.id) {
+      <div class="order-card">
         <div class="card-header">
           <h3 class="order-id">{{ tableHeaders.id }}: {{ order.id }}</h3>
           <span
@@ -118,6 +167,7 @@
           </div>
         </div>
       </div>
+      }
     </div>
   </section>
 

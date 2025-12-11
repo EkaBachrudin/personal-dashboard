@@ -42,6 +42,68 @@
         @apply relative top-[-40px];
     }
 
+    // Order Status Filter Styles
+    .order-status-filter {
+        @apply p-6 bg-white;
+
+        .filter-header {
+            @apply mb-6 pb-4 border-b border-gray-100;
+
+            .filter-title {
+                @apply text-[18px] font-semibold text-gray-900 m-0;
+            }
+        }
+
+        .status-chips-container {
+            @apply flex flex-wrap gap-3 mb-6;
+
+            .status-chip {
+                @apply px-4 py-2 text-[14px] font-medium rounded-[8px] border border-gray-200
+                       bg-white text-gray-700 cursor-pointer transition-all duration-200
+                       hover:border-blue-300 hover:bg-blue-50 hover:text-blue-700;
+
+                &.selected {
+                    @apply bg-blue-500 text-white border-blue-500 hover:bg-blue-600 hover:border-blue-600;
+                }
+
+                &:active {
+                    @apply transform scale-95;
+                }
+            }
+        }
+
+        .filter-note {
+            @apply text-[12px] text-gray-500 mb-6 italic;
+        }
+
+        .filter-actions {
+            @apply flex justify-end pt-4 border-t border-gray-100;
+
+            .apply-button {
+                @apply px-6 py-3 bg-blue-500 text-white text-[14px] font-medium rounded-[8px]
+                       transition-all duration-200 hover:bg-blue-600 hover:shadow-md
+                       disabled:bg-gray-200 disabled:text-gray-400 disabled:cursor-not-allowed
+                       disabled:hover:shadow-none disabled:hover:bg-gray-200
+                       active:transform active:scale-95;
+
+                &:focus {
+                    @apply outline-none ring-2 ring-blue-500 ring-offset-2;
+                }
+            }
+        }
+    }
+
+    // Order Type Filter Styles (basic placeholder)
+    .order-type-filter {
+        @apply p-6 bg-white min-h-[100px];
+
+        .filter-header {
+            .filter-title {
+                @apply text-[18px] font-semibold text-gray-900 m-0;
+            }
+        }
+    }
+
     .section-table{
         // Desktop Table
         .desktop-table {
