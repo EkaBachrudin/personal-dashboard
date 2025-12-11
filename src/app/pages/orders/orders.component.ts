@@ -4,12 +4,11 @@ import { ORDER_DATA, TABLE_HEADERS } from './order.data';
 import { OrderDataTable } from '../../types';
 import { FloatingDropdownComponent } from '../../shared/lib/floating-dropdown';
 import { DatePickerComponent } from "../../shared/lib/date-picker";
-import { CardComponent } from "../../shared/lib/card";
 
 @Component({
   selector: 'app-orders',
   standalone: true,
-  imports: [CommonModule, FloatingDropdownComponent, DatePickerComponent, CardComponent],
+  imports: [CommonModule, FloatingDropdownComponent, DatePickerComponent],
   templateUrl: './orders.component.html',
   styleUrls: ['./orders.component.scss']
 })
@@ -19,7 +18,9 @@ export class OrdersComponent implements OnInit {
   initialDate: Date = new Date();
   appliedDates: Date[] = [];
   showDateFilterDropdown = false;
+  showOrderTypeFilterDropdown = false;
   @ViewChild('dateFilterTrigger') dateFilterTrigger!: ElementRef;
+  @ViewChild('orderTypeTrigger') orderTypeTrigger!: ElementRef;
 
   ngOnInit() {
     // Initialize component with order data
@@ -58,5 +59,17 @@ export class OrdersComponent implements OnInit {
 
   get dateFilterElement() {
     return this.dateFilterTrigger?.nativeElement;
+  }
+
+  onOrderTypeFilterClick() {
+    this.showOrderTypeFilterDropdown = true;
+  }
+
+  onOrderTypeFilterClose() {
+    this.showOrderTypeFilterDropdown = false;
+  }
+
+  get orderTypeFilterElement() {
+    return this.orderTypeTrigger?.nativeElement;
   }
 }

@@ -15,7 +15,7 @@
         </div>
         <img src="/assets/icons/chevronDown.svg" alt="down" class="w-[24px]">
     </div>
-    <div class="item-filter">
+    <div #orderTypeTrigger class="item-filter cursor-pointer" (click)="onOrderTypeFilterClick()">
         <div class="mr-5"> Order Type </div>
         <img src="/assets/icons/chevronDown.svg" alt="down" class="w-[24px]">
     </div>
@@ -31,7 +31,7 @@
 
   <section class="section-filter-content">
      @if (showDateFilterDropdown) {
-        
+
       <app-floating-dropdown [customClasses]="'left-[100px] rounded-[26px]'" [triggerElement]="dateFilterElement"
         (close)="onDateFilterClose()">
         <div class="flex justify-center">
@@ -40,7 +40,16 @@
           </app-date-picker>
         </div>
       </app-floating-dropdown>
+
+      }
+
+     @if (showOrderTypeFilterDropdown) {
+
+      <app-floating-dropdown [customClasses]="'left-[250px] rounded-[16px] min-w-[200px]'" [triggerElement]="orderTypeFilterElement"
+        (close)="onOrderTypeFilterClose()">
         
+      </app-floating-dropdown>
+
       }
   </section>
 
