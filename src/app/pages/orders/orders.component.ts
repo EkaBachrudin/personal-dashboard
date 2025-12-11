@@ -30,6 +30,11 @@ export class OrdersComponent implements OnInit {
   selectedOrderStatuses: string[] = [];
   appliedOrderStatuses: string[] = [];
 
+  // Order Type Filter Properties
+  availableOrderTypes: string[] = ['Purchase', 'Rental'];
+  selectedOrderTypes: string[] = [];
+  appliedOrderTypes: string[] = [];
+
   ngOnInit() {
     // Initialize component with order data
   }
@@ -108,6 +113,24 @@ export class OrdersComponent implements OnInit {
   applyOrderStatusFilter(): void {
     this.appliedOrderStatuses = [...this.selectedOrderStatuses];
     this.filterOrderData();
+    this.onOrderStatusFilterClose(); // Close dropdown after applying
+  }
+
+  // Order Type Filter Methods
+  toggleOrderType(type: string): void {
+    const index = this.selectedOrderTypes.indexOf(type);
+    if (index > -1) {
+      // Remove type if already selected
+      this.selectedOrderTypes.splice(index, 1);
+    } else {
+      // Add type if not selected
+      this.selectedOrderTypes.push(type);
+    }
+  }
+
+  applyOrderTypeFilter(): void {
+    this.appliedOrderTypes = [...this.selectedOrderTypes];
+    this.filterOrderData();
     this.onOrderTypeFilterClose(); // Close dropdown after applying
   }
 
@@ -119,6 +142,13 @@ export class OrdersComponent implements OnInit {
     if (this.appliedOrderStatuses.length > 0) {
       filteredData = filteredData.filter(order =>
         this.appliedOrderStatuses.includes(order.status)
+      );
+    }
+
+    // Apply order type filter if types are selected
+    if (this.appliedOrderTypes.length > 0) {
+      filteredData = filteredData.filter(order =>
+        this.appliedOrderTypes.includes(order.type)
       );
     }
 
@@ -140,6 +170,8 @@ export class OrdersComponent implements OnInit {
   resetFilters(): void {
     this.appliedOrderStatuses = [];
     this.selectedOrderStatuses = [];
+    this.appliedOrderTypes = [];
+    this.selectedOrderTypes = [];
     this.appliedDates = [];
     this.orderData = [...this.originalOrderData];
   }

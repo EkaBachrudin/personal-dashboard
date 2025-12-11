@@ -47,10 +47,37 @@
 
       <app-floating-dropdown [customClasses]="'left-[250px] rounded-[16px] min-w-[320px] p-0'" [triggerElement]="orderTypeFilterElement"
         (close)="onOrderTypeFilterClose()">
-        <div class="order-type-filter">
-          <!-- Order Type Filter Content (can be implemented later) -->
+        <div class="order-type-filter max-w-[521px]">
+          <!-- Header -->
           <div class="filter-header">
             <h3 class="filter-title">Select Order Type</h3>
+          </div>
+
+          <!-- Type Chips -->
+          <div class="type-chips-container">
+            @for (type of availableOrderTypes; track type) {
+              <div
+                class="type-chip"
+                [ngClass]="{ 'selected': selectedOrderTypes.includes(type) }"
+                (click)="toggleOrderType(type)">
+                {{ type }}
+              </div>
+            }
+          </div>
+
+          <!-- Apply Button -->
+          <div class="filter-actions">
+            <div class="filter-note">
+              *You can choose multiple order types
+            </div>
+           <div class="flex justify-center w-full">
+             <button
+              class="apply-button"
+              [disabled]="selectedOrderTypes.length === 0"
+              (click)="applyOrderTypeFilter()">
+              Apply Now
+            </button>
+           </div>
           </div>
         </div>
       </app-floating-dropdown>
