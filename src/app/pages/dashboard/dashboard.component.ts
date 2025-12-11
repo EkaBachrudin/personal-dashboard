@@ -5,16 +5,17 @@ import * as Plot from "@observablehq/plot";
 import * as htl from "htl";
 import { analytics1, analytics2, sales, salesA, salesB } from './dashboard.data';
 import { PlotFigure } from '../../shared/lib/plot-figure/plot-figure';
-import { NgFor } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 import { CardComponent } from '../../shared/lib/card';
 import { Slide } from '../../types/slider.type';
 import { ImageSlider } from '../../shared/lib/image-slider/image-slider';
 import { PieChartComponent } from '../../shared/lib/pie-chart/pie-chart';
+import { DatePickerComponent } from '../../shared/lib/date-picker';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [PlotFigure, NgFor, CardComponent, ImageSlider, PieChartComponent],
+  imports: [PlotFigure, NgFor, NgIf, CardComponent, ImageSlider, PieChartComponent, DatePickerComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
@@ -26,6 +27,8 @@ export class DashboardComponent implements OnInit {
   dealsData: DealDetail[] = [];
   selectedMonth: string = 'October';
   currentSlide: number = 0;
+  initialDate: Date = new Date();
+  appliedDates: Date[] = [];
 
   salesOption= {
     marks: [
@@ -187,5 +190,28 @@ export class DashboardComponent implements OnInit {
 
   getCurrentSlide(index: number): void {
     this.currentSlide = index;
+  }
+
+  onDateSelected(dates: Date[]): void {
+    console.log('Selected dates:', dates);
+  }
+
+  onApplyDates(dates: Date[]): void {
+    console.log('Applied dates:', dates);
+    this.appliedDates = dates;
+    // You can implement further logic here
+  }
+
+  get formattedAppliedDates(): string {
+    if (this.appliedDates.length === 0) return '';
+
+    const sortedDates = this.appliedDates.sort((a, b) => a.getTime() - b.getTime());
+    return sortedDates.map(date =>
+      date.toLocaleDateString('en-US', {
+        month: 'short',
+        day: 'numeric',
+        year: 'numeric'
+      })
+    ).join(', ');
   }
 }

@@ -1,0 +1,65 @@
+<div class="date-picker">
+  <!-- Calendar Header -->
+  <div class="calendar-header">
+    <button class="nav-button" (click)="previousMonth()">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+
+    <h3 class="month-year">
+      {{ monthNames[currentMonth.getMonth()] }} {{ currentMonth.getFullYear() }}
+    </h3>
+
+    <button class="nav-button" (click)="nextMonth()">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+        <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Calendar Grid -->
+  <div class="calendar-grid">
+    <!-- Week Days Header -->
+    <div class="week-days">
+      <div class="week-day" *ngFor="let day of weekDays">{{ day }}</div>
+    </div>
+
+    <!-- Calendar Days -->
+    <div class="days-grid">
+      <div
+        *ngFor="let day of calendarDays"
+        class="calendar-day"
+        [class.current-month]="day.isCurrentMonth"
+        [class.today]="day.isToday"
+        [class.selected]="day.isSelected"
+        (click)="selectDay(day)"
+      >
+        {{ day.date }}
+      </div>
+    </div>
+  </div>
+
+  <!-- Selected Dates Display -->
+  <div class="selected-dates-section" *ngIf="showAppliedDates && formattedAppliedDates">
+    <div class="selected-dates-header">
+      <h4>Selected Dates:</h4>
+      <button class="clear-button" (click)="clearSelection()">Clear</button>
+    </div>
+    <div class="selected-dates-list">
+      {{ formattedAppliedDates }}
+    </div>
+  </div>
+
+  <!-- Apply Button -->
+  <div class="calendar-footer" *ngIf="!showAppliedDates">
+    <p class="select-hint">*You can choose multiple date</p>
+    <button
+      class="apply-button"
+      [disabled]="selectedDatesCount === 0"
+      (click)="applyDates()"
+    >
+      Apply Now
+    </button>
+  </div>
+</div>
