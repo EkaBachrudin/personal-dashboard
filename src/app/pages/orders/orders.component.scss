@@ -9,13 +9,13 @@
         @apply flex bg-white w-fit border border-[#97979734] rounded-[10px] shadow-sm;
 
         .item-filter{
-            @apply p-6 border-r border-[#97979734] text-[14px] font-bold flex justify-center items-center cursor-pointer;
+            @apply py-4 px-6 border-r border-[#97979734] text-[14px] font-bold flex justify-center items-center cursor-pointer;
         }
     }
 
     .section-table{
         .table-container {
-            @apply bg-white rounded-[10px] shadow-sm overflow-hidden;
+            @apply bg-white rounded-[10px] shadow overflow-hidden;
         }
 
         .order-table {
@@ -25,7 +25,7 @@
                 @apply bg-gray-50 border-b border-gray-200;
 
                 th {
-                    @apply px-6 py-4 text-left text-[14px] font-semibold text-gray-700;
+                    @apply px-6 py-4 text-left text-[14px] font-extrabold text-[#202224] px-[30px];
                 }
             }
 
@@ -38,14 +38,14 @@
                     }
 
                     td {
-                        @apply px-6 py-4 text-[14px] text-gray-900;
+                        @apply px-6 py-4 text-[14px] text-gray-900 px-[30px];
                     }
                 }
             }
         }
 
         .status-badge {
-            @apply inline-flex px-3 py-1 text-[12px] font-medium rounded-full;
+            @apply px-3 py-2 text-[12px] font-medium rounded-[4.5px] w-full text-center block;
 
             &.status-complete {
                 @apply bg-green-100 text-green-800;
