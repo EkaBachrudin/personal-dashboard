@@ -1,0 +1,9 @@
+.product-stock-conteiner {
+  .title-page{
+        @apply text-[32px] font-semibold text-center lg:text-left mb-6;
+
+        @media (max-width: 640px) {
+            @apply text-[24px] mb-4;
+        }
+    }
+}

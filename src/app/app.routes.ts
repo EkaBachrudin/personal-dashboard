@@ -5,6 +5,7 @@ import { ProductsComponent } from './pages/products/products.component';
 import { FavoritesComponent } from './pages/favorites/favorites.component';
 import { InboxComponent } from './pages/inbox/inbox.component';
 import { OrdersComponent } from './pages/orders/orders.component';
+import { ProductStockComponent } from './pages/product-stock/product-stock.component';
 
 export const routes: Routes = [
   {
@@ -35,6 +36,10 @@ export const routes: Routes = [
       {
         path: 'orders',
         component: OrdersComponent
+      },
+      {
+        path: 'product-stock',
+        component: ProductStockComponent
       }
     ]
   }

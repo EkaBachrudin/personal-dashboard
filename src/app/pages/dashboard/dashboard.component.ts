@@ -1,21 +1,20 @@
-import { Component, OnInit, AfterViewInit, ElementRef, ViewChild, OnDestroy } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { ChartSeries } from '../../types/chart.types';
 import { DealDetail } from '../../types';
 import * as Plot from "@observablehq/plot";
 import * as htl from "htl";
 import { analytics1, analytics2, sales, salesA, salesB } from './dashboard.data';
 import { PlotFigure } from '../../shared/lib/plot-figure/plot-figure';
-import { NgFor, NgIf } from '@angular/common';
 import { CardComponent } from '../../shared/lib/card';
 import { Slide } from '../../types/slider.type';
 import { ImageSlider } from '../../shared/lib/image-slider/image-slider';
 import { PieChartComponent } from '../../shared/lib/pie-chart/pie-chart';
-import { DatePickerComponent } from '../../shared/lib/date-picker';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [PlotFigure, NgFor, NgIf, CardComponent, ImageSlider, PieChartComponent, DatePickerComponent],
+  imports: [PlotFigure, CommonModule, CardComponent, ImageSlider, PieChartComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })

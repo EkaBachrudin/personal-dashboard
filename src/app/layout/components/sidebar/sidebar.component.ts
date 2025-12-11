@@ -52,7 +52,7 @@ export class SidebarComponent {
     {
       title: 'Product Stock',
       icon: '',
-      route: '/stock'
+      route: '/product-stock'
     }
   ];
 
