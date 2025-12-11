@@ -10,7 +10,7 @@
     }
 
     .section-filter{
-        @apply flex bg-white w-fit border border-[#97979734] rounded-[10px] shadow-sm overflow-x-auto;
+        @apply flex bg-white w-fit border border-[#97979734] rounded-[10px] shadow-sm overflow-x-auto w-fit;
 
         .item-filter{
             @apply py-4 px-6 border-r border-[#97979734] text-[14px] font-bold flex justify-center items-center cursor-pointer whitespace-nowrap min-w-fit;

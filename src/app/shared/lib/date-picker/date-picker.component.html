@@ -53,13 +53,15 @@
 
   <!-- Apply Button -->
   <div class="calendar-footer" *ngIf="!showAppliedDates">
-    <p class="select-hint">*You can choose multiple date</p>
-    <button
-      class="apply-button"
-      [disabled]="selectedDatesCount === 0"
-      (click)="applyDates()"
-    >
-      Apply Now
-    </button>
+    <div><p class="select-hint">*You can choose multiple date</p></div>
+    <div class="flex justify-center w-full mt-4">
+      <button
+        class="apply-button"
+        [disabled]="selectedDatesCount === 0"
+        (click)="applyDates()"
+      >
+        Apply Now
+      </button>
+    </div>
   </div>
 </div>

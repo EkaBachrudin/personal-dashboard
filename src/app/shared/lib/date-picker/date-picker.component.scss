@@ -1,6 +1,5 @@
 .date-picker {
   background: white;
-  border-radius: 26px;
   box-shadow: 0px 13px 61px 0px rgba(169, 169, 169, 0.37);
   padding: 24px;
   min-width: 320px;
@@ -166,7 +165,6 @@
   // Calendar Footer
   .calendar-footer {
     margin-top: 24px;
-    display: flex;
     justify-content: space-between;
     align-items: center;
 
