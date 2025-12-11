@@ -4,25 +4,6 @@
     <h1>Dashboard</h1>
   </div>
 
-  <!-- Date Picker Demo -->
-  <div class="flex justify-center mt-8">
-    <app-date-picker
-      [initialDate]="initialDate"
-      [multiSelect]="true"
-      (dateSelected)="onDateSelected($event)"
-      (applyClicked)="onApplyDates($event)">
-    </app-date-picker>
-  </div>
-
-  <!-- Applied Dates Display -->
-  <div class="flex justify-center mt-4" *ngIf="formattedAppliedDates">
-    <app-card classes="px-6 py-4 bg-blue-50 border border-blue-200">
-      <div class="text-center">
-        <h3 class="text-lg font-semibold text-blue-800 mb-2">Selected Dates</h3>
-        <p class="text-blue-600 font-medium">{{ formattedAppliedDates }}</p>
-      </div>
-    </app-card>
-  </div>
 
   <!-- Stats Grid -->
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[30px] mt-[27px]">

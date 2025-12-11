@@ -27,8 +27,8 @@ export class DashboardComponent implements OnInit {
   dealsData: DealDetail[] = [];
   selectedMonth: string = 'October';
   currentSlide: number = 0;
-  initialDate: Date = new Date();
-  appliedDates: Date[] = [];
+  
+ 
 
   salesOption= {
     marks: [
@@ -192,26 +192,4 @@ export class DashboardComponent implements OnInit {
     this.currentSlide = index;
   }
 
-  onDateSelected(dates: Date[]): void {
-    console.log('Selected dates:', dates);
-  }
-
-  onApplyDates(dates: Date[]): void {
-    console.log('Applied dates:', dates);
-    this.appliedDates = dates;
-    // You can implement further logic here
-  }
-
-  get formattedAppliedDates(): string {
-    if (this.appliedDates.length === 0) return '';
-
-    const sortedDates = this.appliedDates.sort((a, b) => a.getTime() - b.getTime());
-    return sortedDates.map(date =>
-      date.toLocaleDateString('en-US', {
-        month: 'short',
-        day: 'numeric',
-        year: 'numeric'
-      })
-    ).join(', ');
-  }
 }
