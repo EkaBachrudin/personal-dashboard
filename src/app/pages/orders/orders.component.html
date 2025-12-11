@@ -28,85 +28,70 @@
   </section>
 
   <section class="section-table">
-    <div class="table-container">
-      <table class="order-table">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Address</th>
-            <th>Date</th>
-            <th>Type</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>00</td>
-            <td>John Doe</td>
-            <td>123 Main St, New York, NY 10001</td>
-            <td>2024-01-15</td>
-            <td>Purchase</td>
-            <td><span class="status-badge status-complete">Complete</span></td>
-          </tr>
-          <tr>
-            <td>00</td>
-            <td>Jane Smith</td>
-            <td>456 Oak Ave, Los Angeles, CA 90001</td>
-            <td>2024-01-16</td>
-            <td>Rental</td>
-            <td><span class="status-badge status-processing">Processing</span></td>
-          </tr>
-          <tr>
-            <td>00</td>
-            <td>Mike Johnson</td>
-            <td>789 Pine Rd, Chicago, IL 60601</td>
-            <td>2024-01-17</td>
-            <td>Purchase</td>
-            <td><span class="status-badge status-rejected">Rejected</span></td>
-          </tr>
-          <tr>
-            <td>00</td>
-            <td>Sarah Williams</td>
-            <td>321 Elm St, Houston, TX 77001</td>
-            <td>2024-01-18</td>
-            <td>Rental</td>
-            <td><span class="status-badge status-on-hold">On Hold</span></td>
-          </tr>
-          <tr>
-            <td>00</td>
-            <td>David Brown</td>
-            <td>654 Cedar Ln, Phoenix, AZ 85001</td>
-            <td>2024-01-19</td>
-            <td>Purchase</td>
-            <td><span class="status-badge status-in-transit">In Transit</span></td>
-          </tr>
-          <tr>
-            <td>00</td>
-            <td>Emily Davis</td>
-            <td>987 Birch Way, Philadelphia, PA 19101</td>
-            <td>2024-01-20</td>
-            <td>Rental</td>
-            <td><span class="status-badge status-complete">Complete</span></td>
-          </tr>
-          <tr>
-            <td>00</td>
-            <td>Robert Wilson</td>
-            <td>147 Maple Dr, San Antonio, TX 78201</td>
-            <td>2024-01-21</td>
-            <td>Purchase</td>
-            <td><span class="status-badge status-processing">Processing</span></td>
-          </tr>
-          <tr>
-            <td>00</td>
-            <td>Lisa Anderson</td>
-            <td>258 Spruce Ct, San Diego, CA 92101</td>
-            <td>2024-01-22</td>
-            <td>Rental</td>
-            <td><span class="status-badge status-in-transit">In Transit</span></td>
-          </tr>
-        </tbody>
-      </table>
+    <!-- Desktop Table View -->
+    <div class="table-container desktop-table">
+      <div class="table-wrapper">
+        <table class="order-table">
+          <thead>
+            <tr>
+              <th>{{ tableHeaders.id }}</th>
+              <th>{{ tableHeaders.name }}</th>
+              <th>{{ tableHeaders.address }}</th>
+              <th>{{ tableHeaders.date }}</th>
+              <th>{{ tableHeaders.type }}</th>
+              <th>{{ tableHeaders.status }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let order of orderData">
+              <td>{{ order.id }}</td>
+              <td>{{ order.name }}</td>
+              <td>{{ order.address }}</td>
+              <td>{{ order.date }}</td>
+              <td>{{ order.type }}</td>
+              <td>
+                <span
+                  class="status-badge"
+                  [ngClass]="'status-' + order.status.toLowerCase().replace(' ', '-')">
+                  {{ order.status }}
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Mobile Card View -->
+    <div class="mobile-cards">
+      <div class="order-card" *ngFor="let order of orderData">
+        <div class="card-header">
+          <h3 class="order-id">{{ tableHeaders.id }}: {{ order.id }}</h3>
+          <span
+            class="status-badge"
+            [ngClass]="'status-' + order.status.toLowerCase().replace(' ', '-')">
+            {{ order.status }}
+          </span>
+        </div>
+        <div class="card-body">
+          <div class="card-row">
+            <span class="label">{{ tableHeaders.name }}:</span>
+            <span class="value">{{ order.name }}</span>
+          </div>
+          <div class="card-row">
+            <span class="label">{{ tableHeaders.address }}:</span>
+            <span class="value">{{ order.address }}</span>
+          </div>
+          <div class="card-row">
+            <span class="label">{{ tableHeaders.date }}:</span>
+            <span class="value">{{ order.date }}</span>
+          </div>
+          <div class="card-row">
+            <span class="label">{{ tableHeaders.type }}:</span>
+            <span class="value">{{ order.type }}</span>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 

@@ -1,44 +1,107 @@
 .order-container {
-    @apply space-y-6;
+    @apply space-y-6 px-4 lg:px-0;
 
     .title-page{
-        @apply text-[32px] font-semibold;
+        @apply text-[32px] font-semibold text-center lg:text-left mb-6;
+
+        @media (max-width: 640px) {
+            @apply text-[24px] mb-4;
+        }
     }
 
     .section-filter{
-        @apply flex bg-white w-fit border border-[#97979734] rounded-[10px] shadow-sm;
+        @apply flex bg-white w-fit border border-[#97979734] rounded-[10px] shadow-sm overflow-x-auto;
 
         .item-filter{
-            @apply py-4 px-6 border-r border-[#97979734] text-[14px] font-bold flex justify-center items-center cursor-pointer;
+            @apply py-4 px-6 border-r border-[#97979734] text-[14px] font-bold flex justify-center items-center cursor-pointer whitespace-nowrap min-w-fit;
+
+            &:last-child {
+                @apply border-r-0;
+            }
+        }
+
+        // Mobile filter improvements
+        @media (max-width: 640px) {
+            @apply w-full justify-start;
+
+            .item-filter {
+                @apply px-4 py-3 text-[12px];
+
+                img {
+                    @apply w-[20px];
+                }
+
+                div:first-child {
+                    @apply mr-3;
+                }
+            }
         }
     }
 
     .section-table{
-        .table-container {
-            @apply bg-white rounded-[10px] shadow overflow-hidden;
-        }
+        // Desktop Table
+        .desktop-table {
+            @apply bg-white rounded-[10px] shadow overflow-hidden hidden lg:block;
 
-        .order-table {
-            @apply w-full border-collapse;
+            .table-wrapper {
+                @apply overflow-x-auto;
 
-            thead {
-                @apply bg-gray-50 border-b border-gray-200;
+                .order-table {
+                    @apply w-full border-collapse min-w-[800px];
 
-                th {
-                    @apply px-6 py-4 text-left text-[14px] font-extrabold text-[#202224] px-[30px];
-                }
-            }
+                    thead {
+                        @apply bg-gray-50 border-b border-gray-200 sticky top-0 z-10;
 
-            tbody {
-                tr {
-                    @apply border-b border-gray-100 hover:bg-gray-50 transition-colors;
-
-                    &:last-child {
-                        @apply border-b-0;
+                        th {
+                            @apply px-6 py-4 text-left text-[14px] font-extrabold text-[#202224] whitespace-nowrap;
+                        }
                     }
 
-                    td {
-                        @apply px-6 py-4 text-[14px] text-gray-900 px-[30px];
+                    tbody {
+                        tr {
+                            @apply border-b border-gray-100 hover:bg-gray-50 transition-colors;
+
+                            &:last-child {
+                                @apply border-b-0;
+                            }
+
+                            td {
+                                @apply px-6 py-4 text-[14px] text-gray-900 whitespace-nowrap;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        // Mobile Cards
+        .mobile-cards {
+            @apply space-y-4 lg:hidden;
+
+            .order-card {
+                @apply bg-white rounded-[10px] shadow p-4 border border-gray-100;
+
+                .card-header {
+                    @apply flex justify-between items-center mb-4 pb-3 border-b border-gray-100;
+
+                    .order-id {
+                        @apply text-[16px] font-semibold text-gray-900 m-0;
+                    }
+                }
+
+                .card-body {
+                    @apply space-y-3;
+
+                    .card-row {
+                        @apply flex flex-col sm:flex-row sm:justify-between gap-1;
+
+                        .label {
+                            @apply text-[12px] font-medium text-gray-600 sm:w-[80px];
+                        }
+
+                        .value {
+                            @apply text-[14px] text-gray-900 sm:flex-1 sm:text-right;
+                        }
                     }
                 }
             }

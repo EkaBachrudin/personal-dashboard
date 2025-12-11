@@ -57,3 +57,12 @@ export interface Address {
 }
 
 export type OrderStatus = Order['status'];
+
+export interface OrderDataTable {
+  id: string;
+  name: string;
+  address: string;
+  date: string;
+  type: 'Purchase' | 'Rental';
+  status: 'Complete' | 'Processing' | 'Rejected' | 'On Hold' | 'In Transit';
+}
