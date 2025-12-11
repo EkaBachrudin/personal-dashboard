@@ -29,7 +29,7 @@
         <img src="/assets/icons/filter.svg" alt="filter" class="w-[24px]">
     </div>
     <div class="item-filter">Filter By</div>
-    <div class="item-filter">
+    <div #dateFilterTrigger class="item-filter cursor-pointer" (click)="onDateFilterClick()">
         <div class="mr-5"> Date </div>
         <img src="/assets/icons/chevronDown.svg" alt="down" class="w-[24px]">
     </div>
@@ -115,5 +115,44 @@
     </div>
   </section>
 
-  
+  <!-- Floating Date Filter Dropdown -->
+  @if (showDateFilterDropdown) {
+  <app-floating-dropdown class="top-20px" [triggerElement]="dateFilterElement" (close)="onDateFilterClose()">
+    <div class="date-filter-content">
+      <h3 class="filter-title">Filter by Date</h3>
+      <div class="filter-options">
+        <div class="filter-option">
+          <input type="radio" id="today" name="dateFilter" value="today">
+          <label for="today">Today</label>
+        </div>
+        <div class="filter-option">
+          <input type="radio" id="yesterday" name="dateFilter" value="yesterday">
+          <label for="yesterday">Yesterday</label>
+        </div>
+        <div class="filter-option">
+          <input type="radio" id="thisWeek" name="dateFilter" value="thisWeek">
+          <label for="thisWeek">This Week</label>
+        </div>
+        <div class="filter-option">
+          <input type="radio" id="last7Days" name="dateFilter" value="last7Days">
+          <label for="last7Days">Last 7 Days</label>
+        </div>
+        <div class="filter-option">
+          <input type="radio" id="thisMonth" name="dateFilter" value="thisMonth">
+          <label for="thisMonth">This Month</label>
+        </div>
+        <div class="filter-option">
+          <input type="radio" id="custom" name="dateFilter" value="custom">
+          <label for="custom">Custom Range</label>
+        </div>
+      </div>
+
+      <div class="filter-actions">
+        <button class="btn-secondary" (click)="onDateFilterClose()">Cancel</button>
+        <button class="btn-primary">Apply Filter</button>
+      </div>
+    </div>
+  </app-floating-dropdown>
+  }
+
 </div>
