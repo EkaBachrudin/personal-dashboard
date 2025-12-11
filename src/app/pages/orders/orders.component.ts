@@ -4,17 +4,19 @@ import { ORDER_DATA, TABLE_HEADERS } from './order.data';
 import { OrderDataTable } from '../../types';
 import { FloatingDropdownComponent } from '../../shared/lib/floating-dropdown';
 import { DatePickerComponent } from "../../shared/lib/date-picker";
+import { PaginationComponent } from '../../shared/lib/pagination';
 
 @Component({
   selector: 'app-orders',
   standalone: true,
-  imports: [CommonModule, FloatingDropdownComponent, DatePickerComponent],
+  imports: [CommonModule, FloatingDropdownComponent, DatePickerComponent, PaginationComponent],
   templateUrl: './orders.component.html',
   styleUrls: ['./orders.component.scss']
 })
 export class OrdersComponent implements OnInit {
   orderData: OrderDataTable[] = ORDER_DATA;
   originalOrderData: OrderDataTable[] = ORDER_DATA; // Keep original data for filtering
+  filteredOrderData: OrderDataTable[] = ORDER_DATA; // Data after filtering, before pagination
   tableHeaders = TABLE_HEADERS;
   initialDate: Date = new Date();
   appliedDates: Date[] = [];
@@ -24,6 +26,10 @@ export class OrdersComponent implements OnInit {
   @ViewChild('dateFilterTrigger') dateFilterTrigger!: ElementRef;
   @ViewChild('orderTypeTrigger') orderTypeTrigger!: ElementRef;
   @ViewChild('orderStatusTrigger') orderStatusTrigger!: ElementRef;
+
+  // Pagination properties
+  currentPage: number = 1;
+  itemsPerPage: number = 9;
 
   // Order Status Filter Properties
   availableOrderStatuses: string[] = ['Complete', 'Processing', 'Rejected', 'On Hold', 'In Transit'];
@@ -37,6 +43,26 @@ export class OrdersComponent implements OnInit {
 
   ngOnInit() {
     // Initialize component with order data
+    this.updatePaginatedData();
+  }
+
+  get totalItems(): number {
+    return this.filteredOrderData.length;
+  }
+
+  get totalPages(): number {
+    return Math.ceil(this.totalItems / this.itemsPerPage);
+  }
+
+  onPageChanged(page: number): void {
+    this.currentPage = page;
+    this.updatePaginatedData();
+  }
+
+  private updatePaginatedData(): void {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    this.orderData = this.filteredOrderData.slice(startIndex, endIndex);
   }
 
   onDateSelected(dates: Date[]): void {
@@ -163,7 +189,10 @@ export class OrdersComponent implements OnInit {
       });
     }
 
-    this.orderData = filteredData;
+    // Update filtered data and reset to first page
+    this.filteredOrderData = filteredData;
+    this.currentPage = 1;
+    this.updatePaginatedData();
   }
 
   // Method to reset all filters
@@ -173,6 +202,8 @@ export class OrdersComponent implements OnInit {
     this.appliedOrderTypes = [];
     this.selectedOrderTypes = [];
     this.appliedDates = [];
-    this.orderData = [...this.originalOrderData];
+    this.filteredOrderData = [...this.originalOrderData];
+    this.currentPage = 1;
+    this.updatePaginatedData();
   }
 }

@@ -199,4 +199,16 @@
     </div>
   </section>
 
+  <!-- Pagination -->
+  @if (totalItems > itemsPerPage) {
+    <div class="pagination-wrapper">
+      <app-pagination
+        [currentPage]="currentPage"
+        [itemsPerPage]="itemsPerPage"
+        [totalItems]="totalItems"
+        (pageChanged)="onPageChanged($event)">
+      </app-pagination>
+    </div>
+  }
+
 </div>

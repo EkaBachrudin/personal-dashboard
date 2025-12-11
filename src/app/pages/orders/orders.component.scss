@@ -237,4 +237,12 @@
             }
         }
     }
+
+    .pagination-wrapper {
+        @apply px-6 w-full;
+
+        @media (max-width: 768px) {
+            @apply justify-center;
+        }
+    }
 }

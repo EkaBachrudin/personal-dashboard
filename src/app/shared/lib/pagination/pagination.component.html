@@ -1,0 +1,47 @@
+<div class="pagination-container">
+  <!-- Left side - Showing text -->
+  <div class="pagination-info">
+    <span class="pagination-text">{{ paginationText }}</span>
+  </div>
+
+  <!-- Right side - Navigation arrows -->
+  <div class="pagination-controls">
+    <button
+      class="pagination-arrow"
+      [ngClass]="{ 'disabled': !canGoPrevious() }"
+      (click)="goToPreviousPage()"
+      [disabled]="!canGoPrevious()"
+      aria-label="Previous page">
+      <img
+        src="/assets/icons/arrow-left.svg"
+        alt="Previous"
+        class="arrow-icon"
+        [ngClass]="{ 'icon-disabled': !canGoPrevious() }">
+    </button>
+
+    <!-- Page numbers -->
+    <div class="page-numbers">
+      @for (page of getPageNumbers(); track page) {
+        <button
+          class="page-number"
+          [ngClass]="{ 'active': page === currentPage }"
+          (click)="goToPage(page)">
+          {{ page }}
+        </button>
+      }
+    </div>
+
+    <button
+      class="pagination-arrow"
+      [ngClass]="{ 'disabled': !canGoNext() }"
+      (click)="goToNextPage()"
+      [disabled]="!canGoNext()"
+      aria-label="Next page">
+      <img
+        src="/assets/icons/arrow-right.svg"
+        alt="Next"
+        class="arrow-icon"
+        [ngClass]="{ 'icon-disabled': !canGoNext() }">
+    </button>
+  </div>
+</div>
