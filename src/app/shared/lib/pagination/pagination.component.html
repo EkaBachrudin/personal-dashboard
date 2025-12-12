@@ -8,7 +8,7 @@
   <div class="pagination-controls">
     <button
       class="pagination-arrow"
-      [ngClass]="{ 'disabled': !canGoPrevious() }"
+      [class.disabled]="!canGoPrevious()"
       (click)="goToPreviousPage()"
       [disabled]="!canGoPrevious()"
       aria-label="Previous page">
@@ -16,7 +16,7 @@
         src="/assets/icons/arrow-left.svg"
         alt="Previous"
         class="arrow-icon"
-        [ngClass]="{ 'icon-disabled': !canGoPrevious() }">
+        [class.icon-disabled]="!canGoPrevious()">
     </button>
 
     <!-- Page numbers -->
@@ -24,7 +24,7 @@
       @for (page of getPageNumbers(); track page) {
         <button
           class="page-number"
-          [ngClass]="{ 'active': page === currentPage }"
+          [class.active]="page === currentPage"
           (click)="goToPage(page)">
           {{ page }}
         </button>
@@ -33,7 +33,7 @@
 
     <button
       class="pagination-arrow"
-      [ngClass]="{ 'disabled': !canGoNext() }"
+      [class.disabled]="!canGoNext()"
       (click)="goToNextPage()"
       [disabled]="!canGoNext()"
       aria-label="Next page">
@@ -41,7 +41,7 @@
         src="/assets/icons/arrow-right.svg"
         alt="Next"
         class="arrow-icon"
-        [ngClass]="{ 'icon-disabled': !canGoNext() }">
+        [class.icon-disabled]="!canGoNext()">
     </button>
   </div>
 </div>

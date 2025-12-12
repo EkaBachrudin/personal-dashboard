@@ -66,3 +66,18 @@ export interface OrderDataTable {
   type: 'Purchase' | 'Rental';
   status: 'Complete' | 'Processing' | 'Rejected' | 'On Hold' | 'In Transit';
 }
+
+export interface ColorOption {
+  hex: string;
+  name: string;
+}
+
+export interface ProductStockItem {
+  id: string;
+  image: string;
+  productName: string;
+  category: string;
+  price: number;
+  piece: number;
+  availableColors: ColorOption[];
+}
