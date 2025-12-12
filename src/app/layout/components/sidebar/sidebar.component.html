@@ -13,7 +13,7 @@
          [class.active]="isMenuItemActive(item)"
          (click)="navigateToRoute(item.route)">
          <span class="accent">  </span>
-      <span class="menu-icon">{{ item.icon }}</span>
+      <img [src]="item.icon" [alt]="item.title" class="menu-icon">
       <span class="menu-label">{{ item.title }}</span>
     </div>
   </nav>
@@ -29,7 +29,7 @@
            class="menu-item"
            [class.active]="isMenuItemActive(item)"
            (click)="navigateToRoute(item.route)">
-        <span class="menu-icon">{{ item.icon }}</span>
+        <img [src]="item.icon" [alt]="item.title" class="menu-icon">
         <span class="menu-label">{{ item.title }}</span>
       </div>
     </nav>
@@ -44,7 +44,7 @@
          class="menu-item"
          [class.active]="isMenuItemActive(item)"
          (click)="navigateToRoute(item.route)">
-      <span class="menu-icon">{{ item.icon }}</span>
+      <img [src]="item.icon" [alt]="item.title" class="menu-icon">
       <span class="menu-label">{{ item.title }}</span>
     </div>
   </nav>

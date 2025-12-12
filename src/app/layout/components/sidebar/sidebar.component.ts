@@ -26,32 +26,32 @@ export class SidebarComponent {
   mainMenuItems: MenuItem[] = [
     {
       title: 'Dashboard',
-      icon: '',
+      icon: '/assets/sidebar-icons/dashboard.svg',
       route: '/dashboard'
     },
     {
       title: 'Products',
-      icon: '',
+      icon: '/assets/sidebar-icons/products.svg',
       route: '/products'
     },
     {
       title: 'Favorites',
-      icon: '',
+      icon: '/assets/sidebar-icons/favorites.svg',
       route: '/favorites'
     },
     {
       title: 'Inbox',
-      icon: '',
+      icon: '/assets/sidebar-icons/inbox.svg',
       route: '/inbox'
     },
     {
       title: 'Order Lists',
-      icon: '',
+      icon: '/assets/sidebar-icons/order-list.svg',
       route: '/orders'
     },
     {
       title: 'Product Stock',
-      icon: '',
+      icon: '/assets/sidebar-icons/product-stock.svg',
       route: '/product-stock'
     }
   ];
@@ -59,37 +59,37 @@ export class SidebarComponent {
   pageMenuItems: MenuItem[] = [
     {
       title: 'Calendar',
-      icon: '',
+      icon: '/assets/sidebar-icons/calender.svg',
       route: '/calendar'
     },
     {
       title: 'To-Do',
-      icon: '',
+      icon: '/assets/sidebar-icons/to-do.svg',
       route: '/todo'
     },
     {
       title: 'Contact',
-      icon: '',
+      icon: '/assets/sidebar-icons/contact.svg',
       route: '/contact'
     },
     {
       title: 'Invoice',
-      icon: '',
+      icon: '/assets/sidebar-icons/invoice.svg',
       route: '/invoice'
     },
     {
       title: 'UI Elements',
-      icon: '',
+      icon: '/assets/sidebar-icons/ui-element.svg',
       route: '/ui-elements'
     },
     {
       title: 'Team',
-      icon: '',
+      icon: '/assets/sidebar-icons/team.svg',
       route: '/team'
     },
     {
       title: 'Table',
-      icon: '',
+      icon: '/assets/sidebar-icons/tables.svg',
       route: '/table'
     }
   ];
@@ -97,12 +97,12 @@ export class SidebarComponent {
   bottomMenuItems: MenuItem[] = [
     {
       title: 'Settings',
-      icon: '',
+      icon: '/assets/sidebar-icons/settings.svg',
       route: '/settings'
     },
     {
       title: 'Logout',
-      icon: '',
+      icon: '/assets/sidebar-icons/logout.svg',
       route: '/logout'
     }
   ];
