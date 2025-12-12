@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { PaginationComponent } from '../../shared/lib/pagination/pagination.component';
 import { allStockData } from './product-stok.data';
 import { ProductStockItem } from '../../types';
@@ -6,26 +8,60 @@ import { ProductStockItem } from '../../types';
 @Component({
   selector: 'app-product-stock',
   standalone: true,
-  imports: [PaginationComponent],
+  imports: [CommonModule, FormsModule, PaginationComponent],
   templateUrl: './product-stock.component.html',
   styleUrl: './product-stock.component.scss'
 })
 export class ProductStockComponent {
   // Sample data with more items for pagination demonstration
- 
   allStockData = allStockData;
+  filteredData = allStockData;
+
+  // Search properties
+  searchTerm: string = '';
+
   // Pagination properties
   currentPage: number = 1;
   itemsPerPage: number = 5;
-  totalItems: number = this.allStockData.length;
 
   constructor() { }
+
+  // Computed property for total filtered items
+  get totalItems(): number {
+    return this.filteredData.length;
+  }
 
   // Computed property for paginated data
   get paginatedData(): ProductStockItem[] {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
     const endIndex = startIndex + this.itemsPerPage;
-    return this.allStockData.slice(startIndex, endIndex);
+    return this.filteredData.slice(startIndex, endIndex);
+  }
+
+  // Search functionality
+  onSearchChange(): void {
+    this.filterProducts();
+    this.resetPagination();
+  }
+
+  private filterProducts(): void {
+    if (!this.searchTerm.trim()) {
+      this.filteredData = [...this.allStockData];
+      return;
+    }
+
+    const searchTermLower = this.searchTerm.toLowerCase().trim();
+
+    this.filteredData = this.allStockData.filter(item =>
+      item.productName.toLowerCase().includes(searchTermLower) ||
+      item.category.toLowerCase().includes(searchTermLower) ||
+      item.price.toString().includes(searchTermLower) ||
+      item.piece.toString().includes(searchTermLower)
+    );
+  }
+
+  private resetPagination(): void {
+    this.currentPage = 1;
   }
 
   // Pagination event handler
