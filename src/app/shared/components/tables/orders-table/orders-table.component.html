@@ -1,0 +1,69 @@
+<!-- Desktop Table View -->
+<div class="desktop-table">
+  <div class="table-wrapper">
+    <table class="order-table">
+      <thead>
+        <tr>
+          <th>{{ tableHeaders.id }}</th>
+          <th>{{ tableHeaders.name }}</th>
+          <th>{{ tableHeaders.address }}</th>
+          <th>{{ tableHeaders.date }}</th>
+          <th>{{ tableHeaders.type }}</th>
+          <th>{{ tableHeaders.status }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (order of data; track order.id) {
+        <tr>
+          <td>{{ order.id }}</td>
+          <td>{{ order.name }}</td>
+          <td>{{ order.address }}</td>
+          <td>{{ order.date }}</td>
+          <td>{{ order.type }}</td>
+          <td>
+            <span
+              class="status-badge"
+              [ngClass]="getStatusClass(order.status)">
+              {{ order.status }}
+            </span>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Mobile Card View -->
+<div class="mobile-cards">
+  @for (order of data; track order.id) {
+  <div class="order-card">
+    <div class="card-header">
+      <h3 class="order-id">{{ tableHeaders.id }}: {{ order.id }}</h3>
+      <span
+        class="status-badge"
+        [ngClass]="getStatusClass(order.status)">
+        {{ order.status }}
+      </span>
+    </div>
+    <div class="card-body">
+      <div class="card-row">
+        <span class="label">{{ tableHeaders.name }}:</span>
+        <span class="value">{{ order.name }}</span>
+      </div>
+      <div class="card-row">
+        <span class="label">{{ tableHeaders.address }}:</span>
+        <span class="value">{{ order.address }}</span>
+      </div>
+      <div class="card-row">
+        <span class="label">{{ tableHeaders.date }}:</span>
+        <span class="value">{{ order.date }}</span>
+      </div>
+      <div class="card-row">
+        <span class="label">{{ tableHeaders.type }}:</span>
+        <span class="value">{{ order.type }}</span>
+      </div>
+    </div>
+  </div>
+  }
+</div>

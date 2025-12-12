@@ -1,0 +1,53 @@
+<div class="table-container">
+  <table class="stock-table">
+    <thead>
+      <tr>
+        <th>Image</th>
+        <th>Product name</th>
+        <th>Category</th>
+        <th>Price</th>
+        <th>Piece</th>
+        <th>Available color</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (item of data; track item.id) {
+      <tr>
+        <td class="image" data-label="Image">
+          <img [src]="item.image" [alt]="item.productName" class="product-image">
+        </td>
+        <td class="product-name" data-label="Product name">{{ item.productName }}</td>
+        <td class="category" data-label="Category">{{ item.category }}</td>
+        <td class="price" data-label="Price">${{ item.price.toFixed(2) }}</td>
+        <td class="piece" data-label="Piece">{{ item.piece }}</td>
+        <td class="available-colors" data-label="Available color">
+          <div class="color-list">
+            @for (colorOption of item.availableColors; track colorOption.hex) {
+            <div class="color-circle" [style.background-color]="colorOption.hex" [title]="colorOption.name"></div>
+            }
+          </div>
+        </td>
+        <td class="actions" data-label="Action">
+          <div class="action-buttons">
+            <button class="action-btn edit-btn" (click)="onEditProduct(item)" title="Edit product">
+              <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
+                </path>
+              </svg>
+            </button>
+            <button class="action-btn delete-btn" (click)="onDeleteProduct(item.id)" title="Delete product">
+              <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16">
+                </path>
+              </svg>
+            </button>
+          </div>
+        </td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>
