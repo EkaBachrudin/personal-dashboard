@@ -1,14 +1,12 @@
 <header class="header-component">
   <!-- Left side: Search Bar -->
   <div class="header-left">
-    <button
-      (click)="onToggleSidebar()"
-      class="menu-button"
-      aria-label="Toggle sidebar"
-    >
+    <button (click)="onToggleSidebar()" class="menu-button" aria-label="Toggle sidebar">
       <svg width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
         <g opacity="0.898019">
-        <path d="M3.75 6.5625H20.25V7.9375H3.75V6.5625ZM3.75 12.0625H20.25V13.4375H3.75V12.0625ZM3.75 17.5625H20.25V18.9375H3.75V17.5625Z" fill="#202224"/>
+          <path
+            d="M3.75 6.5625H20.25V7.9375H3.75V6.5625ZM3.75 12.0625H20.25V13.4375H3.75V12.0625ZM3.75 17.5625H20.25V18.9375H3.75V17.5625Z"
+            fill="#202224" />
         </g>
       </svg>
     </button>
@@ -16,15 +14,11 @@
     <!-- Search Bar -->
     <div class="search-bar">
       <div class="relative">
-        <input
-          type="text"
-          placeholder="Search"
-          [(ngModel)]="searchQuery"
-          (input)="onSearchChange()"
-        >
+        <input type="text" placeholder="Search" [(ngModel)]="searchQuery" (input)="onSearchChange()">
         <div class="search-icon">
           <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
           </svg>
         </div>
       </div>
@@ -35,45 +29,30 @@
   <div class="header-right">
     <!-- Notifications -->
     <div class="notification-wrapper">
-      <button
-        class="notification-button"
-        (click)="onNotificationsClick()"
-        aria-label="Notifications"
-      >
+      <button #notificationButton class="notification-button" (click)="onNotificationsClick()"
+        aria-label="Notifications">
         <svg width="24" height="26" viewBox="0 0 24 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M22.5 13.5C23.3284 13.5 24 14.1716 24 15V16.5C24 17.3284 23.3284 18 22.5 18H1.5C0.671573 18 2.41598e-08 17.3284 0 16.5V15C0 14.1716 0.671573 13.5 1.5 13.5H4.5L5.55566 4.00293C5.80895 1.72419 7.73459 0.000174713 10.0273 0H13.9727C16.2654 0.000174713 18.1911 1.72419 18.4443 4.00293L19.5 13.5H22.5Z" fill="#4880FF"/>
-          <rect opacity="0.3" x="9" y="19.5" width="6" height="6" rx="2.25" fill="#FF0000"/>
+          <path
+            d="M22.5 13.5C23.3284 13.5 24 14.1716 24 15V16.5C24 17.3284 23.3284 18 22.5 18H1.5C0.671573 18 2.41598e-08 17.3284 0 16.5V15C0 14.1716 0.671573 13.5 1.5 13.5H4.5L5.55566 4.00293C5.80895 1.72419 7.73459 0.000174713 10.0273 0H13.9727C16.2654 0.000174713 18.1911 1.72419 18.4443 4.00293L19.5 13.5H22.5Z"
+            fill="#4880FF" />
+          <rect opacity="0.3" x="9" y="19.5" width="6" height="6" rx="2.25" fill="#FF0000" />
         </svg>
 
         <span class="notification-badge">{{notificationCount}}</span>
       </button>
 
-      <!-- Notification Option Menu -->
-      <app-option-menu
-        [isVisible]="isNotificationMenuVisible"
-        [menuItems]="notificationMenuItems"
-        [menuTitle]="'Notification'"
-        [showSeeAllLink]="true"
-        (closeMenu)="closeNotificationMenu()"
-        (seeAllClick)="onSeeAllNotifications()">
-      </app-option-menu>
     </div>
 
     <!-- Language Selector -->
-    <div class="language-selector" (click)="onLanguageClick()">
-      <img src="/assets/flags/en.svg" alt="enflag">
-      <span class="language-text">{{selectedLanguage}}</span>
-      <svg class="language-dropdown" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-      </svg>
+    <div class="language-selector">
+      <button #languageButton class="language-button" (click)="onLanguageClick()">
+        <img src="/assets/flags/en.svg" alt="enflag">
+        <span class="language-text">{{selectedLanguage}}</span>
+        <svg class="language-dropdown" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+        </svg>
+      </button>
 
-      <!-- Language Option Menu -->
-      <app-option-menu
-        [isVisible]="isLanguageMenuVisible"
-        [menuItems]="languageMenuItems"
-        [menuTitle]="'Select Language'"
-        (closeMenu)="closeLanguageMenu()">
-      </app-option-menu>
     </div>
 
     <!-- User Profile -->
@@ -86,24 +65,148 @@
         <p class="user-name">{{userName}}</p>
         <p class="user-role">{{userRole}}</p>
       </div>
-      
+
       <!-- More options menu -->
-      <button
-        #moreOptionsButton
-        class="more-options-button"
-        (click)="onMoreOptionsClick()"
-        aria-label="More options"
-      >
+      <button #moreOptionsButton class="more-options-button" (click)="onMoreOptionsClick()" aria-label="More options">
         <img src="/assets/icons/chevron-cirlce-down.svg" alt="down">
 
       </button>
 
-      <!-- Option Menu Container -->
-      <app-option-menu
-        [isVisible]="isOptionMenuVisible"
-        [menuItems]="menuItems"
-        (closeMenu)="closeOptionMenu()">
-      </app-option-menu>
+    </div>
+
+    <div>
+      <!-- Notification Floating Dropdown -->
+      @if(isNotificationDropdownVisible) {
+      <app-floating-dropdown [triggerElement]="getNotificationTriggerElement()"
+        [customClasses]="'notification-dropdown right-[220px] top-[60px] rounded-xl'" (close)="closeNotificationDropdown()">
+        <div class="option-menu-container">
+          <!-- Menu Background with Shadow -->
+          <div class="menu-background">
+            <!-- Menu Title -->
+            <div class="menu-title">
+              <span class="menu-title-text">Notification</span>
+            </div>
+            <div class="menu-divider"></div>
+
+            <!-- Menu Items -->
+            <div class="menu-items">
+              @for (item of NOTIFICATION_MENU_ITEMS; track item.id) {
+              <div class="menu-item" (click)="handleNotificationAction(item.id)">
+                <!-- Notification Type -->
+                <div class="menu-notification-icon" [style.background-color]="item.iconColor || '#6B7280'">
+                  <span [class]="item.iconClass" class="notification-icon-text"></span>
+                </div>
+
+                <!-- Item Content -->
+                <div class="menu-content">
+                  <!-- Item Label -->
+                  <span class="menu-label">{{ item.label }}</span>
+
+                  <!-- Description for notification items -->
+                  @if (item.type === 'notification' && item.description) {
+                  <span class="menu-description">{{ item.description }}</span>
+                  }
+                </div>
+
+              </div>
+              }
+            </div>
+
+            <!-- Footer for "See all" link -->
+            <div class="menu-footer">
+              <div class="see-all-link" (click)="onSeeAllNotifications()">
+                <span class="see-all-text">See all notification</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </app-floating-dropdown>
+      }
+      <!-- Language Floating Dropdown -->
+      @if(isLanguageDropdownVisible) {
+      <app-floating-dropdown [triggerElement]="getLanguageTriggerElement()" [customClasses]="'language-dropdown right-[120px] top-[60px] rounded-xl'"
+        (close)="closeLanguageDropdown()">
+        <div class="option-menu-container">
+          <!-- Menu Background with Shadow -->
+          <div class="menu-background">
+            <!-- Menu Title -->
+            <div class="menu-title">
+              <span class="menu-title-text">Select Language</span>
+            </div>
+            <div class="menu-divider"></div>
+
+            <!-- Menu Items -->
+            <div class="menu-items">
+              @for (item of LANGUAGE_MENU_ITEMS; track item.id) {
+              <div class="menu-item" (click)="handleLanguageAction(item.id)">
+                <!-- Checkmark for selected items -->
+                @if (item.isSelected) {
+                <div class="menu-checkmark">
+                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                    <path d="M13.5 4.5L6 12L2.5 8.5" stroke="#4CAF50" stroke-width="2" stroke-linecap="round"
+                      stroke-linejoin="round" />
+                  </svg>
+                </div>
+                }
+
+                <!-- Flag Type -->
+                <div class="menu-flag">
+                  <img [src]="item.flagUrl" [alt]="item.label + ' flag'" class="flag-image">
+                </div>
+
+                <!-- Item Content -->
+                <div class="menu-content">
+                  <!-- Item Label -->
+                  <span class="menu-label">{{ item.label }}</span>
+                </div>
+
+              </div>
+              }
+            </div>
+          </div>
+        </div>
+      </app-floating-dropdown>
+      }
+      <!-- Profile Floating Dropdown -->
+      @if(isProfileDropdownVisible) {
+      <app-floating-dropdown [triggerElement]="getProfileTriggerElement()"
+        [customClasses]="'profile-dropdown right-[50px] top-[60px] rounded-xl'" (close)="closeProfileDropdown()">
+        <div class="option-menu-container">
+          <!-- Menu Background with Shadow -->
+          <div class="menu-background">
+            <!-- Menu Items -->
+            <div class="menu-items">
+              @for (item of DEFAULT_MENU_ITEMS; track item.id) {
+              <div class="menu-item" (click)="handleMenuAction(item.id)">
+                <!-- Icon Type -->
+                @if (item.type === 'icon') {
+                <!-- Icon with Gradient -->
+                @if (item.iconGradient) {
+                <div class="menu-icon"
+                  [style.background]="`linear-gradient(to bottom, ${item.iconGradient.from}, ${item.iconGradient.to})`">
+                  <span [class]="item.iconClass" class="icon-text"></span>
+                </div>
+                } @else {
+                <!-- Regular Icon (fallback) -->
+                <div class="menu-icon regular-icon">
+                  <span [class]="item.iconClass" class="icon-text"></span>
+                </div>
+                }
+                }
+
+                <!-- Item Content -->
+                <div class="menu-content">
+                  <!-- Item Label -->
+                  <span class="menu-label">{{ item.label }}</span>
+                </div>
+
+              </div>
+              }
+            </div>
+          </div>
+        </div>
+      </app-floating-dropdown>
+      }
     </div>
   </div>
 </header>

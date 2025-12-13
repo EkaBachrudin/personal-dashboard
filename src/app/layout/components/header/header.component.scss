@@ -92,10 +92,19 @@
 
 // Language Selector
 .language-selector {
+  @apply relative;
+}
+
+.language-button {
   @apply flex items-center gap-3 px-3 py-2 rounded-lg cursor-pointer transition-all duration-200 ease-in-out relative;
 
   &:hover {
     @apply bg-gray-100;
+  }
+
+  &:focus {
+    @apply outline-none;
+    box-shadow: 0 0 0 2px #3b82f6, 0 0 0 4px rgba(59, 130, 246, 0.1);
   }
 }
 
@@ -159,4 +168,158 @@
   svg {
     @apply w-5 h-5;
   }
+}
+
+// Option Menu Styles (moved from OptionMenuComponent)
+.option-menu-container {
+  min-width: 280px;
+  width: 320px;
+}
+
+.menu-background {
+  @apply bg-white rounded-xl;
+  box-shadow: 0px 9px 40px 0px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.menu-title {
+  @apply px-5 py-3 border-b border-gray-100;
+}
+
+.menu-title-text {
+  @apply text-neutral-700 font-medium text-[15px];
+  font-family: 'Nunito Sans', sans-serif;
+}
+
+.menu-divider {
+  @apply border-b border-gray-100;
+}
+
+.menu-items {
+  @apply py-2;
+}
+
+.menu-item {
+  @apply relative flex items-center px-5 py-4 cursor-pointer transition-all duration-200;
+  min-height: 56px;
+
+  &:hover {
+    @apply bg-gray-50;
+  }
+
+  &:active {
+    @apply bg-gray-100;
+  }
+}
+
+.menu-checkmark {
+  @apply flex items-center justify-center w-4 h-4 mr-4 flex-shrink-0;
+}
+
+.menu-icon {
+  @apply flex items-center justify-center w-6 h-6 rounded-full mr-4 flex-shrink-0;
+
+  // Make the icon text white to show the gradient background
+  .icon-text {
+    @apply text-white text-sm font-medium;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  // Icon styles using Unicode symbols
+  .user-icon::before {
+    content: "👤";
+  }
+
+  .lock-icon::before {
+    content: "🔒";
+  }
+
+  .activity-icon::before {
+    content: "🔄";
+  }
+
+  .logout-icon::before {
+    content: "🚪";
+  }
+
+  // Regular icon fallback (no gradient)
+  &.regular-icon {
+    @apply bg-gray-200;
+
+    .icon-text {
+      @apply text-gray-600;
+    }
+  }
+}
+
+.menu-flag {
+  @apply flex items-center justify-center w-8 h-6 mr-4 flex-shrink-0 rounded;
+
+  .flag-image {
+    @apply w-full h-full object-cover rounded;
+  }
+}
+
+.menu-notification-icon {
+  @apply flex items-center justify-center w-8 h-8 mr-4 flex-shrink-0 rounded-full;
+
+  .notification-icon-text {
+    @apply text-white text-sm font-medium;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  // Icon styles using Unicode symbols
+  .settings-icon::before {
+    content: "⚙️";
+  }
+
+  .event-icon::before {
+    content: "📅";
+  }
+
+  .profile-icon::before {
+    content: "👤";
+  }
+
+  .error-icon::before {
+    content: "⚠️";
+  }
+}
+
+.menu-content {
+  @apply flex-1 flex flex-col;
+}
+
+.menu-label {
+  @apply text-neutral-700 font-semibold text-sm;
+  font-family: 'Nunito Sans', sans-serif;
+}
+
+.menu-description {
+  @apply text-gray-500 text-xs mt-1;
+  font-family: 'Nunito Sans', sans-serif;
+}
+
+.menu-footer {
+  @apply py-2;
+}
+
+.see-all-link {
+  @apply flex items-center justify-center px-6 py-3 cursor-pointer transition-all duration-200 border-t border-gray-100;
+
+  &:hover {
+    @apply bg-gray-50;
+  }
+}
+
+.see-all-text {
+  @apply text-gray-400 text-xs;
+  font-family: 'Circular Std', sans-serif;
 }
