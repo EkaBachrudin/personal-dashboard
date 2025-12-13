@@ -8,6 +8,28 @@
   flex-direction: column;
   font-family: 'Nunito Sans', sans-serif;
   overflow-y: auto;
+
+  // Custom scrollbar styling
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #e5e7eb;
+    border-radius: 4px;
+
+    &:hover {
+      background-color: #d1d5db;
+    }
+  }
+
+  // Firefox scrollbar styling
+  scrollbar-width: thin;
+  scrollbar-color: #e5e7eb transparent;
 }
 
 // Logo Section
