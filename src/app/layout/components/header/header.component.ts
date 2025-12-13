@@ -1,23 +1,8 @@
-import { Component, EventEmitter, Output, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, model, viewChild, effect, computed, Signal, output, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { FloatingDropdownComponent } from '../../../shared/lib/floating-dropdown/floating-dropdown.component';
-
-export interface OptionMenuItem {
-  id: string;
-  label: string;
-  type: 'icon' | 'flag' | 'text' | 'notification';
-  iconClass?: string;
-  iconGradient?: {
-    from: string;
-    to: string;
-  };
-  flagUrl?: string;
-  isSelected?: boolean;
-  description?: string;
-  iconColor?: string;
-  action?: () => void;
-}
+import { DEFAULT_MENU_ITEMS, LANGUAGE_MENU_ITEMS, NOTIFICATION_MENU_ITEMS, OptionMenuItem } from './header.data';
 
 @Component({
   selector: 'app-header',
@@ -26,167 +11,107 @@ export interface OptionMenuItem {
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
-export class HeaderComponent implements AfterViewInit {
-  @ViewChild('moreOptionsButton', { static: false }) moreOptionsButton!: ElementRef;
-  @ViewChild('notificationButton', { static: false }) notificationButton!: ElementRef;
-  @ViewChild('languageButton', { static: false }) languageButton!: ElementRef;
+export class HeaderComponent {
+  // Using viewChild for accessing template elements
+  readonly moreOptionsButton = viewChild<ElementRef>('moreOptionsButton');
+  readonly notificationButton = viewChild<ElementRef>('notificationButton');
+  readonly languageButton = viewChild<ElementRef>('languageButton');
 
-  @Output() toggleSidebar = new EventEmitter<void>();
-  @Output() search = new EventEmitter<string>();
-  @Output() notificationsClick = new EventEmitter<void>();
-  @Output() languageClick = new EventEmitter<void>();
-  @Output() moreOptionsClick = new EventEmitter<void>();
+  // Using output() instead of EventEmitter
+  readonly toggleSidebar = output<void>();
+  readonly search = output<string>();
+  readonly notificationsClick = output<void>();
+  readonly languageClick = output<void>();
+  readonly moreOptionsClick = output<void>();
 
-  // User data matching the Figma design
-  userName = 'Moni Roy';
-  userRole = 'Admin';
-  userAvatar = 'https://picsum.photos/seed/moni-roy-avatar/100/100.jpg';
-  notificationCount = 6;
-  selectedLanguage = 'English';
-  searchQuery = '';
+  // User data as signals using model() for potential external binding
+  readonly userName = model('Moni Roy');
+  readonly userRole = model('Admin');
+  readonly userAvatar = model('https://picsum.photos/seed/moni-roy-avatar/100/100.jpg');
+  readonly notificationCount = model(6);
+  readonly selectedLanguage = model('English');
+  readonly searchQuery = model('');
 
-  // Dropdown visibility state
-  isNotificationDropdownVisible = false;
-  isLanguageDropdownVisible = false;
-  isProfileDropdownVisible = false;
+  // Dropdown visibility state as signals
+  readonly isNotificationDropdownVisible = model(false);
+  readonly isLanguageDropdownVisible = model(false);
+  readonly isProfileDropdownVisible = model(false);
 
   // Default menu items matching the Figma design
-  readonly DEFAULT_MENU_ITEMS: OptionMenuItem[] = [
-    {
-      id: 'manage-account',
-      label: 'Manage Account',
-      type: 'icon',
-      iconClass: 'user-icon',
-      iconGradient: {
-        from: '#4e96ff',
-        to: '#80c9fc'
-      }
-    },
-    {
-      id: 'change-password',
-      label: 'Change Password',
-      type: 'icon',
-      iconClass: 'lock-icon',
-      iconGradient: {
-        from: '#f97fd9',
-        to: '#ffc1e6'
-      }
-    },
-    {
-      id: 'activity-log',
-      label: 'Activity Log',
-      type: 'icon',
-      iconClass: 'activity-icon',
-      iconGradient: {
-        from: '#9e8fff',
-        to: '#ebcbff'
-      }
-    },
-    {
-      id: 'logout',
-      label: 'Log out',
-      type: 'icon',
-      iconClass: 'logout-icon',
-      iconGradient: {
-        from: '#ff8f8f',
-        to: '#ffc1c1'
-      }
-    }
-  ];
+  readonly DEFAULT_MENU_ITEMS: OptionMenuItem[] = DEFAULT_MENU_ITEMS;
 
   // Language menu items matching the Figma design
-  readonly LANGUAGE_MENU_ITEMS: OptionMenuItem[] = [
-    {
-      id: 'english',
-      label: 'English',
-      type: 'flag',
-      flagUrl: '/assets/flags/en.svg',
-      isSelected: true
-    },
-    {
-      id: 'french',
-      label: 'French',
-      type: 'flag',
-      flagUrl: '/assets/flags/fr.svg',
-      isSelected: false
-    },
-    {
-      id: 'spanish',
-      label: 'Spanish',
-      type: 'flag',
-      flagUrl: '/assets/flags/es.svg',
-      isSelected: false
-    }
-  ];
+  readonly LANGUAGE_MENU_ITEMS: OptionMenuItem[] = LANGUAGE_MENU_ITEMS;
 
   // Notification menu items matching the Figma design
-  readonly NOTIFICATION_MENU_ITEMS: OptionMenuItem[] = [
-    {
-      id: 'settings',
-      label: 'Settings',
-      type: 'notification',
-      description: 'Update Dashboard',
-      iconClass: 'settings-icon',
-      iconColor: '#FF6B6B'
-    },
-    {
-      id: 'event-update',
-      label: 'Event Update',
-      type: 'notification',
-      description: 'An event date update again',
-      iconClass: 'event-icon',
-      iconColor: '#4ECDC4'
-    },
-    {
-      id: 'profile',
-      label: 'Profile',
-      type: 'notification',
-      description: 'Update your profile',
-      iconClass: 'profile-icon',
-      iconColor: '#45B7D1'
-    },
-    {
-      id: 'application-error',
-      label: 'Application Error',
-      type: 'notification',
-      description: 'Check Your running application',
-      iconClass: 'error-icon',
-      iconColor: '#FFA07A'
-    }
-  ];
+  readonly NOTIFICATION_MENU_ITEMS: OptionMenuItem[] = NOTIFICATION_MENU_ITEMS;
 
-  constructor() { }
+  constructor() {
+    // Effect to emit search when query changes
+    effect(() => {
+      const query = this.searchQuery();
+      this.search.emit(query);
+    });
 
-  ngAfterViewInit() {
-    // Component is ready
+    // Effect to handle dropdown mutual exclusivity
+    effect(() => {
+      if (this.isNotificationDropdownVisible()) {
+        this.isProfileDropdownVisible.set(false);
+        this.isLanguageDropdownVisible.set(false);
+      }
+    });
+
+    effect(() => {
+      if (this.isLanguageDropdownVisible()) {
+        this.isProfileDropdownVisible.set(false);
+        this.isNotificationDropdownVisible.set(false);
+      }
+    });
+
+    effect(() => {
+      if (this.isProfileDropdownVisible()) {
+        this.isLanguageDropdownVisible.set(false);
+        this.isNotificationDropdownVisible.set(false);
+      }
+    });
   }
+
+  // Computed signal for language items with selection state
+  readonly languageMenuItems = computed(() => {
+    return this.LANGUAGE_MENU_ITEMS.map(item => ({
+      ...item,
+      isSelected: item.label === this.selectedLanguage()
+    }));
+  });
+
+  // Computed signal for user initials
+  readonly userInitials = computed(() => {
+    const name = this.userName();
+    return name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0, 2);
+  });
+
+  // Computed signal for notification badge visibility
+  readonly hasNotifications = computed(() => {
+    return this.notificationCount() > 0;
+  });
 
   onToggleSidebar(): void {
     this.toggleSidebar.emit();
-  }
-
-  onSearchChange(): void {
-    this.search.emit(this.searchQuery);
   }
 
   onNotificationsClick(): void {
     this.notificationsClick.emit();
     this.toggleNotificationDropdown();
     // Optional: Clear notification count when clicked
-    // this.notificationCount = 0;
+    // this.notificationCount.set(0);
   }
 
   toggleNotificationDropdown(): void {
-    this.isNotificationDropdownVisible = !this.isNotificationDropdownVisible;
-    // Close the other dropdowns if open
-    if (this.isNotificationDropdownVisible) {
-      this.isProfileDropdownVisible = false;
-      this.isLanguageDropdownVisible = false;
-    }
+    this.isNotificationDropdownVisible.set(!this.isNotificationDropdownVisible());
   }
 
   closeNotificationDropdown(): void {
-    this.isNotificationDropdownVisible = false;
+    this.isNotificationDropdownVisible.set(false);
   }
 
   onLanguageClick(): void {
@@ -195,16 +120,11 @@ export class HeaderComponent implements AfterViewInit {
   }
 
   toggleLanguageDropdown(): void {
-    this.isLanguageDropdownVisible = !this.isLanguageDropdownVisible;
-    // Close the other dropdowns if open
-    if (this.isLanguageDropdownVisible) {
-      this.isProfileDropdownVisible = false;
-      this.isNotificationDropdownVisible = false;
-    }
+    this.isLanguageDropdownVisible.set(!this.isLanguageDropdownVisible());
   }
 
   closeLanguageDropdown(): void {
-    this.isLanguageDropdownVisible = false;
+    this.isLanguageDropdownVisible.set(false);
   }
 
   onMoreOptionsClick(): void {
@@ -213,16 +133,11 @@ export class HeaderComponent implements AfterViewInit {
   }
 
   toggleProfileDropdown(): void {
-    this.isProfileDropdownVisible = !this.isProfileDropdownVisible;
-    // Close the other dropdowns if open
-    if (this.isProfileDropdownVisible) {
-      this.isLanguageDropdownVisible = false;
-      this.isNotificationDropdownVisible = false;
-    }
+    this.isProfileDropdownVisible.set(!this.isProfileDropdownVisible());
   }
 
   closeProfileDropdown(): void {
-    this.isProfileDropdownVisible = false;
+    this.isProfileDropdownVisible.set(false);
   }
 
   handleMenuAction(actionId: string): void {
@@ -256,9 +171,10 @@ export class HeaderComponent implements AfterViewInit {
       'french': 'French',
       'spanish': 'Spanish'
     };
-    this.selectedLanguage = languageNames[languageId] || languageId;
+    const newLanguage = languageNames[languageId] || languageId;
+    this.selectedLanguage.set(newLanguage);
 
-    console.log(`Language changed to: ${this.selectedLanguage}`);
+    console.log(`Language changed to: ${newLanguage}`);
     // TODO: Implement language change functionality
     this.closeLanguageDropdown();
   }
@@ -295,16 +211,16 @@ export class HeaderComponent implements AfterViewInit {
     this.closeNotificationDropdown();
   }
 
-  // Getter methods to provide trigger elements for floating dropdowns
-  getNotificationTriggerElement(): HTMLElement | undefined {
-    return this.notificationButton?.nativeElement as HTMLElement;
-  }
+  // Computed properties to provide trigger elements for floating dropdowns
+  readonly notificationTriggerElement = computed(() => {
+    return this.notificationButton()?.nativeElement as HTMLElement | undefined;
+  });
 
-  getLanguageTriggerElement(): HTMLElement | undefined {
-    return this.languageButton?.nativeElement as HTMLElement;
-  }
+  readonly languageTriggerElement = computed(() => {
+    return this.languageButton()?.nativeElement as HTMLElement | undefined;
+  });
 
-  getProfileTriggerElement(): HTMLElement | undefined {
-    return this.moreOptionsButton?.nativeElement as HTMLElement;
-  }
+  readonly profileTriggerElement = computed(() => {
+    return this.moreOptionsButton()?.nativeElement as HTMLElement | undefined;
+  });
 }
