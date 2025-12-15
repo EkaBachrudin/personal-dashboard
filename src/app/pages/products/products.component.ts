@@ -11,6 +11,11 @@ import { productList } from './products.data';
   styleUrl: './products.component.scss'
 })
 export class ProductsComponent {
-  caraouselWidht: number = window.innerWidth;
   products = productList;
+  isHeroLoad: boolean = false;
+
+
+  ngOnInit() {
+    this.isHeroLoad = true;
+  }
 }

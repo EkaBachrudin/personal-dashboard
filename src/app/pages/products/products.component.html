@@ -8,46 +8,50 @@
 
     <!-- Hero Slider Section -->
     <section class="product-hero" #parentElement>
+      @if(isHeroLoad) {
       <app-content-slider [parentWidth]="parentElement.clientWidth">
-        <div #slideItem
-        class="h-[346px] bg-[#4880FF] w-full rounded-[14px] shadow py-[50px] px-[130px]"
-        style="background-image: url('/assets/images/Pattern.png');">
+        <div #slideItem class="h-[346px] bg-[#4880FF] w-full rounded-[14px] shadow py-[50px] px-[130px]"
+          style="background-image: url('/assets/images/Pattern.png');">
 
-         <div>
+          <div>
             <div class="text-[16px] text-white font-semibold">September 12-22</div>
             <div class="text-[37px] font-black text-white mt-2">Enjoy free home <br> delivery in this summer</div>
-            <div class="text-[16px] font-semibold text-white mt-2">Designer Dresses - Pick from trendy Designer Dress.</div>
+            <div class="text-[16px] font-semibold text-white mt-2">Designer Dresses - Pick from trendy Designer Dress.
+            </div>
 
-            <button class="bg-[#FF8743] rounded-[11px] px-9 py-2 text-white text-[14px] font-bold mt-[30px]">Get Started</button>
-         </div>
+            <button class="bg-[#FF8743] rounded-[11px] px-9 py-2 text-white text-[14px] font-bold mt-[30px]">Get
+              Started</button>
+          </div>
 
         </div>
 
-        <div #slideItem
-        class="h-[346px] bg-[#448064] w-full rounded-[14px] shadow py-[50px] px-[130px]"
-        style="background-image: url('/assets/images/Pattern.png');">
+        <div #slideItem class="h-[346px] bg-[#448064] w-full rounded-[14px] shadow py-[50px] px-[130px]"
+          style="background-image: url('/assets/images/Pattern.png');">
 
-         <div>
+          <div>
             <div class="text-[16px] text-white font-semibold">September 12-22</div>
             <div class="text-[37px] font-black text-white mt-2">Enjoy free home <br> delivery in this summer</div>
-            <div class="text-[16px] font-semibold text-white mt-2">Designer Dresses - Pick from trendy Designer Dress.</div>
+            <div class="text-[16px] font-semibold text-white mt-2">Designer Dresses - Pick from trendy Designer Dress.
+            </div>
 
-            <button class="bg-[#FF8743] rounded-[11px] px-9 py-2 text-white text-[14px] font-bold mt-[30px]">Get Started</button>
-         </div>
+            <button class="bg-[#FF8743] rounded-[11px] px-9 py-2 text-white text-[14px] font-bold mt-[30px]">Get
+              Started</button>
+          </div>
 
         </div>
       </app-content-slider>
+      }
+
     </section>
 
     <!-- Products Grid Section -->
     <section class="products-section mt-12">
       <div class="products-grid">
         @for (product of products; track $index) {
-          <app-product-card
-            [product]="product">
-          </app-product-card>
+        <app-product-card [product]="product">
+        </app-product-card>
         }
-        
+
       </div>
     </section>
 
