@@ -18,6 +18,17 @@
   }
 }
 
+.sidebar-backdrop {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}
+
 .main-content {
   flex: 1;
   display: flex;
@@ -44,18 +55,22 @@
     flex-direction: column;
   }
 
+  .sidebar-backdrop {
+    display: block;
+  }
+
   .sidebar {
-    width: 100%;
-    height: auto;
+    width: 280px;
+    height: 100vh;
     position: fixed;
     top: 0;
     left: 0;
     z-index: 1000;
     order: 2;
+    transition: transform 0.3s ease;
 
-    &.hidden {
+    &.mobile-hidden {
       transform: translateX(-100%);
-      margin-left: 0;
     }
   }
 

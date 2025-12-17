@@ -1,6 +1,11 @@
 <div class="layout-container">
+  <!-- Mobile Sidebar Backdrop -->
+  @if (isSidebarOpen) {
+    <div class="sidebar-backdrop" (click)="toggleSidebar()"></div>
+  }
+
   <!-- Sidebar -->
-  <aside class="sidebar" [class.hidden]="!isSidebarOpen">
+  <aside class="sidebar" [class.mobile-hidden]="!isSidebarOpen">
     <app-sidebar [isOpen]="isSidebarOpen"></app-sidebar>
   </aside>
 
