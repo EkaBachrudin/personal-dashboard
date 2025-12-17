@@ -58,7 +58,7 @@
     </div>
 
     <!-- User Profile -->
-    <div class="user-profile">
+    <button class="user-profile" #moreOptionsButton (click)="onMoreOptionsClick()">
       <div class="user-avatar">
         <img [src]="userAvatar()" [alt]="'User Avatar'">
       </div>
@@ -69,18 +69,18 @@
       </div>
 
       <!-- More options menu -->
-      <button #moreOptionsButton class="more-options-button" (click)="onMoreOptionsClick()" aria-label="More options">
+      <button class="more-options-button hidden lg:block" aria-label="More options">
         <img src="/assets/icons/chevron-cirlce-down.svg" alt="down">
 
       </button>
 
-    </div>
+    </button>
 
     <div>
       <!-- Notification Floating Dropdown -->
       @if(isNotificationDropdownVisible()) {
       <app-floating-dropdown [triggerElement]="notificationTriggerElement()"
-        [customClasses]="'notification-dropdown right-[220px] top-[60px] rounded-xl'" (close)="closeNotificationDropdown()">
+        [customClasses]="'notification-dropdown right-[60px] lg:right-[220px] top-[60px] rounded-xl'" (close)="closeNotificationDropdown()">
         <div class="option-menu-container">
           <!-- Menu Background with Shadow -->
           <div class="menu-background">
@@ -126,7 +126,7 @@
       }
       <!-- Language Floating Dropdown -->
       @if(isLanguageDropdownVisible()) {
-      <app-floating-dropdown [triggerElement]="languageTriggerElement()" [customClasses]="'language-dropdown right-[120px] top-[60px] rounded-xl'"
+      <app-floating-dropdown [triggerElement]="languageTriggerElement()" [customClasses]="'language-dropdown right-[50px] lg:right-[120px] top-[60px] rounded-xl'"
         (close)="closeLanguageDropdown()">
         <div class="option-menu-container">
           <!-- Menu Background with Shadow -->
@@ -172,7 +172,7 @@
       <!-- Profile Floating Dropdown -->
       @if(isProfileDropdownVisible()) {
       <app-floating-dropdown [triggerElement]="profileTriggerElement()"
-        [customClasses]="'profile-dropdown right-[50px] top-[60px] rounded-xl'" (close)="closeProfileDropdown()">
+        [customClasses]="'profile-dropdown right-[20px] lg:right-[50px] top-[60px] rounded-xl'" (close)="closeProfileDropdown()">
         <div class="option-menu-container">
           <!-- Menu Background with Shadow -->
           <div class="menu-background">
