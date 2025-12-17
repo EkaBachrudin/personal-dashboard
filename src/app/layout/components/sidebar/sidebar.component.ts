@@ -123,11 +123,13 @@ export class SidebarComponent {
   }
 
   navigateToRoute(route: string): void {
-    this.router.navigate([route]);
-    // Close sidebar on mobile after navigation
-    if (window.innerWidth < 768) {
-      this.toggleSidebar.emit();
-    }
+    this.router.navigate([route]).catch(error => {
+      console.warn('Navigation to route failed:', route, error);
+    }).finally(() => {
+      if (this.isMobile()) {
+        this.toggleSidebar.emit();
+      }
+    });
   }
 
   isMenuItemActive(item: MenuItem): boolean {
