@@ -12,7 +12,7 @@
     </button>
 
     <!-- Search Bar -->
-    <div class="search-bar">
+    <div class="search-bar hidden lg:block">
       <div class="relative">
         <input type="text" placeholder="Search" [ngModel]="searchQuery()" (ngModelChange)="searchQuery.set($event)">
         <div class="search-icon">
@@ -49,7 +49,7 @@
     <div class="language-selector">
       <button #languageButton class="language-button" (click)="onLanguageClick()">
         <img src="/assets/flags/en.svg" alt="enflag">
-        <span class="language-text">{{selectedLanguage()}}</span>
+        <span class="language-text hidden lg:block">{{selectedLanguage()}}</span>
         <svg class="language-dropdown" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
         </svg>

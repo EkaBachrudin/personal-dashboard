@@ -1,4 +1,4 @@
-.header-component{display:flex;align-items:center;justify-content:space-between;padding:0 31px;height:70px;background:#fff;border-bottom:1px solid #f3f4f6;position:relative;box-shadow:0 1px 2px 0 rgba(0,0,0,.05)}
+.header-component{@apply flex-wrap; display:flex;align-items:center;justify-content:space-between;padding:0 31px;height:70px;background:#fff;border-bottom:1px solid #f3f4f6;position:relative;box-shadow:0 1px 2px 0 rgba(0,0,0,.05)}
 
 .header-left{display:flex;align-items:center;gap:1rem}
 
