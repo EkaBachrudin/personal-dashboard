@@ -5,7 +5,7 @@
   }
 
   <!-- Sidebar -->
-  <aside class="sidebar" [class.mobile-hidden]="!isSidebarOpen" [class.hidden]="!isSidebarOpen">
+  <aside>
     <app-sidebar [isOpen]="isSidebarOpen" (toggleSidebar)="toggleSidebar()"></app-sidebar>
   </aside>
 
