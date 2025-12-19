@@ -44,7 +44,7 @@
     <section class="products-section mt-12">
       <div class="products-grid">
         @for (product of products; track $index) {
-        <app-product-card [product]="product">
+        <app-product-card [product]="product" class="w-full sm:w-auto">
         </app-product-card>
         }
 

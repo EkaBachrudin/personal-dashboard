@@ -1,7 +1,7 @@
 <div class="product-card">
   <div class="product-card__box">
     <!-- Image Section with Slider -->
-     <div #parentElement class="w-[361px] h-[250px] mx-auto">
+     <div #parentElement class="sm:w-[361px] w-full h-[250px] mx-auto">
       <app-content-slider [parentWidth]="parentElement.clientWidth">
         @for (image of product().images; track $index) {
             <img #slideItem src="{{image}}" alt="{{$index}}" class="w-[361px] object-contain">
