@@ -8,8 +8,8 @@
 
     <!-- Hero Slider Section -->
     <section class="product-hero" #parentElement>
-      @if(isHeroLoad) {
-      <app-content-slider [parentWidth]="parentElement.clientWidth">
+      @if(isHeroLoad && parentWidth() > 0) {
+      <app-content-slider [parentWidth]="parentWidth()">
         <div #slideItem class="h-[346px] bg-[#448064] w-full rounded-[14px] shadow py-[50px] px-[130px]"
           style="background-image: url('/assets/images/Pattern.png');">
 
