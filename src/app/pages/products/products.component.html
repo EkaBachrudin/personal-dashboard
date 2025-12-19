@@ -10,32 +10,28 @@
     <section class="product-hero" #parentElement>
       @if(isHeroLoad && parentWidth() > 0) {
       <app-content-slider [parentWidth]="parentWidth()">
-        <div #slideItem class="h-[346px] bg-[#448064] w-full rounded-[14px] shadow py-[50px] px-[130px]"
+        <div #slideItem class="h-[346px] bg-[#448064] w-full rounded-[14px] shadow"
           style="background-image: url('/assets/images/Pattern.png');">
 
-          <div>
-            <div class="text-[16px] text-white font-semibold">September 12-22</div>
-            <div class="text-[37px] font-black text-white mt-2">Enjoy free home <br> delivery in this summer</div>
-            <div class="text-[16px] font-semibold text-white mt-2">Designer Dresses - Pick from trendy Designer Dress.
-            </div>
+          <div class="content-hero">
+            <div class="content-hero__date">September 12-22</div>
+            <div class="content-hero__title">Enjoy free home <br> delivery in this summer</div>
+            <div class="content-hero__description">Designer Dresses - Pick from trendy Designer Dress.</div>
 
-            <button class="bg-[#FF8743] rounded-[11px] px-9 py-2 text-white text-[14px] font-bold mt-[30px]">Get
-              Started</button>
+            <button class="content-hero__button">Get Started</button>
           </div>
 
         </div>
 
-        <div #slideItem class="h-[346px] bg-[#4880FF] w-full rounded-[14px] shadow py-[50px] px-[130px]"
+        <div #slideItem class="h-[346px] bg-[#4880FF] w-full rounded-[14px] shadow"
           style="background-image: url('/assets/images/Pattern.png');">
 
-          <div>
-            <div class="text-[16px] text-white font-semibold">September 12-22</div>
-            <div class="text-[37px] font-black text-white mt-2">Enjoy free home <br> delivery in this summer</div>
-            <div class="text-[16px] font-semibold text-white mt-2">Designer Dresses - Pick from trendy Designer Dress.
-            </div>
+          <div class="content-hero">
+            <div class="content-hero__date">September 12-22</div>
+            <div class="content-hero__title">Enjoy free home <br> delivery in this summer</div>
+            <div class="content-hero__description">Designer Dresses - Pick from trendy Designer Dress.</div>
 
-            <button class="bg-[#FF8743] rounded-[11px] px-9 py-2 text-white text-[14px] font-bold mt-[30px]">Get
-              Started</button>
+            <button class="content-hero__button">Get Started</button>
           </div>
 
         </div>

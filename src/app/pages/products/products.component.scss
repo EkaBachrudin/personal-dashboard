@@ -18,5 +18,99 @@
 
 .products-grid {
   @apply flex flex-wrap gap-7;
- 
+}
+
+/* Responsive Content Hero Styles */
+.content-hero {
+  /* Mobile First Approach */
+  @apply
+    text-center
+    px-14
+    py-8
+    flex
+    flex-col
+    items-center
+    justify-center
+    h-full;
+
+  /* Mobile Styles (default) */
+  &__date {
+    @apply text-[14px] text-white font-semibold mb-2;
+  }
+
+  &__title {
+    @apply text-[24px] font-black text-white leading-tight mb-3;
+  }
+
+  &__description {
+    @apply text-[14px] font-semibold text-white leading-relaxed mb-6 max-w-xs mx-auto;
+  }
+
+  &__button {
+    @apply bg-[#FF8743] rounded-[11px] px-6 py-3 text-white text-[14px] font-bold
+           hover:bg-[#e67a35] active:bg-[#d4682a] transition-all duration-200
+           transform hover:scale-105 active:scale-95 shadow-lg;
+  }
+
+  /* Tablet Styles (md: 768px+) */
+  @media (min-width: 768px) {
+    @apply
+      text-left
+      px-20
+      py-10
+      items-start;
+
+    &__date {
+      @apply text-[15px] mb-3;
+    }
+
+    &__title {
+      @apply text-[32px] mb-4;
+      max-width: 400px;
+    }
+
+    &__description {
+      @apply text-[15px] mb-8 max-w-md mx-0;
+    }
+
+    &__button {
+      @apply px-8 py-3 text-[15px];
+    }
+  }
+
+  /* Desktop Styles (lg: 1024px+) */
+  @media (min-width: 1024px) {
+    @apply
+      px-[130px]
+      py-[50px];
+
+    &__date {
+      @apply text-[16px];
+    }
+
+    &__title {
+      @apply text-[37px];
+      max-width: 500px;
+    }
+
+    &__description {
+      @apply text-[16px] max-w-lg;
+    }
+
+    &__button {
+      @apply px-9 py-2 text-[14px];
+      @apply mt-[30px];
+    }
+  }
+
+  /* Large Desktop Styles (xl: 1280px+) */
+  @media (min-width: 1280px) {
+    &__title {
+      max-width: 600px;
+    }
+
+    &__description {
+      max-width: 42rem; /* 672px equivalent to max-w-xl */
+    }
+  }
 }
