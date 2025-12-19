@@ -8,7 +8,7 @@
       <div class="products-grid">
         @for (product of products; track $index) {
           <app-product-card
-            [product]="product">
+            [product]="product" class="w-full sm:w-auto">
           </app-product-card>
         }
         
