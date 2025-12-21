@@ -48,8 +48,8 @@
   position: relative;
 
   &:checked {
-    background-color: #3b82f6;
-    border-color: #3b82f6;
+    background-color: #000000;
+    border-color: #000000;
 
     &::after {
       content: '';
@@ -128,8 +128,8 @@ input[type="checkbox"] {
 
 /* Style when checked */
 input[type="checkbox"]:checked {
-  border-color: #4285f4;
-  background-color: #4285f4;
+  border-color: #000000;
+  background-color: #000000;
 }
 
 /* Add custom checkmark */
