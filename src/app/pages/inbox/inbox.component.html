@@ -54,9 +54,9 @@
   </div>
 
   <!-- Right Message List -->
-  <div class="flex-1 bg-white border border-gray-300 rounded-xl p-6">
+  <div class="flex-1 bg-white border border-gray-300 rounded-xl py-6">
     <!-- Search Bar and Actions -->
-    <div class="flex items-center justify-between mb-6">
+    <div class="flex items-center justify-between mb-6 mx-6">
       <!-- Search Bar -->
       <div class="flex-1 relative">
         <div class="bg-gray-50 border border-gray-300 rounded-full px-4 py-2 pl-10 max-w-[332px]">
@@ -86,13 +86,13 @@
     </div>
 
     <!-- Message List -->
-    <div class="space-y-1">
+    <div class="">
       <div *ngFor="let message of messages"
-           class="border-b border-gray-100 py-5">
-        <div class="flex items-center gap-3">
+           class="border-b border-gray-100 py-5" [ngClass]="message.isChecked ? 'bg-[#487fff18]' : ''">
+        <div class="flex items-center gap-3 px-6">
           <input type="checkbox"
                  class="w-4 h-4 border border-gray-300 rounded"
-                 [(ngModel)]="message.isChecked"
+                 [checked]="message.isChecked"
                  (change)="toggleMessageSelection(message.id)">
 
           <svg class="w-5 h-5 cursor-pointer"
