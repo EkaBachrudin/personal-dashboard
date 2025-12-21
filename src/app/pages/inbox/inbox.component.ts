@@ -120,6 +120,18 @@ export class InboxComponent implements OnInit {
 
   ngOnInit(): void {
     // Initialize component
+    // Set Inbox as active by default
+    this.selectFolder(this.folders[0]);
+  }
+
+  // Select folder
+  selectFolder(folder: EmailFolder): void {
+    // Reset all folders to inactive
+    this.folders.forEach(f => f.isActive = false);
+    // Set selected folder as active
+    folder.isActive = true;
+    console.log('Selected folder:', folder.name);
+    // TODO: Filter messages based on selected folder
   }
 
   // Compose new email

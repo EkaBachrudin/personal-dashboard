@@ -17,15 +17,16 @@
       <!-- Email Folders -->
       <div class="space-y-1">
         <div *ngFor="let folder of folders"
-             class="flex items-center justify-between py-2 px-3 rounded-lg cursor-pointer"
-             [ngClass]="folder.isActive ? 'bg-blue-500 bg-opacity-13' : 'hover:bg-gray-50'">
+             class="flex items-center justify-between py-2 px-3 rounded-lg cursor-pointer transition-all duration-200"
+             [ngClass]="folder.isActive ? 'bg-blue-500 text-white' : 'hover:bg-gray-50'"
+             (click)="selectFolder(folder)">
           <div class="flex items-center gap-3">
             <img src="{{folder.icon}}" alt="{{ folder.name }}">
             <span class="font-semibold text-sm"
-                  [ngClass]="folder.isActive ? 'text-blue-500 font-bold' : 'text-gray-800'">{{ folder.name }}</span>
+                  [ngClass]="folder.isActive ? 'text-white font-bold' : 'text-gray-800'">{{ folder.name }}</span>
           </div>
-          <span class="font-semibold text-sm opacity-60"
-                [ngClass]="folder.isActive ? 'text-blue-500 opacity-80 font-bold' : 'text-gray-800'">{{ folder.count | number }}</span>
+          <span class="font-semibold text-sm"
+                [ngClass]="folder.isActive ? 'text-white' : 'text-gray-800 opacity-60'">{{ folder.count | number }}</span>
         </div>
       </div>
     </div>
