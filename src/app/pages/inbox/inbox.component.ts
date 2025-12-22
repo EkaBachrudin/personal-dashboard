@@ -1,7 +1,8 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, OnInit, signal, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { EmailFolder, EmailLabel, EmailMessage, folders, labels, messages } from './inbox.data';
+import { ScreenDetectionService } from '../../shared/services/screen-detection.service';
 
 @Component({
   selector: 'app-inbox',
@@ -29,9 +30,10 @@ export class InboxComponent implements OnInit {
   // Track active folder
   activeFolder: EmailFolder | null = null;
 
-  isNavShow = signal(true);
+  // Computed signal based on screen detection service
+  isNavShow = computed(() => this.screenDetectionService.isNavbarShow());
 
-  constructor() { }
+  constructor(private screenDetectionService: ScreenDetectionService) { }
 
   ngOnInit(): void {
     // Initialize component
@@ -179,7 +181,8 @@ export class InboxComponent implements OnInit {
   }
 
   toggleShow() {
-    // Invert the current value
-    this.isNavShow.update(value => !value);
+    // Use the screen detection service to toggle navbar visibility
+    // Manual toggle only works when screen is above 1280px
+    this.screenDetectionService.toggle();
   }
 }
