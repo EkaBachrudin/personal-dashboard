@@ -6,10 +6,10 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   providedIn: 'root'
 })
 export class BreakPointService {
-  private readonly breakpoint = 1280;
+  setup = 0;
 
-  // Signal to track if screen is under 1280px (true when screen width < 1280px)
-  readonly under1280 = signal<boolean>(false);
+  // Signal to track if screen is under breakpoint setup (true when screen width < breakpoint setup)
+  readonly underBreakpoint = signal<boolean>(false);
 
   // Additional signal to track navbar visibility with manual override capability
   readonly isBreakpoint = signal<boolean>(true);
@@ -30,32 +30,32 @@ export class BreakPointService {
       )
       .subscribe((width) => {
         this.screenWidth.set(width);
-        const isUnder1280 = width < this.breakpoint;
-        this.under1280.set(isUnder1280);
-        // Auto-hide navbar when under 1280px, show when above
-        this.isBreakpoint.set(!isUnder1280);
+        const isunderBreakpoint = width < this.setup;
+        this.underBreakpoint.set(isunderBreakpoint);
+        // Auto-hide navbar when under breakpoint setup, show when above
+        this.isBreakpoint.set(!isunderBreakpoint);
       });
   }
 
   // Method to manually check if screen is above breakpoint
   isAboveBreakpoint(): boolean {
-    return window.innerWidth >= this.breakpoint;
+    return window.innerWidth >= this.setup;
   }
 
   // Get current breakpoint value
   getBreakpoint(): number {
-    return this.breakpoint;
+    return this.setup;
   }
 
   // Manual toggle method for navbar visibility
   toggle(): void {
-    // Only allow manual toggle when screen is above 1280px
+    // Only allow manual toggle when screen is above breakpoint setup
     this.isBreakpoint.update(current => !current);
   }
 
   // Method to manually set navbar visibility
   setNavbarVisibility(visible: boolean): void {
-    // Only allow manual setting when screen is above 1280px
+    // Only allow manual setup when screen is above breakpoint setup
     if (this.isAboveBreakpoint()) {
       this.isBreakpoint.set(visible);
     }

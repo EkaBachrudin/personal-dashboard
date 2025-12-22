@@ -31,9 +31,12 @@ export class InboxComponent implements OnInit {
   activeFolder: EmailFolder | null = null;
 
   // Computed signal based on screen detection service
+  
   isNavShow = computed(() => this.breakPointService.isBreakpoint());
 
-  constructor(private breakPointService: BreakPointService) { }
+  constructor(private breakPointService: BreakPointService) {
+    this.breakPointService.setup = 1280;
+  }
 
   ngOnInit(): void {
     // Initialize component
