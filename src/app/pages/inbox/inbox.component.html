@@ -21,7 +21,7 @@
              [ngClass]="folder.isActive ? 'bg-blue-500 text-white' : 'hover:bg-gray-50'"
              (click)="selectFolder(folder)">
           <div class="flex items-center gap-3">
-            <img src="{{folder.icon}}" alt="{{ folder.name }}">
+            <img src="{{folder.icon}}" alt="{{ folder.name }}" [class.active]="folder.isActive">
             <span class="font-semibold text-sm"
                   [ngClass]="folder.isActive ? 'text-white font-bold' : 'text-gray-800'">{{ folder.name }}</span>
           </div>
