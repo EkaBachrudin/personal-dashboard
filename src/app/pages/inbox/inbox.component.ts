@@ -1,4 +1,4 @@
-import { Component, OnInit, signal, computed } from '@angular/core';
+import { Component, OnInit, computed, ElementRef, Renderer2, DestroyRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { EmailFolder, EmailLabel, EmailMessage, folders, labels, messages } from './inbox.data';
@@ -34,7 +34,12 @@ export class InboxComponent implements OnInit {
   
   isNavShow = computed(() => this.breakPointService.isBreakpoint());
 
-  constructor(private breakPointService: BreakPointService) {
+  constructor(
+    private breakPointService: BreakPointService,
+    private el: ElementRef,
+    private renderer: Renderer2,
+    private destroyRef: DestroyRef
+  ) {
     this.breakPointService.setup = 1280;
   }
 
@@ -42,6 +47,9 @@ export class InboxComponent implements OnInit {
     // Initialize component
     // Set Inbox as active by default
     this.selectFolder(this.folders[0]);
+
+    // Setup click outside listener
+    this.setupClickOutsideListener();
   }
 
   // Select folder
@@ -187,5 +195,19 @@ export class InboxComponent implements OnInit {
     // Use the screen detection service to toggle navbar visibility
     // Manual toggle only works when screen is above 1280px
     this.breakPointService.toggle();
+  }
+
+  // Setup click outside listener to close navigation when clicking outside
+  private setupClickOutsideListener(): void {
+    this.renderer.listen('document', 'click', (event: Event) => {
+      const target = event.target as HTMLElement;
+      const navigationElement = this.el.nativeElement.querySelector('.inbox-navigation');
+
+      // Check if navigation is visible and click is outside navigation
+      if (this.isNavShow() && navigationElement && !navigationElement.contains(target)) {
+        // Close navigation when clicking outside in mobile view
+        this.breakPointService.isBreakpoint.set(false);
+      }
+    });
   }
 }
