@@ -168,4 +168,12 @@ export class InboxComponent implements OnInit {
     };
     return labelMap[label] || '#6b7280'; // gray-500 as default
   }
+
+  // Truncate text to specified length with ellipsis
+  truncateText(text: string, maxLength: number = 20): string {
+    if (text.length <= maxLength) {
+      return text;
+    }
+    return text.substring(0, maxLength) + '...';
+  }
 }

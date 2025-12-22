@@ -119,7 +119,7 @@
                     {{ message.label }}
                   </span>
                 }
-                <span class="font-semibold text-sm text-[#202224] opacity-90">{{ message.subject }}</span>
+                <span class="font-semibold text-sm text-[#202224] opacity-90">{{ truncateText(message.subject) }}</span>
               </div>
               <span class="font-semibold text-sm text-[#202224] opacity-70">{{ message.time }}</span>
             </div>
