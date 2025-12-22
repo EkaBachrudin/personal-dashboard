@@ -4,11 +4,11 @@
 
 <div class="inbox-content">
   <!-- Left Sidebar -->
-  <div class="inbox-navigation" [class.shadow-xl]="!isNavShow()">
+  <div class="inbox-navigation" [class.shadow-xl]="isNavShow()">
     <!-- Compose Button -->
    
     <div class="flex justify-center xl:justify-between items-center mb-6 gap-2">
-      @if(!isNavShow()) {
+      @if(isNavShow()) {
         <button
           class="w-full bg-[#4880FF] bg-opacity-90 text-[14px] text-white font-bold py-3 px-4 rounded-lg hover:bg-opacity-100 transition-all"
           (click)="onCompose()">
@@ -23,7 +23,7 @@
 
     <!-- My Email Section -->
     <div class="mb-6">
-       @if(!isNavShow()) {
+       @if(isNavShow()) {
         <h3 class="font-bold text-[16px] text-gray-800 mb-4">My Email</h3>
        }
 
@@ -38,11 +38,11 @@
               <img src="{{folder.icon}}" alt="{{ folder.name }}" [class.active]="folder.isActive">
               <span class="font-semibold text-sm"
               [ngClass]="folder.isActive ? 'text-[#4880FF] font-bold' : 'text-gray-800'"
-              [class.hidden]="isNavShow()">{{ folder.name }}</span>
+              [class.hidden]="!isNavShow()">{{ folder.name }}</span>
             </div>
             <span class="font-semibold text-sm"
             [ngClass]="folder.isActive ? 'text-[#4880FF]' : 'text-gray-800 opacity-60'"
-            [class.hidden]="isNavShow()">{{ folder.count | number }}</span>
+            [class.hidden]="!isNavShow()">{{ folder.count | number }}</span>
           </div>
         }
       </div>
@@ -50,7 +50,7 @@
 
     <!-- Labels Section -->
     <div class="mb-6">
-       @if(!isNavShow()) {
+       @if(isNavShow()) {
         <h3 class="font-bold text-base text-gray-800 mb-4">Label</h3>
        }
       
@@ -63,14 +63,14 @@
               [(ngModel)]="label.isChecked"
               [style.border-color]="getLabelColorValue(label.name)">
             <span class="font-semibold text-sm text-gray-800"
-            [class.hidden]="isNavShow()">{{ label.name }}</span>
+            [class.hidden]="!isNavShow()">{{ label.name }}</span>
           </div>
         }
       </div>
     </div>
 
     <!-- Create New Label -->
-    <div class="flex items-center gap-3 py-2 px-3 hover:bg-gray-50 rounded-lg cursor-pointer opacity-50" [class.hidden]="isNavShow()">
+    <div class="flex items-center gap-3 py-2 px-3 hover:bg-gray-50 rounded-lg cursor-pointer opacity-50" [class.hidden]="!isNavShow()">
       <span class="text-lg text-gray-800">+</span>
       <span class="font-semibold text-sm text-gray-800">Create New Label</span>
     </div>

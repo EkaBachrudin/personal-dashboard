@@ -29,7 +29,7 @@ export class InboxComponent implements OnInit {
   // Track active folder
   activeFolder: EmailFolder | null = null;
 
-  isNavShow = signal(false);
+  isNavShow = signal(true);
 
   constructor() { }
 
