@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { Router, RouterLink, RouterLinkActive, ActivatedRoute } from '@angular/router';
+
+import { Router, ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { filter } from 'rxjs/operators';
 import { Event, NavigationEnd } from '@angular/router';
@@ -15,7 +15,7 @@ export interface MenuItem {
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.scss'
 })

@@ -1,11 +1,11 @@
 import { Component, input, computed } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { ProductList } from '../../../types/product.type';
 import { ContentSlider } from "../../../shared/lib/content-slider/content-slider";
 
 @Component({
   selector: 'app-product-card',
-  imports: [CommonModule, ContentSlider],
+  imports: [ContentSlider],
   standalone: true,
   templateUrl: './product-card.component.html',
   styleUrl: './product-card.component.scss'

@@ -22,46 +22,53 @@
   <div class="calendar-grid">
     <!-- Week Days Header -->
     <div class="week-days">
-      <div class="week-day" *ngFor="let day of weekDays">{{ day }}</div>
+      @for (day of weekDays; track day) {
+        <div class="week-day">{{ day }}</div>
+      }
     </div>
 
     <!-- Calendar Days -->
     <div class="days-grid">
-      <div
-        *ngFor="let day of calendarDays"
-        class="calendar-day"
-        [class.current-month]="day.isCurrentMonth"
-        [class.today]="day.isToday"
-        [class.selected]="day.isSelected"
-        (click)="selectDay(day)"
-      >
-        {{ day.date }}
-      </div>
+      @for (day of calendarDays; track day) {
+        <div
+          class="calendar-day"
+          [class.current-month]="day.isCurrentMonth"
+          [class.today]="day.isToday"
+          [class.selected]="day.isSelected"
+          (click)="selectDay(day)"
+          >
+          {{ day.date }}
+        </div>
+      }
     </div>
   </div>
 
   <!-- Selected Dates Display -->
-  <div class="selected-dates-section" *ngIf="showAppliedDates && formattedAppliedDates">
-    <div class="selected-dates-header">
-      <h4>Selected Dates:</h4>
-      <button class="clear-button" (click)="clearSelection()">Clear</button>
+  @if (showAppliedDates && formattedAppliedDates) {
+    <div class="selected-dates-section">
+      <div class="selected-dates-header">
+        <h4>Selected Dates:</h4>
+        <button class="clear-button" (click)="clearSelection()">Clear</button>
+      </div>
+      <div class="selected-dates-list">
+        {{ formattedAppliedDates }}
+      </div>
     </div>
-    <div class="selected-dates-list">
-      {{ formattedAppliedDates }}
-    </div>
-  </div>
+  }
 
   <!-- Apply Button -->
-  <div class="calendar-footer" *ngIf="!showAppliedDates">
-    <div><p class="select-hint">*You can choose multiple date</p></div>
-    <div class="flex justify-center w-full mt-4">
-      <button
-        class="apply-button"
-        [disabled]="selectedDatesCount === 0"
-        (click)="applyDates()"
-      >
-        Apply Now
-      </button>
+  @if (!showAppliedDates) {
+    <div class="calendar-footer">
+      <div><p class="select-hint">*You can choose multiple date</p></div>
+      <div class="flex justify-center w-full mt-4">
+        <button
+          class="apply-button"
+          [disabled]="selectedDatesCount === 0"
+          (click)="applyDates()"
+          >
+          Apply Now
+        </button>
+      </div>
     </div>
-  </div>
+  }
 </div>

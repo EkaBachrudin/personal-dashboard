@@ -8,14 +8,16 @@
 
   <!-- Main Menu Items -->
   <nav class="main-menu">
-    <div *ngFor="let item of mainMenuItems"
-         class="menu-item"
-         [class.active]="isMenuItemActive(item)"
-         (click)="navigateToRoute(item.route)">
-         <span class="accent">  </span>
-      <img [src]="item.icon" [alt]="item.title" class="menu-icon">
-      <span class="menu-label">{{ item.title }}</span>
-    </div>
+    @for (item of mainMenuItems; track item) {
+      <div
+        class="menu-item"
+        [class.active]="isMenuItemActive(item)"
+        (click)="navigateToRoute(item.route)">
+        <span class="accent">  </span>
+        <img [src]="item.icon" [alt]="item.title" class="menu-icon">
+        <span class="menu-label">{{ item.title }}</span>
+      </div>
+    }
   </nav>
 
   <!-- Divider -->
@@ -25,13 +27,15 @@
   <div class="pages-section">
     <h2 class="section-label">PAGES</h2>
     <nav class="pages-menu">
-      <div *ngFor="let item of pageMenuItems"
-           class="menu-item"
-           [class.active]="isMenuItemActive(item)"
-           (click)="navigateToRoute(item.route)">
-        <img [src]="item.icon" [alt]="item.title" class="menu-icon">
-        <span class="menu-label">{{ item.title }}</span>
-      </div>
+      @for (item of pageMenuItems; track item) {
+        <div
+          class="menu-item"
+          [class.active]="isMenuItemActive(item)"
+          (click)="navigateToRoute(item.route)">
+          <img [src]="item.icon" [alt]="item.title" class="menu-icon">
+          <span class="menu-label">{{ item.title }}</span>
+        </div>
+      }
     </nav>
   </div>
 
@@ -40,12 +44,14 @@
 
   <!-- Bottom Menu Items -->
   <nav class="bottom-menu">
-    <div *ngFor="let item of bottomMenuItems"
-         class="menu-item"
-         [class.active]="isMenuItemActive(item)"
-         (click)="navigateToRoute(item.route)">
-      <img [src]="item.icon" [alt]="item.title" class="menu-icon">
-      <span class="menu-label">{{ item.title }}</span>
-    </div>
+    @for (item of bottomMenuItems; track item) {
+      <div
+        class="menu-item"
+        [class.active]="isMenuItemActive(item)"
+        (click)="navigateToRoute(item.route)">
+        <img [src]="item.icon" [alt]="item.title" class="menu-icon">
+        <span class="menu-label">{{ item.title }}</span>
+      </div>
+    }
   </nav>
 </aside>

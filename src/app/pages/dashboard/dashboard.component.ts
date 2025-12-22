@@ -9,12 +9,12 @@ import { CardComponent } from '../../shared/lib/card';
 import { Slide } from '../../types/slider.type';
 import { ImageSlider } from '../../shared/lib/image-slider/image-slider';
 import { PieChartComponent } from '../../shared/lib/pie-chart/pie-chart';
-import { CommonModule } from '@angular/common';
+
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [PlotFigure, CommonModule, CardComponent, ImageSlider, PieChartComponent],
+  imports: [PlotFigure, CardComponent, ImageSlider, PieChartComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })

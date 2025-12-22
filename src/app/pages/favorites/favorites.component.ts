@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { ProductCardComponent } from '../products/product-card/product-card.component';
 import { productList } from '../products/products.data';
 
 @Component({
   selector: 'app-favorites',
   standalone: true,
-  imports: [CommonModule, ProductCardComponent],
+  imports: [ProductCardComponent],
   templateUrl: './favorites.component.html',
   styleUrl: './favorites.component.scss'
 })

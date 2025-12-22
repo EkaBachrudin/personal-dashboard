@@ -1,5 +1,5 @@
-import { Component, model, viewChild, effect, computed, Signal, output, ElementRef } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, model, viewChild, effect, computed, output, ElementRef } from '@angular/core';
+
 import { FormsModule } from '@angular/forms';
 import { FloatingDropdownComponent } from '../../../shared/lib/floating-dropdown/floating-dropdown.component';
 import { DEFAULT_MENU_ITEMS, LANGUAGE_MENU_ITEMS, NOTIFICATION_MENU_ITEMS, OptionMenuItem } from './header.data';
@@ -7,7 +7,7 @@ import { DEFAULT_MENU_ITEMS, LANGUAGE_MENU_ITEMS, NOTIFICATION_MENU_ITEMS, Optio
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule, FormsModule, FloatingDropdownComponent],
+  imports: [FormsModule, FloatingDropdownComponent],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })

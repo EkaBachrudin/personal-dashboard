@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { FormsModule } from '@angular/forms';
 import { PaginationComponent } from '../../shared/lib/pagination/pagination.component';
 import { ProductStockTableComponent } from '../../shared/components/tables/product-stock-table/product-stock-table.component';
@@ -9,7 +9,7 @@ import { ProductStockItem } from '../../types';
 @Component({
   selector: 'app-product-stock',
   standalone: true,
-  imports: [CommonModule, FormsModule, PaginationComponent, ProductStockTableComponent],
+  imports: [FormsModule, PaginationComponent, ProductStockTableComponent],
   templateUrl: './product-stock.component.html',
   styleUrl: './product-stock.component.scss'
 })

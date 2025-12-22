@@ -1,11 +1,11 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { ProductStockItem } from '../../../../types';
 
 @Component({
   selector: 'app-product-stock-table',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './product-stock-table.component.html',
   styleUrl: './product-stock-table.component.scss'
 })

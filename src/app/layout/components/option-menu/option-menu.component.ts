@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output, HostListener } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 
 export interface OptionMenuItem {
   id: string;
@@ -20,7 +20,7 @@ export interface OptionMenuItem {
 @Component({
   selector: 'app-option-menu',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './option-menu.component.html',
   styleUrl: './option-menu.component.scss'
 })

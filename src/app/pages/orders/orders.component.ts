@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { ORDER_DATA, TABLE_HEADERS } from './order.data';
 import { OrderDataTable } from '../../types';
 import { PaginationComponent } from '../../shared/lib/pagination';
@@ -9,7 +9,7 @@ import { OrdersFilterComponent } from '../../shared/components/orders-filter/ord
 @Component({
   selector: 'app-orders',
   standalone: true,
-  imports: [CommonModule, PaginationComponent, OrdersTableComponent, OrdersFilterComponent],
+  imports: [PaginationComponent, OrdersTableComponent, OrdersFilterComponent],
   templateUrl: './orders.component.html',
   styleUrls: ['./orders.component.scss']
 })

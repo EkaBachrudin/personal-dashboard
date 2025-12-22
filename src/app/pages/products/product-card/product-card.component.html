@@ -1,13 +1,13 @@
 <div class="product-card">
   <div class="product-card__box">
     <!-- Image Section with Slider -->
-     <div #parentElement class="sm:w-[361px] w-full h-[250px] mx-auto">
+    <div #parentElement class="sm:w-[361px] w-full h-[250px] mx-auto">
       <app-content-slider [parentWidth]="parentElement.clientWidth">
         @for (image of product().images; track $index) {
-            <img #slideItem src="{{image}}" alt="{{$index}}" class="w-[361px] object-contain">
+          <img #slideItem src="{{image}}" alt="{{$index}}" class="w-[361px] object-contain">
         }
       </app-content-slider>
-     </div>
+    </div>
 
     <!-- Product Details -->
     <div class="product-card__details">
@@ -21,16 +21,17 @@
       <div class="product-card__rating">
         <div class="product-card__stars">
           <!-- Stars will be generated dynamically -->
-          <span
-            *ngFor="let star of stars()"
-            class="product-card__star"
-            [class.product-card__star--filled]="star.filled"
-            [class.product-card__star--half]="star.half"
-          >
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor">
-              <path d="M7 1L8.85 5.05L13 5.73L10 8.67L10.73 12.85L7 10.85L3.27 12.85L4 8.67L1 5.73L5.15 5.05L7 1Z"/>
-            </svg>
-          </span>
+          @for (star of stars(); track star) {
+            <span
+              class="product-card__star"
+              [class.product-card__star--filled]="star.filled"
+              [class.product-card__star--half]="star.half"
+              >
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="currentColor">
+                <path d="M7 1L8.85 5.05L13 5.73L10 8.67L10.73 12.85L7 10.85L3.27 12.85L4 8.67L1 5.73L5.15 5.05L7 1Z"/>
+              </svg>
+            </span>
+          }
         </div>
         <span class="product-card__rating-count">({{ product().starCount }})</span>
       </div>
