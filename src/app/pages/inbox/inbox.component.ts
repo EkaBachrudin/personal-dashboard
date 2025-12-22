@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { EmailFolder, EmailLabel, EmailMessage, folders, labels, messages } from './inbox.data';
@@ -28,6 +28,8 @@ export class InboxComponent implements OnInit {
 
   // Track active folder
   activeFolder: EmailFolder | null = null;
+
+  isNavShow = signal(false);
 
   constructor() { }
 
@@ -103,7 +105,6 @@ export class InboxComponent implements OnInit {
   // Compose new email
   onCompose(): void {
     console.log('Compose new email');
-    // TODO: Open compose modal or navigate to compose view
   }
 
   // Search emails
@@ -175,5 +176,10 @@ export class InboxComponent implements OnInit {
       return text;
     }
     return text.substring(0, maxLength) + '...';
+  }
+
+  toggleShow() {
+    // Invert the current value
+    this.isNavShow.update(value => !value);
   }
 }

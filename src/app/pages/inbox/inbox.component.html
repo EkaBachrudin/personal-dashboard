@@ -2,32 +2,47 @@
   <h1>Inbox</h1>
 </div>
 
-<div class="flex h-full gap-4 p-4">
+<div class="inbox-content">
   <!-- Left Sidebar -->
-  <div class="w-80 bg-white border-[0.1px] border-[#b9b9b95b] rounded-[14px] p-6 max-w-[286px]">
+  <div class="inbox-navigation" [class.shadow-xl]="!isNavShow()">
     <!-- Compose Button -->
-    <button class="w-full bg-[#4880FF] bg-opacity-90 text-[14px] text-white font-bold py-3 px-4 rounded-lg mb-6 hover:bg-opacity-100 transition-all" (click)="onCompose()">
-      + Compose
-    </button>
+   
+    <div class="flex justify-center xl:justify-between items-center mb-6 gap-2">
+      @if(!isNavShow()) {
+        <button
+          class="w-full bg-[#4880FF] bg-opacity-90 text-[14px] text-white font-bold py-3 px-4 rounded-lg hover:bg-opacity-100 transition-all"
+          (click)="onCompose()">
+          + Compose
+        </button>
+      }
+      
+      <button class="xl:hidden" (click)="toggleShow()">
+        <img src="/assets/sidebar-icons/settings.svg" alt="menu" class="size-[24px]">
+      </button>
+    </div>
 
     <!-- My Email Section -->
     <div class="mb-6">
-      <h3 class="font-bold text-[16px] text-gray-800 mb-4">My Email</h3>
+       @if(!isNavShow()) {
+        <h3 class="font-bold text-[16px] text-gray-800 mb-4">My Email</h3>
+       }
 
       <!-- Email Folders -->
       <div class="space-y-1">
         @for (folder of folders; track folder) {
           <div
-            class="flex items-center justify-between py-2 px-3 rounded-lg cursor-pointer transition-all duration-200"
+            class="flex items-center justify-between py-2 px-3 rounded-lg cursor-pointer transition-all duration-200 min-h-[36px]"
             [ngClass]="folder.isActive ? 'bg-[#487fff21]' : 'hover:bg-gray-50'"
             (click)="selectFolder(folder)">
             <div class="flex items-center gap-3">
               <img src="{{folder.icon}}" alt="{{ folder.name }}" [class.active]="folder.isActive">
               <span class="font-semibold text-sm"
-              [ngClass]="folder.isActive ? 'text-[#4880FF] font-bold' : 'text-gray-800'">{{ folder.name }}</span>
+              [ngClass]="folder.isActive ? 'text-[#4880FF] font-bold' : 'text-gray-800'"
+              [class.hidden]="isNavShow()">{{ folder.name }}</span>
             </div>
             <span class="font-semibold text-sm"
-            [ngClass]="folder.isActive ? 'text-[#4880FF]' : 'text-gray-800 opacity-60'">{{ folder.count | number }}</span>
+            [ngClass]="folder.isActive ? 'text-[#4880FF]' : 'text-gray-800 opacity-60'"
+            [class.hidden]="isNavShow()">{{ folder.count | number }}</span>
           </div>
         }
       </div>
@@ -35,8 +50,10 @@
 
     <!-- Labels Section -->
     <div class="mb-6">
-      <h3 class="font-bold text-base text-gray-800 mb-4">Label</h3>
-
+       @if(!isNavShow()) {
+        <h3 class="font-bold text-base text-gray-800 mb-4">Label</h3>
+       }
+      
       <div class="space-y-1">
         @for (label of labels; track label) {
           <div
@@ -45,25 +62,26 @@
               class="w-4 h-4 border-2 rounded-[2px] cursor-pointer"
               [(ngModel)]="label.isChecked"
               [style.border-color]="getLabelColorValue(label.name)">
-            <span class="font-semibold text-sm text-gray-800">{{ label.name }}</span>
+            <span class="font-semibold text-sm text-gray-800"
+            [class.hidden]="isNavShow()">{{ label.name }}</span>
           </div>
         }
       </div>
     </div>
 
     <!-- Create New Label -->
-    <div class="flex items-center gap-3 py-2 px-3 hover:bg-gray-50 rounded-lg cursor-pointer opacity-50">
+    <div class="flex items-center gap-3 py-2 px-3 hover:bg-gray-50 rounded-lg cursor-pointer opacity-50" [class.hidden]="isNavShow()">
       <span class="text-lg text-gray-800">+</span>
       <span class="font-semibold text-sm text-gray-800">Create New Label</span>
     </div>
   </div>
 
   <!-- Right Message List -->
-  <div class="flex-1 bg-white border border-gray-300 rounded-xl py-6">
+  <div class="inbox-messages">
     <!-- Search Bar and Actions -->
     <div class="flex items-center justify-between mb-6 mx-6">
       <!-- Search Bar -->
-      <div class="flex-1 relative">
+      <div class="flex-1 xl:flex-0 relative">
         <div class="bg-gray-50 border border-gray-300 rounded-full px-4 py-2 pl-10 max-w-[332px]">
           <svg class="absolute left-3 top-2.5 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
