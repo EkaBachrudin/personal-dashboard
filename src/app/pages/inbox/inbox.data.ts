@@ -1,6 +1,7 @@
 export interface EmailMessage {
   id: string;
   sender: string;
+  recipient?: string;
   subject: string;
   preview: string;
   time: string;
@@ -8,6 +9,7 @@ export interface EmailMessage {
   isRead: boolean;
   label: string;
   isChecked: boolean;
+  folder?: string;
 }
 
 export interface EmailFolder {
@@ -52,7 +54,8 @@ export const folders: EmailFolder[] = [
       isStarred: false,
       isRead: false,
       label: 'Primary',
-      isChecked: false
+      isChecked: false,
+      folder: 'inbox'
     },
     {
       id: '2',
@@ -63,7 +66,8 @@ export const folders: EmailFolder[] = [
       isStarred: false,
       isRead: false,
       label: 'Work',
-      isChecked: false
+      isChecked: false,
+      folder: 'inbox'
     },
     {
       id: '3',
@@ -74,7 +78,8 @@ export const folders: EmailFolder[] = [
       isStarred: true,
       isRead: false,
       label: 'Friends',
-      isChecked: false
+      isChecked: false,
+      folder: 'inbox'
     },
     {
       id: '4',
@@ -85,7 +90,8 @@ export const folders: EmailFolder[] = [
       isStarred: false,
       isRead: false,
       label: '',
-      isChecked: false
+      isChecked: false,
+      folder: 'inbox'
     },
     {
       id: '5',
@@ -96,6 +102,59 @@ export const folders: EmailFolder[] = [
       isStarred: true,
       isRead: false,
       label: 'Social',
-      isChecked: false
+      isChecked: false,
+      folder: 'inbox'
+    },
+    {
+      id: '6',
+      sender: 'Me',
+      recipient: 'Sarah Johnson',
+      subject: 'Project Update - Q4 Goals',
+      preview: 'Hi Sarah, I wanted to share our progress on the Q4 goals...',
+      time: '3:45 PM',
+      isStarred: false,
+      isRead: true,
+      label: 'Work',
+      isChecked: false,
+      folder: 'sent'
+    },
+    {
+      id: '7',
+      sender: 'Me',
+      recipient: 'Marketing Team',
+      subject: 'New Campaign Ideas',
+      preview: 'Team, I have some exciting ideas for our upcoming campaign...',
+      time: '2:30 PM',
+      isStarred: true,
+      isRead: true,
+      label: 'Work',
+      isChecked: false,
+      folder: 'sent'
+    },
+    {
+      id: '8',
+      sender: 'Me',
+      recipient: 'Draft',
+      subject: 'Meeting Notes - Product Review',
+      preview: 'Today we discussed the new features for the product roadmap...',
+      time: '1:15 PM',
+      isStarred: false,
+      isRead: true,
+      label: 'Work',
+      isChecked: false,
+      folder: 'draft'
+    },
+    {
+      id: '9',
+      sender: 'Me',
+      recipient: 'Draft',
+      subject: 'Budget Proposal 2024',
+      preview: 'Dear Finance Team, Please find attached our budget proposal...',
+      time: '11:00 AM',
+      isStarred: false,
+      isRead: true,
+      label: 'Work',
+      isChecked: false,
+      folder: 'draft'
     }
   ];

@@ -21,7 +21,13 @@ export class InboxComponent implements OnInit {
   // Email messages data
   messages: EmailMessage[] = messages;
 
+  // Filtered messages based on active folder and search
+  filteredMessages: EmailMessage[] = [];
+
   searchTerm: string = '';
+
+  // Track active folder
+  activeFolder: EmailFolder | null = null;
 
   constructor() { }
 
@@ -37,8 +43,61 @@ export class InboxComponent implements OnInit {
     this.folders.forEach(f => f.isActive = false);
     // Set selected folder as active
     folder.isActive = true;
+    this.activeFolder = folder;
     console.log('Selected folder:', folder.name);
-    // TODO: Filter messages based on selected folder
+    // Filter messages based on selected folder
+    this.filterMessages();
+  }
+
+  // Filter messages based on active folder and search term
+  filterMessages(): void {
+    let filtered = [...this.messages];
+
+    // Filter by folder
+    if (this.activeFolder) {
+      switch (this.activeFolder.name) {
+        case 'Inbox':
+          // Show inbox messages (explicit folder or messages without folder)
+          filtered = filtered.filter(msg => msg.folder === 'inbox' || !msg.folder);
+          break;
+        case 'Starred':
+          filtered = filtered.filter(msg => msg.isStarred);
+          break;
+        case 'Sent':
+          filtered = filtered.filter(msg => msg.folder === 'sent');
+          break;
+        case 'Draft':
+          filtered = filtered.filter(msg => msg.folder === 'draft');
+          break;
+        case 'Spam':
+          // Simulate spam messages based on sender patterns
+          filtered = filtered.filter(msg =>
+            msg.sender.includes('Best') ||
+            msg.sender.includes('Free') ||
+            msg.sender.includes('Classifieds')
+          );
+          break;
+        case 'Important':
+          // Show starred messages and messages with 'Work' label
+          filtered = filtered.filter(msg => msg.isStarred || msg.label === 'Work');
+          break;
+        case 'Bin':
+          // Simulate deleted messages
+          filtered = []; // Empty for now
+          break;
+      }
+    }
+
+    // Apply search filter if search term exists
+    if (this.searchTerm) {
+      filtered = filtered.filter(msg =>
+        msg.sender.toLowerCase().includes(this.searchTerm) ||
+        msg.subject.toLowerCase().includes(this.searchTerm) ||
+        msg.preview.toLowerCase().includes(this.searchTerm)
+      );
+    }
+
+    this.filteredMessages = filtered;
   }
 
   // Compose new email
@@ -51,7 +110,8 @@ export class InboxComponent implements OnInit {
   onSearch(event: any): void {
     this.searchTerm = event.target.value.toLowerCase();
     console.log('Searching for:', this.searchTerm);
-    // TODO: Filter messages based on search term
+    // Filter messages based on search term and active folder
+    this.filterMessages();
   }
 
   // Toggle star on message
@@ -70,10 +130,10 @@ export class InboxComponent implements OnInit {
     }
   }
 
-  // Select/unselect all messages
+  // Select/unselect all messages (works with filtered messages)
   toggleSelectAll(): void {
-    const allSelected = this.messages.every(m => m.isChecked);
-    this.messages.forEach(m => m.isChecked = !allSelected);
+    const allSelected = this.filteredMessages.every(m => m.isChecked);
+    this.filteredMessages.forEach(m => m.isChecked = !allSelected);
   }
 
   // Get label color classes
