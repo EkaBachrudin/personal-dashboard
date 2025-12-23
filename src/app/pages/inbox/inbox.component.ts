@@ -59,9 +59,9 @@ export class InboxComponent implements OnInit {
     // Set selected folder as active
     folder.isActive = true;
     this.activeFolder = folder;
-    console.log('Selected folder:', folder.name);
     // Filter messages based on selected folder
     this.filterMessages();
+    if(this.isNavShow()) this.toggleShow();
   }
 
   // Filter messages based on active folder and search term
