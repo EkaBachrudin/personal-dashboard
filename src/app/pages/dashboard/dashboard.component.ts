@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, AfterViewInit, signal, inject, DestroyRef } from '@angular/core';
 import { ChartSeries } from '../../types/chart.types';
 import { DealDetail } from '../../types';
 import * as Plot from "@observablehq/plot";
@@ -18,17 +18,18 @@ import { PieChartComponent } from '../../shared/lib/pie-chart/pie-chart';
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
-export class DashboardComponent implements OnInit {
-  @ViewChild('salesChart') salesChartRef!: ElementRef;
+export class DashboardComponent implements OnInit, AfterViewInit {
+  @ViewChild('imageWrap') imageWrap!: ElementRef;
+  @ViewChild('parentElement') parentElementRef!: ElementRef;
 
   chartData: ChartSeries[] = [];
   chartWidth = 800; // Default width
   dealsData: DealDetail[] = [];
   selectedMonth: string = 'October';
   currentSlide: number = 0;
+  parentWidth = signal(0);
+  private destroyRef = inject(DestroyRef);
   
- 
-
   salesOption= {
     marks: [
       () => htl.svg`<defs>
@@ -116,7 +117,25 @@ export class DashboardComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    console.log(this.salesChartRef.nativeElement.clientWidth)
+    if (this.imageWrap?.nativeElement) {
+      // Set initial width
+      this.parentWidth.set(this.imageWrap.nativeElement.clientWidth);
+
+      // Set up ResizeObserver to track width changes
+      const resizeObserver = new ResizeObserver((entries) => {
+        for (const entry of entries) {
+          const { width } = entry.contentRect;
+          this.parentWidth.set(width);
+        }
+      });
+
+      resizeObserver.observe(this.imageWrap.nativeElement);
+
+      // Clean up observer when component is destroyed
+      this.destroyRef.onDestroy(() => {
+        resizeObserver.disconnect();
+      });
+    }
   }
 
   private generateDealsData(): DealDetail[] {

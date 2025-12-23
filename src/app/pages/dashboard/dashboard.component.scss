@@ -27,5 +27,5 @@
 }
 
 .info-section{
-  @apply lg:flex mt-6 max-h-[480px] gap-[30px] flex-wrap justify-between;
+  @apply  my-6 max-h-[480px] gap-[30px] grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3;
 }

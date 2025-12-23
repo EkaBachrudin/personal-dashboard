@@ -6,7 +6,7 @@
 
 
   <!-- Stats Grid -->
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[30px] mt-[27px]">
+  <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-[30px] mt-[27px]">
     <app-card classes="p-4">
       <div class="flex justify-between">
         <div>
@@ -274,12 +274,14 @@
     <div class="mt-6 lg:mt-0">
       <app-card classes="p-[24px] w-full h-full mx-auto">
         <p class="text-[22px] font-bold"> Featured Product </p>
-        <div class="mt-4 mx-auto lg:w-[350px] h-[250px]" #imageWrap>
-          <app-image-slider
-            [parentWidth]="imageWrap.clientWidth"
+        <div class="mt-4 mx-auto lg:w-full h-[250px]" #imageWrap>
+          @if(slides) {
+            <app-image-slider
+            [parentWidth]="parentWidth()"
             [slides]="slides"
             [dots]="false"
             (currentSlideOutput)="getCurrentSlide($event)"/>
+          }
         </div>
 
         <div class="mt-6">
