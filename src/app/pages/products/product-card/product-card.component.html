@@ -2,9 +2,9 @@
   <div class="product-card__box">
     <!-- Image Section with Slider -->
     <div #parentElement class="w-full h-[250px] mx-auto">
-      <app-content-slider [parentWidth]="parentElement.clientWidth">
+      <app-content-slider [parentWidth]="parentWidth()">
         @for (image of product().images; track $index) {
-          <img #slideItem src="{{image}}" alt="{{$index}}" class="object-contain" [style.width.px]="parentElement.clientWidth">
+          <img #slideItem src="{{image}}" alt="{{$index}}" class="object-contain" [style.width.px]="parentWidth()">
         }
       </app-content-slider>
     </div>

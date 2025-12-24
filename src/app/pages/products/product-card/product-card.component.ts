@@ -1,4 +1,4 @@
-import { Component, input, computed } from '@angular/core';
+import { Component, input, computed, viewChild, signal, effect, inject, DestroyRef, ElementRef } from '@angular/core';
 
 import { ProductList } from '../../../types/product.type';
 import { ContentSlider } from "../../../shared/lib/content-slider/content-slider";
@@ -12,6 +12,32 @@ import { ContentSlider } from "../../../shared/lib/content-slider/content-slider
 })
 export class ProductCardComponent {
   product = input.required<ProductList>();
+
+  parentElement = viewChild.required<ElementRef<HTMLDivElement>>('parentElement');
+  parentWidth = signal(0);
+
+  constructor() {
+    const destroyRef = inject(DestroyRef);
+
+    effect(() => {
+      const element = this.parentElement().nativeElement;
+      if (element) {
+        this.parentWidth.set(element.clientWidth);
+
+        const resizeObserver = new ResizeObserver(entries => {
+          for (const entry of entries) {
+            this.parentWidth.set(entry.contentRect.width);
+          }
+        });
+
+        resizeObserver.observe(element);
+
+        destroyRef.onDestroy(() => {
+          resizeObserver.disconnect();
+        });
+      }
+    });
+  }
 
   stars = computed(() => {
     const rating = this.product().starsScore;
