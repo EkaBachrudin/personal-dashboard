@@ -39,12 +39,14 @@ export class InboxComponent implements OnInit {
     private el: ElementRef
   ) {
     this.breakPointService.setup = 1280;
+    console.log(this.isNavShow());
   }
 
   ngOnInit(): void {
     // Initialize component
     // Set Inbox as active by default
     this.selectFolder(this.folders[0]);
+    console.log(this.breakPointService.isAboveBreakpoint());
   }
 
   // Select folder
@@ -56,7 +58,7 @@ export class InboxComponent implements OnInit {
     this.activeFolder = folder;
     // Filter messages based on selected folder
     this.filterMessages();
-    if(this.isNavShow()) this.toggleShow();
+    if(this.isNavShow() && !this.breakPointService.isAboveBreakpoint()) this.toggleShow();
   }
 
   // Filter messages based on active folder and search term
@@ -198,7 +200,7 @@ export class InboxComponent implements OnInit {
     const navigationElement = this.el.nativeElement.querySelector('.inbox-navigation');
 
     // Check if navigation is visible and click is outside navigation
-    if (this.isNavShow() && navigationElement && !navigationElement.contains(target)) {
+    if (this.isNavShow() && navigationElement && !navigationElement.contains(target) && !this.breakPointService.isAboveBreakpoint()) {
       // Close navigation when clicking outside in mobile view
       this.breakPointService.isBreakpoint.set(false);
     }
