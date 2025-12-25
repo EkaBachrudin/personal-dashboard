@@ -1,4 +1,4 @@
-<section class="flex bg-white w-fit border border-[#97979734] rounded-[10px] shadow-sm overflow-x-auto">
+<section class="flex bg-white md:w-fit w-full border border-[#97979734] rounded-[10px] shadow-sm overflow-x-auto">
   <div class="py-4 px-6 border-r border-[#97979734] text-[14px] font-bold flex justify-center items-center cursor-pointer whitespace-nowrap min-w-fit">
     <img src="/assets/icons/filter.svg" alt="filter" class="w-[24px]">
   </div>
@@ -25,7 +25,7 @@
 
 <section class="section-filter-content">
   @if (showDateFilterDropdown) {
-    <app-floating-dropdown [customClasses]="'left-[100px] rounded-[26px]'" [triggerElement]="dateFilterElement"
+    <app-floating-dropdown [customClasses]="'left-[8px] sm:left-[100px] rounded-[26px]'" [triggerElement]="dateFilterElement"
       (close)="onDateFilterClose()">
       <div class="flex justify-center">
         <app-date-picker [initialDate]="initialDate" [multiSelect]="true" (dateSelected)="onDateSelected($event)"
@@ -36,7 +36,7 @@
   }
 
   @if (showOrderTypeFilterDropdown) {
-    <app-floating-dropdown [customClasses]="'left-[250px] rounded-[16px] min-w-[320px] p-0'" [triggerElement]="orderTypeFilterElement"
+    <app-floating-dropdown [customClasses]="'left-[10px] sm:left-[250px] rounded-[16px] min-w-[320px] p-0'" [triggerElement]="orderTypeFilterElement"
       (close)="onOrderTypeFilterClose()">
       <div class="p-6 bg-white max-w-[521px]">
         <!-- Header -->
@@ -78,7 +78,7 @@
   }
 
   @if (showOrderStatusFilterDropdown) {
-    <app-floating-dropdown [customClasses]="'left-[400px] rounded-[16px] min-w-[320px] p-0'" [triggerElement]="orderStatusFilterElement"
+    <app-floating-dropdown [customClasses]="'left-[10px] sm:left-[400px] rounded-[16px] min-w-[320px] p-0'" [triggerElement]="orderStatusFilterElement"
       (close)="onOrderStatusFilterClose()">
       <div class="p-6 bg-white max-w-[521px]">
         <!-- Header -->
