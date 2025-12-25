@@ -1,51 +1,32 @@
 .product-stock-conteiner {
+  @apply px-4 sm:px-6 lg:px-0;
+
   .title-page {
-    @apply text-[32px] font-bold text-center lg:text-left flex justify-between mb-[27px];
+    @apply text-[28px] sm:text-[32px] font-bold flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-[27px];
 
-     .search-container {
-    @apply flex justify-end flex-grow;
-  }
-
-  .search-input-wrapper {
-    @apply relative w-full max-w-md;
-  }
-
-  .search-input {
-    @apply w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-[19px]
-           text-sm text-gray-900 placeholder-gray-500
-           bg-white focus:outline-none focus:ring-2 focus:ring-blue-500
-           focus:border-transparent transition-all duration-200
-            hover:shadow-md;
-  }
-
-  .search-icon {
-    @apply absolute left-3 top-[30px] transform -translate-y-1/2
-           text-gray-400 pointer-events-none;
-
-    svg {
-      @apply w-4 h-4;
-    }
-  }
-
-  // Responsive adjustments
-  @media (max-width: 768px) {
     .search-container {
-      @apply mb-4 justify-center;
+      @apply flex justify-end flex-grow sm:flex-grow-0 w-full sm:w-auto;
     }
 
     .search-input-wrapper {
-      @apply w-full max-w-full;
+      @apply relative w-full max-w-full sm:max-w-md;
     }
-  }
 
-  @media (max-width: 640px) {
     .search-input {
-      @apply py-2 text-sm;
+      @apply w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-[19px]
+             text-sm text-gray-900 placeholder-gray-500
+             bg-white focus:outline-none focus:ring-2 focus:ring-blue-500
+             focus:border-transparent transition-all duration-200
+              hover:shadow-md;
     }
-  }
 
-    @media (max-width: 640px) {
-      @apply text-[24px] mb-4;
+    .search-icon {
+      @apply absolute left-3 top-1/2 -translate-y-1/2
+             text-gray-400 pointer-events-none;
+
+      svg {
+        @apply w-4 h-4;
+      }
     }
   }
 
