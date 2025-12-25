@@ -137,6 +137,6 @@ export class SidebarComponent {
   }
 
   isMobile(): boolean {
-    return typeof window !== 'undefined' && window.innerWidth < 768;
+    return typeof window !== 'undefined' && window.innerWidth < 769;
   }
 }
